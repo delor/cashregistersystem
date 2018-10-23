@@ -26,12 +26,15 @@ public class CustomerService {
 
     public void registerCustomer(Customer customer) {
         customer.setUser(userRepository.findById(userService.currentLoggedUserId()).get());
-//        customer.setUser_id(userService.currentLoggedUserId());
         customerRepository.save(customer);
     }
 
     public void deleteCustomer(@PathVariable Long id) {
-        customerRepository.deleteById(id);
+        Customer customer = customerRepository.getOne(id);
+        if(customer.getUser().getId()==userService.currentLoggedUserId()) {
+            customerRepository.deleteById(id);
+        }
+
     }
 
     public Customer getCustomer(@PathVariable Long id) {

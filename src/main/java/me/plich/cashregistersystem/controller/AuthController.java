@@ -30,7 +30,7 @@ import java.net.URI;
 import java.util.Collections;
 
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping
 public class AuthController {
 
     @Autowired
@@ -76,9 +76,13 @@ public class AuthController {
                     HttpStatus.BAD_REQUEST);
         }
 
+        if(userRepository.existsByNip(signUpRequest.getNip())) {
+            return new ResponseEntity(new ApiResponse(false, "Nip number already in use!"),
+                    HttpStatus.BAD_REQUEST);
+        }
 
-        User user = new User(signUpRequest.getName(), signUpRequest.getUsername(),
-                signUpRequest.getEmail(), signUpRequest.getPassword());
+
+        User user = new User(signUpRequest.getNip(), signUpRequest.getName(), signUpRequest.getUsername(), signUpRequest.getStreet(), signUpRequest.getHouseNumber(), signUpRequest.getFlatNumber(), signUpRequest.getZipCode(), signUpRequest.getPlace(), signUpRequest.getVoivodeship(), signUpRequest.getTelephone(), signUpRequest.getEmail(), signUpRequest.getPassword());
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
@@ -90,7 +94,7 @@ public class AuthController {
         User result = userRepository.save(user);
 
         URI location = ServletUriComponentsBuilder
-                .fromCurrentContextPath().path("/api/users/{username}")
+                .fromCurrentContextPath().path("/users/{username}")
                 .buildAndExpand(result.getUsername()).toUri();
 
         return ResponseEntity.created(location).body(new ApiResponse(true, "User registered successfully"));

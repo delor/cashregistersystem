@@ -22,6 +22,8 @@ public class DeviceSercive {
     CustomerRepository customerRepository;
     @Autowired
     LocationRepository locationRepository;
+    @Autowired
+    UserService userService;
 
     public void addDevice(Device device, Long userID, Long customerID, Long locationID) {
         device.setUser(userRepository.findById(userID).get());
@@ -31,7 +33,10 @@ public class DeviceSercive {
     }
 
     public void deleteDevice(@PathVariable Long id) {
-        deviceRepository.deleteById(id);
+        Device device = deviceRepository.getOne(id);
+        if (device.getUser().getId() == userService.currentLoggedUserId()) {
+            deviceRepository.deleteById(id);
+        }
     }
 
     public Device getDevice(@PathVariable Long id) {

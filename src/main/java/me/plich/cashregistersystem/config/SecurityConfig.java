@@ -60,7 +60,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-
+                .authorizeRequests()
+                .antMatchers("/signup").permitAll()
+                .antMatchers("/signin").permitAll()
+                .antMatchers("/h2-console/**").permitAll()
+                .anyRequest().authenticated().and()
                 .cors()
                 .and()
                 .csrf()
@@ -69,31 +73,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticationEntryPoint(unauthorizedHandler)
                 .and()
                 .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
-                .authorizeRequests()
-//                .antMatchers("/",
-//                        "/favicon.ico",
-//                        "/**/*.png",
-//                        "/**/*.gif",
-//                        "/**/*.svg",
-//                        "/**/*.jpg",
-//                        "/**/*.html",
-//                        "/**/*.css",
-//                        "/**/*.js")
-//                .permitAll()
-                .antMatchers("/api/auth/**")
-                .permitAll()
-                .antMatchers("/h2-console/**")
-                .permitAll()
-//                .antMatchers("/api/user/checkUsernameAvailability", "/api/user/checkEmailAvailability")
-//                .permitAll()
-//                .antMatchers(HttpMethod.GET, "/api/polls/**", "/api/users/**")
-//                .permitAll()
-                .anyRequest()
-                .authenticated();
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+
+
         http.headers().frameOptions().sameOrigin();
-        // Add our custom JWT security filter
         http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 
     }
