@@ -43,8 +43,6 @@ public class Customer implements Serializable {
     private String taxOffice;
     @JsonView(View.Public.class)
     private String description;
-//    @JsonView(View.Public.class)
-//    private Long user_id;
     @ManyToOne
     @JoinColumn(name = "user")
     @JsonIgnore
@@ -72,7 +70,6 @@ public class Customer implements Serializable {
         this.email = email;
         this.taxOffice = taxOffice;
         this.description = description;
-//        this.user_id = user_id;
         this.user = user;
         this.devices = devices;
         this.locations = locations;
@@ -178,14 +175,6 @@ public class Customer implements Serializable {
         this.description = description;
     }
 
-//    public Long getUser_id() {
-//        return user_id;
-//    }
-//
-//    public void setUser_id(Long user_id) {
-//        this.user_id = user_id;
-//    }
-
     public User getUser() {
         return user;
     }
@@ -218,7 +207,6 @@ public class Customer implements Serializable {
         return houseNumber == customer.houseNumber &&
                 flatNumber == customer.flatNumber &&
                 telephone == customer.telephone &&
-//                user_id == customer.user_id &&
                 Objects.equals(id, customer.id) &&
                 Objects.equals(nip, customer.nip) &&
                 Objects.equals(name, customer.name) &&
