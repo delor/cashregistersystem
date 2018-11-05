@@ -3,6 +3,7 @@ package me.plich.cashregistersystem.model;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -17,19 +18,23 @@ public class Device implements Serializable {
     @JsonView(View.Public.class)
     private Long id;
     @JsonView(View.Public.class)
+    @NotNull
     private String uniqueNumber;
     @JsonView(View.Public.class)
+    @NotNull
     private String serialNumber;
     @JsonView(View.Public.class)
+    @NotNull
     private Producer producer;
     @JsonView(View.Public.class)
+    @NotNull
     private Model model;
-    private LocalDate saleDate;
     private LocalDate dateOfFiscalization;
     private LocalDate dateOfDeRegistration;
     @JsonView(View.Public.class)
     private String evidenceNumber;
     @JsonView(View.Public.class)
+    @NotNull
     private int reviewsFrequency;
     private LocalDate lastReview;
     private LocalDate plannedReview;
@@ -61,12 +66,11 @@ public class Device implements Serializable {
 
     public Device(){}
 
-    public Device(String uniqueNumber, String serialNumber, Producer producer, Model model, LocalDate saleDate, int reviewsFrequency, String description, Location location, User user, Customer customer) {
+    public Device(String uniqueNumber, String serialNumber, Producer producer, Model model, int reviewsFrequency, String description, Location location, User user, Customer customer) {
         this.uniqueNumber = uniqueNumber;
         this.serialNumber = serialNumber;
         this.producer = producer;
         this.model = model;
-        this.saleDate = saleDate;
         this.reviewsFrequency = reviewsFrequency;
         this.description = description;
         this.location = location;
@@ -108,14 +112,6 @@ public class Device implements Serializable {
 
     public void setModel(Model model) {
         this.model = model;
-    }
-
-    public LocalDate getSaleDate() {
-        return saleDate;
-    }
-
-    public void setSaleDate(LocalDate saleDate) {
-        this.saleDate = saleDate;
     }
 
     public LocalDate getDateOfFiscalization() {
@@ -250,7 +246,6 @@ public class Device implements Serializable {
                 Objects.equals(serialNumber, device.serialNumber) &&
                 producer == device.producer &&
                 model == device.model &&
-                Objects.equals(saleDate, device.saleDate) &&
                 Objects.equals(dateOfFiscalization, device.dateOfFiscalization) &&
                 Objects.equals(dateOfDeRegistration, device.dateOfDeRegistration) &&
                 Objects.equals(evidenceNumber, device.evidenceNumber) &&
@@ -268,6 +263,6 @@ public class Device implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, uniqueNumber, serialNumber, producer, model, saleDate, dateOfFiscalization, dateOfDeRegistration, evidenceNumber, reviewsFrequency, lastReview, plannedReview, dailyReports, active, mobile, reserve, description, location, user, customer, orders);
+        return Objects.hash(id, uniqueNumber, serialNumber, producer, model, dateOfFiscalization, dateOfDeRegistration, evidenceNumber, reviewsFrequency, lastReview, plannedReview, dailyReports, active, mobile, reserve, description, location, user, customer, orders);
     }
 }

@@ -1,6 +1,9 @@
 package me.plich.cashregistersystem.model;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -9,8 +12,13 @@ public class Serviceman implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonView(View.Public.class)
     private Long id;
+    @JsonView(View.Public.class)
+    @NotNull
     private String firstName;
+    @JsonView(View.Public.class)
+    @NotNull
     private String lastName;
     @ManyToOne
     @JoinColumn(name = "user_id")

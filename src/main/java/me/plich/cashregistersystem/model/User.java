@@ -3,6 +3,7 @@ package me.plich.cashregistersystem.model;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.*;
 
@@ -15,28 +16,38 @@ public class User implements Serializable {
     @JsonView(View.Public.class)
     private Long id;
     @JsonView(View.Public.class)
+    @NotNull
     private String nip;
     @JsonView(View.Public.class)
+    @NotNull
     private String name;
     @JsonView(View.Public.class)
+    @NotNull
     private String username;
     @JsonView(View.Public.class)
+    @NotNull
     private String street;
     @JsonView(View.Public.class)
+    @NotNull
     private String houseNumber;
     @JsonView(View.Public.class)
     private String flatNumber;
     @JsonView(View.Public.class)
+    @NotNull
     private String zipCode;
     @JsonView(View.Public.class)
+    @NotNull
     private String place;
     @JsonView(View.Public.class)
+    @NotNull
     private String voivodeship;
     @JsonView(View.Public.class)
     private String telephone;
     @JsonView(View.Public.class)
+    @NotNull
     private String email;
     @JsonView(View.Public.class)
+    @NotNull
     private String password;
 
     @ManyToMany(fetch = FetchType.LAZY)

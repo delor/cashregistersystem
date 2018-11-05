@@ -3,6 +3,7 @@ package me.plich.cashregistersystem.model;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,18 +17,24 @@ public class Location implements Serializable {
     @JsonView(View.Public.class)
     private Long id;
     @JsonView(View.Public.class)
+    @NotNull
     private String name;
     @JsonView(View.Public.class)
+    @NotNull
     private String street;
     @JsonView(View.Public.class)
+    @NotNull
     private int houseNumber;
     @JsonView(View.Public.class)
     private int flatNumber;
     @JsonView(View.Public.class)
+    @NotNull
     private int zipCode;
     @JsonView(View.Public.class)
+    @NotNull
     private String place;
     @JsonView(View.Public.class)
+    @NotNull
     private String voivodeship;
     @JsonView(View.Public.class)
     private int telephone;

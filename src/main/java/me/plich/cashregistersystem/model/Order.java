@@ -1,6 +1,9 @@
 package me.plich.cashregistersystem.model;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -9,9 +12,16 @@ public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonView(View.Public.class)
     private Long id;
+    @JsonView(View.Public.class)
+    @NotNull
     private OrderType orderType;
+    @JsonView(View.Public.class)
+    @NotNull
     private LocalDate orderDate;
+    @JsonView(View.Public.class)
+    @NotNull
     private StateOfSeals seals;
     private int generalCounterFrom;
     private int generalCounterTo;

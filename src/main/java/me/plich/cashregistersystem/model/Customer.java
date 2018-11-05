@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,34 +20,41 @@ public class Customer implements Serializable {
     @JsonView(View.Public.class)
     private Long id;
     @JsonView(View.Public.class)
-    private Long nip;
+    @NotNull
+    private String nip;
     @JsonView(View.Public.class)
+    @NotNull
     private String name;
     @JsonView(View.Public.class)
+    @NotNull
     private String street;
-    @Nullable
     @JsonView(View.Public.class)
-    private Integer houseNumber;
+    @NotNull
+    private String houseNumber;
     @JsonView(View.Public.class)
-    private Integer flatNumber;
+    private String flatNumber;
     @JsonView(View.Public.class)
+    @NotNull
     private String zipCode;
     @JsonView(View.Public.class)
+    @NotNull
     private String place;
     @JsonView(View.Public.class)
+    @NotNull
     private String voivodeship;
     @JsonView(View.Public.class)
-    private int telephone;
+    @NotNull
+    private String telephone;
     @JsonView(View.Public.class)
     private String email;
     @JsonView(View.Public.class)
+    @NotNull
     private String taxOffice;
     @JsonView(View.Public.class)
     private String description;
     @ManyToOne
     @JoinColumn(name = "user")
     @JsonIgnore
-//    @JsonView(View.Public.class)
     private User user;
 
     @OneToMany(mappedBy="customer")
@@ -57,7 +65,7 @@ public class Customer implements Serializable {
 
     public Customer(){}
 
-    public Customer(Long nip, String name, String street, Integer houseNumber, Integer flatNumber, String zipCode, String place, String voivodeship, int telephone, String email, String taxOffice, String description, User user, List<Device> devices, List<Location> locations) {
+    public Customer(String nip, String name, String street, String houseNumber, String flatNumber, String zipCode, String place, String voivodeship, String telephone, String email, String taxOffice, String description, User user, List<Device> devices, List<Location> locations) {
         this.nip = nip;
         this.name = name;
         this.street = street;
@@ -79,11 +87,11 @@ public class Customer implements Serializable {
         return id;
     }
 
-    public Long getNip() {
+    public String getNip() {
         return nip;
     }
 
-    public void setNip(Long nip) {
+    public void setNip(String nip) {
         this.nip = nip;
     }
 
@@ -103,19 +111,19 @@ public class Customer implements Serializable {
         this.street = street;
     }
 
-    public int getHouseNumber() {
+    public String getHouseNumber() {
         return houseNumber;
     }
 
-    public void setHouseNumber(Integer houseNumber) {
+    public void setHouseNumber(String houseNumber) {
         this.houseNumber = houseNumber;
     }
 
-    public int getFlatNumber() {
+    public String getFlatNumber() {
         return flatNumber;
     }
 
-    public void setFlatNumber(Integer flatNumber) {
+    public void setFlatNumber(String flatNumber) {
         this.flatNumber = flatNumber;
     }
 
@@ -143,11 +151,11 @@ public class Customer implements Serializable {
         this.voivodeship = voivodeship;
     }
 
-    public int getTelephone() {
+    public String getTelephone() {
         return telephone;
     }
 
-    public void setTelephone(int telephone) {
+    public void setTelephone(String telephone) {
         this.telephone = telephone;
     }
 

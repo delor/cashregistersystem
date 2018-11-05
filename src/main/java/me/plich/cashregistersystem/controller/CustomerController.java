@@ -21,8 +21,6 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService;
     @Autowired
-    private CustomerRepository customerRepository;
-    @Autowired
     UserService userService;
 
     @PostMapping
@@ -48,15 +46,12 @@ public class CustomerController {
 
     @GetMapping("/advanced")
     public List<Customer> findAllByRsql(@RequestParam(value = "search") String search) {
-        Node rootNode = new RSQLParser().parse(search);
-        Specification<Customer> spec = rootNode.accept(new CustomRsqlVisitor<Customer>());
-        List<Customer> customers =  customerRepository.findAll(spec);
-        for (Customer rsqlCustomers : customers) {
-            if (rsqlCustomers.getUser().getId() != userService.currentLoggedUserId()) {
-                customers.remove(rsqlCustomers);
-            }
-        }
-        return customers;
+       return customerService.findAllByRsql(search);
+    }
+
+    @PatchMapping("/{id}")
+    public void updateCustomer(@PathVariable Long id, @RequestBody Customer customer) {
+        customerService.updateCustomer(id, customer);
     }
 
 
