@@ -24,12 +24,12 @@ public class Location implements Serializable {
     private String street;
     @JsonView(View.Public.class)
     @NotNull
-    private int houseNumber;
+    private String houseNumber;
     @JsonView(View.Public.class)
-    private int flatNumber;
+    private String flatNumber;
     @JsonView(View.Public.class)
     @NotNull
-    private int zipCode;
+    private String zipCode;
     @JsonView(View.Public.class)
     @NotNull
     private String place;
@@ -37,7 +37,7 @@ public class Location implements Serializable {
     @NotNull
     private String voivodeship;
     @JsonView(View.Public.class)
-    private int telephone;
+    private String telephone;
     @JsonView(View.Public.class)
     private String email;
     @JsonView(View.Public.class)
@@ -56,7 +56,7 @@ public class Location implements Serializable {
 
     public Location(){}
 
-    public Location(String name, String street, int houseNumber, int flatNumber, int zipCode, String place, String voivodeship, int telephone, String email, String description, User user, Customer customer) {
+    public Location(String name, String street, String houseNumber, String flatNumber, String zipCode, String place, String voivodeship, String telephone, String email, String description, User user, Customer customer) {
         this.name = name;
         this.street = street;
         this.houseNumber = houseNumber;
@@ -91,27 +91,27 @@ public class Location implements Serializable {
         this.street = street;
     }
 
-    public int getHouseNumber() {
+    public String getHouseNumber() {
         return houseNumber;
     }
 
-    public void setHouseNumber(int houseNumber) {
+    public void setHouseNumber(String houseNumber) {
         this.houseNumber = houseNumber;
     }
 
-    public int getFlatNumber() {
+    public String getFlatNumber() {
         return flatNumber;
     }
 
-    public void setFlatNumber(int flatNumber) {
+    public void setFlatNumber(String flatNumber) {
         this.flatNumber = flatNumber;
     }
 
-    public int getZipCode() {
+    public String getZipCode() {
         return zipCode;
     }
 
-    public void setZipCode(int zipCode) {
+    public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
     }
 
@@ -131,11 +131,11 @@ public class Location implements Serializable {
         this.voivodeship = voivodeship;
     }
 
-    public int getTelephone() {
+    public String getTelephone() {
         return telephone;
     }
 
-    public void setTelephone(int telephone) {
+    public void setTelephone(String telephone) {
         this.telephone = telephone;
     }
 

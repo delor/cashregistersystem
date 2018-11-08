@@ -35,11 +35,11 @@ public class Device implements Serializable {
     private String evidenceNumber;
     @JsonView(View.Public.class)
     @NotNull
-    private int reviewsFrequency;
+    private String reviewsFrequency;
     private LocalDate lastReview;
     private LocalDate plannedReview;
     @JsonView(View.Public.class)
-    private int dailyReports;
+    private String dailyReports;
     @JsonView(View.Public.class)
     private Boolean active;
     @JsonView(View.Public.class)
@@ -66,7 +66,7 @@ public class Device implements Serializable {
 
     public Device(){}
 
-    public Device(String uniqueNumber, String serialNumber, Producer producer, Model model, int reviewsFrequency, String description, Location location, User user, Customer customer) {
+    public Device(String uniqueNumber, String serialNumber, Producer producer, Model model, String reviewsFrequency, String description, Location location, User user, Customer customer) {
         this.uniqueNumber = uniqueNumber;
         this.serialNumber = serialNumber;
         this.producer = producer;
@@ -138,11 +138,11 @@ public class Device implements Serializable {
         this.evidenceNumber = evidenceNumber;
     }
 
-    public int getReviewsFrequency() {
+    public String getReviewsFrequency() {
         return reviewsFrequency;
     }
 
-    public void setReviewsFrequency(int reviewsFrequency) {
+    public void setReviewsFrequency(String reviewsFrequency) {
         this.reviewsFrequency = reviewsFrequency;
     }
 
@@ -162,11 +162,11 @@ public class Device implements Serializable {
         this.plannedReview = plannedReview;
     }
 
-    public int getDailyReports() {
+    public String getDailyReports() {
         return dailyReports;
     }
 
-    public void setDailyReports(int dailyReports) {
+    public void setDailyReports(String dailyReports) {
         this.dailyReports = dailyReports;
     }
 

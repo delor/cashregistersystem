@@ -23,14 +23,14 @@ public class Order {
     @JsonView(View.Public.class)
     @NotNull
     private StateOfSeals seals;
-    private int generalCounterFrom;
-    private int generalCounterTo;
-    private int dailyReportFrom;
-    private int dailyReportTo;
-    private int resettingFramesFrom;
-    private int resettingFramesTo;
-    private int receiptFrom;
-    private int receiptTo;
+    private String generalCounterFrom;
+    private String generalCounterTo;
+    private String dailyReportFrom;
+    private String dailyReportTo;
+    private String resettingFramesFrom;
+    private String resettingFramesTo;
+    private String receiptFrom;
+    private String receiptTo;
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
@@ -41,7 +41,7 @@ public class Order {
 
     public Order(){}
 
-    public Order(OrderType orderType, LocalDate orderDate, StateOfSeals seals, int generalCounterFrom, int generalCounterTo, int dailyReportFrom, int dailyReportTo, int resettingFramesFrom, int resettingFramesTo, int receiptFrom, int receiptTo, User user, Device device) {
+    public Order(OrderType orderType, LocalDate orderDate, StateOfSeals seals, String generalCounterFrom, String generalCounterTo, String dailyReportFrom, String dailyReportTo, String resettingFramesFrom, String resettingFramesTo, String receiptFrom, String receiptTo, User user, Device device) {
         this.orderType = orderType;
         this.orderDate = orderDate;
         this.seals = seals;
@@ -85,67 +85,67 @@ public class Order {
         this.seals = seals;
     }
 
-    public int getGeneralCounterFrom() {
+    public String getGeneralCounterFrom() {
         return generalCounterFrom;
     }
 
-    public void setGeneralCounterFrom(int generalCounterFrom) {
+    public void setGeneralCounterFrom(String generalCounterFrom) {
         this.generalCounterFrom = generalCounterFrom;
     }
 
-    public int getGeneralCounterTo() {
+    public String getGeneralCounterTo() {
         return generalCounterTo;
     }
 
-    public void setGeneralCounterTo(int generalCounterTo) {
+    public void setGeneralCounterTo(String generalCounterTo) {
         this.generalCounterTo = generalCounterTo;
     }
 
-    public int getDailyReportFrom() {
+    public String getDailyReportFrom() {
         return dailyReportFrom;
     }
 
-    public void setDailyReportFrom(int dailyReportFrom) {
+    public void setDailyReportFrom(String dailyReportFrom) {
         this.dailyReportFrom = dailyReportFrom;
     }
 
-    public int getDailyReportTo() {
+    public String getDailyReportTo() {
         return dailyReportTo;
     }
 
-    public void setDailyReportTo(int dailyReportTo) {
+    public void setDailyReportTo(String dailyReportTo) {
         this.dailyReportTo = dailyReportTo;
     }
 
-    public int getResettingFramesFrom() {
+    public String getResettingFramesFrom() {
         return resettingFramesFrom;
     }
 
-    public void setResettingFramesFrom(int resettingFramesFrom) {
+    public void setResettingFramesFrom(String resettingFramesFrom) {
         this.resettingFramesFrom = resettingFramesFrom;
     }
 
-    public int getResettingFramesTo() {
+    public String getResettingFramesTo() {
         return resettingFramesTo;
     }
 
-    public void setResettingFramesTo(int resettingFramesTo) {
+    public void setResettingFramesTo(String resettingFramesTo) {
         this.resettingFramesTo = resettingFramesTo;
     }
 
-    public int getReceiptFrom() {
+    public String getReceiptFrom() {
         return receiptFrom;
     }
 
-    public void setReceiptFrom(int receiptFrom) {
+    public void setReceiptFrom(String receiptFrom) {
         this.receiptFrom = receiptFrom;
     }
 
-    public int getReceiptTo() {
+    public String getReceiptTo() {
         return receiptTo;
     }
 
-    public void setReceiptTo(int receiptTo) {
+    public void setReceiptTo(String receiptTo) {
         this.receiptTo = receiptTo;
     }
 

@@ -10,4 +10,5 @@ import java.util.List;
 public interface LocationRepository extends JpaRepository<Location, Long> {
 
     List<Location> findByUser_idAndCustomer_id(Long user_id, Long customer_id);
+    List<Location> findByUser_id(Long user_id);
 }
