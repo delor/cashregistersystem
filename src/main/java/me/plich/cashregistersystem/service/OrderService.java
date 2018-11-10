@@ -25,7 +25,7 @@ public class OrderService {
     UserService userService;
 
     public void addOrder(Order order, Long deviceID) {
-        Order.setUser(userRepository.findById(userService.currentLoggedUserId()).get());
+        order.setUser(userRepository.findById(userService.currentLoggedUserId()).get());
         order.setDevice(deviceRepository.findById(deviceID).get());
         orderRepository.save(order);
     }
@@ -46,8 +46,12 @@ public class OrderService {
     }
 
     public List<Order> getAllUserOrders() {
-        List<Order> orders = orderRepository.findByUser_id(userService.currentLoggedUserId());
-        return orders;
+        return orderRepository.findByUser_id(userService.currentLoggedUserId());
+
+    }
+
+    public List<Order> getDeviceOrders(Long id) {
+        return orderRepository.findByUser_idAndDevice_id(userService.currentLoggedUserId(), id);
     }
 
     public void updateOrder(@PathVariable Long id, @RequestBody Order order) {

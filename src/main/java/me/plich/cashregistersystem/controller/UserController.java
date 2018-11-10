@@ -13,26 +13,22 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/users")
 public class UserController {
 
     @Autowired
     private UserService userService;
-//     for admin only
-//    @GetMapping
-//    @JsonView(View.Public.class)
-//    public List<User> getAllUsers() {
-//        return userService.getAllUsers();
-//    }
+
+
     @JsonView(View.Public.class)
     @GetMapping
     public User getUser() {
-        return userService.getUser(userService.currentLoggedUserId());
+        return userService.getUser();
     }
 
-    @DeleteMapping("{id}")
-    public void deleteUser(@PathVariable Long id) {
-        userService.deleteUser(id);
+    @DeleteMapping("/{id}")
+    public void deleteUser() {
+        userService.deleteUser();
     }
 
 

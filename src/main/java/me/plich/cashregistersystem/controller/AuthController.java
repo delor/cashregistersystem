@@ -7,7 +7,7 @@ import me.plich.cashregistersystem.model.User;
 import me.plich.cashregistersystem.payload.ApiResponse;
 import me.plich.cashregistersystem.payload.JwtAuthenticationResponse;
 import me.plich.cashregistersystem.payload.LoginRequest;
-import me.plich.cashregistersystem.payload.SignUpRequest;
+//import me.plich.cashregistersystem.payload.SignUpRequest;
 import me.plich.cashregistersystem.repository.RoleRepository;
 import me.plich.cashregistersystem.repository.UserRepository;
 import me.plich.cashregistersystem.security.JwtTokenProvider;
@@ -65,33 +65,33 @@ public class AuthController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpRequest signUpRequest) {
-        if(userRepository.existsByUsername(signUpRequest.getUsername())) {
+    public ResponseEntity<?> registerUser(@Valid @RequestBody User user) {
+        if(userRepository.existsByUsername(user.getUsername())) {
             return new ResponseEntity(new ApiResponse(false, "Username is already taken!"),
                     HttpStatus.BAD_REQUEST);
         }
 
-        if(userRepository.existsByEmail(signUpRequest.getEmail())) {
+        if(userRepository.existsByEmail(user.getEmail())) {
             return new ResponseEntity(new ApiResponse(false, "Email Address already in use!"),
                     HttpStatus.BAD_REQUEST);
         }
 
-        if(userRepository.existsByNip(signUpRequest.getNip())) {
+        if(userRepository.existsByNip(user.getNip())) {
             return new ResponseEntity(new ApiResponse(false, "Nip number already in use!"),
                     HttpStatus.BAD_REQUEST);
         }
 
 
-        User user = new User(signUpRequest.getNip(), signUpRequest.getName(), signUpRequest.getUsername(), signUpRequest.getStreet(), signUpRequest.getHouseNumber(), signUpRequest.getFlatNumber(), signUpRequest.getZipCode(), signUpRequest.getPlace(), signUpRequest.getVoivodeship(), signUpRequest.getTelephone(), signUpRequest.getEmail(), signUpRequest.getPassword());
+        User newUser = new User(user.getNip(), user.getName(), user.getUsername(), user.getStreet(), user.getHouseNumber(), user.getFlatNumber(), user.getZipCode(), user.getPlace(), user.getVoivodeship(), user.getTelephone(), user.getEmail(), user.getPassword());
 
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        newUser.setPassword(passwordEncoder.encode(user.getPassword()));
 
         Role userRole = roleRepository.findByName(RoleName.ROLE_USER)
                 .orElseThrow(() -> new AppException("User Role not set."));
 
-        user.setRoles(Collections.singleton(userRole));
+        newUser.setRoles(Collections.singleton(userRole));
 
-        User result = userRepository.save(user);
+        User result = userRepository.save(newUser);
 
         URI location = ServletUriComponentsBuilder
                 .fromCurrentContextPath().path("/users/{username}")

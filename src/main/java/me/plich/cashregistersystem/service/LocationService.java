@@ -48,13 +48,13 @@ public class LocationService {
         return null;
     }
 
-    public List<Location> getAllCustomerLocation(@PathVariable Long id) {
-        List<Location> locations = locationRepository.findByUser_idAndCustomer_id(userService.currentLoggedUserId(), id)
+    public List<Location> getAllCustomerLocation(@PathVariable Long userId) {
+        List<Location> locations = locationRepository.findByUser_idAndCustomer_id(userService.currentLoggedUserId(), userId);
         return locations;
     }
 
     public List<Location> getAllUserLocation() {
-        List<Location> locations = locationRepository.findByUser_id(userService.currentLoggedUserId())
+        List<Location> locations = locationRepository.findByUser_id(userService.currentLoggedUserId());
         return locations;
     }
 

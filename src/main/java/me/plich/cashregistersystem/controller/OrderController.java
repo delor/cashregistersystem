@@ -11,30 +11,35 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/order")
+@RequestMapping("/orders")
 public class OrderController {
 
     @Autowired
     OrderService orderService;
 
     @PostMapping
-    public void addOrder(@RequestBody Order order, @RequestHeader Long userID, @RequestHeader Long deviceID) {
-        orderService.addOrder(order, userID, deviceID);
+    public void addOrder(@RequestBody Order order, @RequestHeader Long deviceID) {
+        orderService.addOrder(order, deviceID);
     }
 
     @GetMapping
     @JsonView(View.Public.class)
-    public List<Order> getAllOrders() {
-        return orderService.getAllOrders();
+    public List<Order> getAllUserOrders() {
+        return orderService.getAllUserOrders();
     }
 
-    @DeleteMapping("/order/{id}")
+    @DeleteMapping("/{id}")
     public void deleteOrder(@PathVariable Long id) {
         orderService.deleteOrder(id);
     }
 
-    @GetMapping("/order/{id}")
+    @GetMapping("/{id}")
     public Order getOrder(@PathVariable Long id) {
         return orderService.getOrder(id);
+    }
+
+    @PatchMapping("/{id}")
+    public void updateOrder(@PathVariable Long id, @RequestBody Order order) {
+        orderService.updateOrder(id, order);
     }
 }

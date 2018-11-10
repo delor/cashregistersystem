@@ -17,23 +17,29 @@ public class ServicemanController {
     ServicemanService servicemanService;
 
     @PostMapping
-    public void addServiceman(@RequestBody Serviceman serviceman, @RequestHeader Long userID) {
-        servicemanService.addServiceman(serviceman, userID);
+    public void addServiceman(@RequestBody Serviceman serviceman) {
+        servicemanService.addServiceman(serviceman);
     }
 
     @GetMapping
     @JsonView(View.Public.class)
-    public List<Serviceman> getAllServicemens() {
-        return servicemanService.getAllServicemens();
+    public List<Serviceman> getAllUserServicemens() {
+        return servicemanService.getAllUserServicemens();
     }
 
-    @DeleteMapping("/serviceman/{id}")
+    @DeleteMapping("/{id}")
     public void deleteServiceman(@PathVariable Long id) {
         servicemanService.deleteServiceman(id);
     }
 
-    @GetMapping("/serviceman/{id}")
+    @GetMapping("/{id}")
+    @JsonView(View.Public.class)
     public Serviceman getServiceman(@PathVariable Long id) {
         return servicemanService.getServiceman(id);
+    }
+
+    @PatchMapping("/{id}")
+    public void updateServiceman(@PathVariable Long id, @RequestBody Serviceman serviceman) {
+        servicemanService.updateServiceman(id, serviceman);
     }
 }

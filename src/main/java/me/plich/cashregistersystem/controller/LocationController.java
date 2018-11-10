@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/location")
+@RequestMapping("/locations")
 public class LocationController {
 
     @Autowired
@@ -23,17 +23,22 @@ public class LocationController {
 
     @GetMapping
     @JsonView(View.Public.class)
-    public List<Location> getAllLocations() {
-        return locationService.getAllLocation();
+    public List<Location> getAllUserLocations() {
+        return locationService.getAllUserLocation();
     }
 
-    @DeleteMapping("/location/{id}")
+    @DeleteMapping("/{id}")
     public void deleteLocation(@PathVariable Long id) {
         locationService.deleteLocation(id);
     }
 
-    @GetMapping("/location/{id}")
+    @GetMapping("/{id}")
     public Location getLocation(@PathVariable Long id) {
         return locationService.getLocation(id);
+    }
+
+    @PatchMapping("/{id}")
+    public void updateLocation(@PathVariable Long id, @RequestBody Location location) {
+        locationService.updateLocation(id, location);
     }
 }

@@ -16,22 +16,12 @@ public class UserService {
     @Autowired
     UserRepository userRepository;
 
-    public void registerUser(User user) {
-        userRepository.save(user);
+    public void deleteUser() {
+        userRepository.deleteById(currentLoggedUserId());
     }
 
-    public void deleteUser(@PathVariable Long id) {
-        userRepository.deleteById(id);
-    }
-
-    public User getUser(@PathVariable Long id) {
-        User user = userRepository.findById(id).get();
-        return user;
-    }
-
-    public List<User> getAllUsers() {
-        List<User> users = userRepository.findAll();
-        return users;
+    public User getUser() {
+        return userRepository.getOne(currentLoggedUserId());
     }
 
     public Long currentLoggedUserId() {
@@ -40,4 +30,6 @@ public class UserService {
         Long user_id = user.getId();
         return user_id;
     }
+
+    //todo: @Patch updateUser
 }

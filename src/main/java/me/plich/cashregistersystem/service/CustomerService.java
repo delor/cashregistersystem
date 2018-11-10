@@ -30,7 +30,7 @@ public class CustomerService {
 
 
 
-    public void registerCustomer(Customer customer) {
+    public void addCustomer(Customer customer) {
         customer.setUser(userRepository.findById(userService.currentLoggedUserId()).get());
         customerRepository.save(customer);
     }
@@ -57,9 +57,8 @@ public class CustomerService {
     }
 
     public void updateCustomer(@PathVariable Long id, @RequestBody Customer customer) {
-        Customer customerValidator = customerRepository.getOne(id);
-        if(customerValidator.getUser().getId()==userService.currentLoggedUserId()) {
-            Customer customerToUpdate = customerRepository.getOne(id);
+        Customer customerToUpdate = customerRepository.getOne(id);
+        if(customerToUpdate.getUser().getId()==userService.currentLoggedUserId()) {
 
             if (customer.getNip() != null) {
                 customerToUpdate.setNip(customer.getNip());
