@@ -8,13 +8,13 @@ import me.plich.cashregistersystem.model.Customer;
 import me.plich.cashregistersystem.model.Device;
 import me.plich.cashregistersystem.model.Location;
 import me.plich.cashregistersystem.model.View;
-import me.plich.cashregistersystem.repository.CustomerRepository;
+
 import me.plich.cashregistersystem.service.CustomerService;
 import me.plich.cashregistersystem.service.DeviceService;
 import me.plich.cashregistersystem.service.LocationService;
 import me.plich.cashregistersystem.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.domain.Specification;
+
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -65,14 +65,14 @@ public class CustomerController {
 
     @GetMapping("/{id}/devices")
     @JsonView(View.Public.class)
-    public List<Device> getAllCustomerDevices(@PathVariable Long id) {
-        return getAllCustomerDevices(id);
+    public @ResponseBody List<Device> getAllCustomerDevices(@PathVariable Long id) {
+        return deviceService.getAllCustomerDevices(id);
     }
 
     @GetMapping("/{id}/locations")
     @JsonView(View.Public.class)
     public List<Location> getAllCustomerLocations(@PathVariable Long id) {
-        return getAllCustomerLocations(id);
+        return locationService.getAllCustomerLocations(id);
     }
 
 

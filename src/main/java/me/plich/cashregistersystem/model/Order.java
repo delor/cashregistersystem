@@ -2,13 +2,15 @@ package me.plich.cashregistersystem.model;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
-public class Order {
+public class Order implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

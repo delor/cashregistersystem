@@ -13,7 +13,7 @@ import java.util.Objects;
 
 
 @Entity
-public class Customer implements Serializable {
+public class Customer  implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

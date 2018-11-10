@@ -8,6 +8,7 @@ import java.util.List;
 
 @Repository
 public interface DeviceRepository extends JpaRepository<Device, Long> {
-    List<Device> findByUser_idAndCustomer_id(Long user_id, Long customer_id);
-    List<Device> findByUser_id(Long user_id);
+    List<Device> findByUser_IdAndCustomer_Id(Long user_id, Long customer_id);
+    List<Device> findByUser_Id(Long user_id);
+    List<Device> findByCustomer_Id(Long id);
 }

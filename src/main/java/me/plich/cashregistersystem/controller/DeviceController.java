@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/device")
+@RequestMapping("/devices")
 public class DeviceController {
 
     @Autowired
@@ -26,7 +26,7 @@ public class DeviceController {
     }
     @GetMapping
     @JsonView(View.Public.class)
-    public List<Device> getAllUserDevices() {
+    public @ResponseBody  List<Device> getAllUserDevices() {
         return deviceService.getAllUserDevices();
     }
 
@@ -51,5 +51,6 @@ public class DeviceController {
     public List<Order> getDeviceOrders(@PathVariable Long id) {
         return getDeviceOrders(id);
     }
+
 
 }

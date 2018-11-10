@@ -48,7 +48,7 @@ public class LocationService {
         return null;
     }
 
-    public List<Location> getAllCustomerLocation(@PathVariable Long userId) {
+    public List<Location> getAllCustomerLocations(@PathVariable Long userId) {
         List<Location> locations = locationRepository.findByUser_idAndCustomer_id(userService.currentLoggedUserId(), userId);
         return locations;
     }

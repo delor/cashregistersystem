@@ -49,12 +49,12 @@ public class DeviceService {
     }
 
     public List<Device> getAllUserDevices() {
-        List<Device> devices = deviceRepository.findByUser_id(userService.currentLoggedUserId());
+        List<Device> devices = deviceRepository.findByUser_Id(userService.currentLoggedUserId());
         return devices;
     }
 
-    public List<Device> getAllCustomerDevices(@PathVariable Long id) {
-        List<Device> devices = deviceRepository.findByUser_idAndCustomer_id(userService.currentLoggedUserId(), id);
+    public List<Device> getAllCustomerDevices(Long id) {
+        List<Device> devices = deviceRepository.findByUser_IdAndCustomer_Id(userService.currentLoggedUserId(), id);
         return devices;
     }
 

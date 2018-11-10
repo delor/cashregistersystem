@@ -1,5 +1,6 @@
 package me.plich.cashregistersystem.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.*;
@@ -43,14 +44,17 @@ public class Location implements Serializable {
     @JsonView(View.Public.class)
     private String description;
     @ManyToOne
-    @JsonView(View.Public.class)
+    //@JsonView(View.Public.class)
+    @JsonIgnore
     @JoinColumn(name = "user_id")
     private User user;
     @ManyToOne
-    @JsonView(View.Public.class)
+    @JsonIgnore
+    //@JsonView(View.Public.class)
     @JoinColumn(name = "customer_id")
     private Customer customer;
-    @JsonView(View.Public.class)
+    //@JsonView(View.Public.class)
+    @JsonIgnore
     @OneToMany(mappedBy="location")
     private List<Device> devices = new ArrayList<Device>();
 

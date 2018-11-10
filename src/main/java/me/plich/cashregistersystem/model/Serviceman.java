@@ -2,6 +2,7 @@ package me.plich.cashregistersystem.model;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
