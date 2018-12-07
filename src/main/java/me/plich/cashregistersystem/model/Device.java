@@ -52,20 +52,16 @@ public class Device implements Serializable {
     private String description;
     @ManyToOne
     @JsonIgnore
-    //@JsonView(View.Public.class)
     @JoinColumn(name = "location_id")
     private Location location;
     @ManyToOne
-    //@JsonView(View.Public.class)
     @JsonIgnore
     @JoinColumn(name = "user_id")
     private User user;
     @ManyToOne
     @JsonIgnore
-    //@JsonView(View.Public.class)
     @JoinColumn(name = "customer_id")
     private Customer customer;
-    //@JsonView(View.Public.class)
     @JsonIgnore
     @OneToMany(mappedBy="device")
     private List<Order> orders = new ArrayList<Order>();

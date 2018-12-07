@@ -234,4 +234,19 @@ public class Customer  implements Serializable{
     public int hashCode() {
         return Objects.hash(id, nip, name, street, houseNumber, flatNumber, zipCode, place, voivodeship, telephone, email, taxOffice, description, user, devices, locations);
     }
+
+    @Override
+    public String toString() {
+        return ", name='" + name + '\'' +
+                "nip='" + nip + '\'' +
+                ", street='" + street + '\'' +
+                ", houseNumber='" + houseNumber + '\'' +
+                ", flatNumber='" + flatNumber + '\'' +
+                ", zipCode='" + zipCode + '\'' +
+                ", place='" + place + '\'' +
+                ", voivodeship='" + voivodeship + '\'' +
+                ", telephone='" + telephone + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 }

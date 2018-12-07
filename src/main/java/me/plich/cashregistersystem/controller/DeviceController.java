@@ -17,8 +17,6 @@ public class DeviceController {
 
     @Autowired
     DeviceService deviceService;
-    @Autowired
-    OrderService orderService;
 
     @PostMapping
     public void addDevice(@RequestBody Device device, @RequestHeader Long customerID, @RequestHeader Long locationID) {
@@ -50,6 +48,11 @@ public class DeviceController {
     @GetMapping("/{id}/orders")
     public List<Order> getDeviceOrders(@PathVariable Long id) {
         return getDeviceOrders(id);
+    }
+
+    @GetMapping("/advanced")
+    public List<Device> findAllByRsql(@RequestParam(value = "search") String search) {
+        return deviceService.findAllByRsql(search);
     }
 
 

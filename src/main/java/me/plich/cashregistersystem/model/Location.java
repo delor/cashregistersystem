@@ -44,16 +44,13 @@ public class Location implements Serializable {
     @JsonView(View.Public.class)
     private String description;
     @ManyToOne
-    //@JsonView(View.Public.class)
     @JsonIgnore
     @JoinColumn(name = "user_id")
     private User user;
     @ManyToOne
     @JsonIgnore
-    //@JsonView(View.Public.class)
     @JoinColumn(name = "customer_id")
     private Customer customer;
-    //@JsonView(View.Public.class)
     @JsonIgnore
     @OneToMany(mappedBy="location")
     private List<Device> devices = new ArrayList<Device>();

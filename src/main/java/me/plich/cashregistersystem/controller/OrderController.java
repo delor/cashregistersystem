@@ -42,4 +42,9 @@ public class OrderController {
     public void updateOrder(@PathVariable Long id, @RequestBody Order order) {
         orderService.updateOrder(id, order);
     }
+
+    @GetMapping("/advanced")
+    public List<Order> findAllByRsql(@RequestParam(value = "search") String search) {
+        return orderService.findAllByRsql(search);
+    }
 }
