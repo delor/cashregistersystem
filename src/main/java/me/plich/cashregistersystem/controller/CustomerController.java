@@ -15,6 +15,7 @@ import me.plich.cashregistersystem.service.LocationService;
 import me.plich.cashregistersystem.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -32,44 +33,52 @@ public class CustomerController {
     LocationService locationService;
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public void addCustomer(@RequestBody Customer customer) {
         customerService.addCustomer(customer);
     }
 
     @GetMapping
+    @ResponseStatus(HttpStatus.OK)
     @JsonView(View.Public.class)
     public List<Customer> getAllCustomers() {
         return customerService.getAllCustomers();
     }
 
     @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteCustomer(@PathVariable Long id) {
         customerService.deleteCustomer(id);
     }
 
     @JsonView(View.Public.class)
     @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public Customer getCustomer(@PathVariable Long id) {
         return customerService.getCustomer(id);
     }
 
     @GetMapping("/advanced")
+    @ResponseStatus(HttpStatus.OK)
     public List<Customer> findAllByRsql(@RequestParam(value = "search") String search) {
        return customerService.findAllByRsql(search);
     }
 
     @PatchMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateCustomer(@PathVariable Long id, @RequestBody Customer customer) {
         customerService.updateCustomer(id, customer);
     }
 
     @GetMapping("/{id}/devices")
+    @ResponseStatus(HttpStatus.OK)
     @JsonView(View.Public.class)
     public @ResponseBody List<Device> getAllCustomerDevices(@PathVariable Long id) {
         return deviceService.getAllCustomerDevices(id);
     }
 
     @GetMapping("/{id}/locations")
+    @ResponseStatus(HttpStatus.OK)
     @JsonView(View.Public.class)
     public List<Location> getAllCustomerLocations(@PathVariable Long id) {
         return locationService.getAllCustomerLocations(id);

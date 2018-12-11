@@ -4,6 +4,7 @@ package me.plich.cashregistersystem.service;
 import cz.jirutka.rsql.parser.RSQLParser;
 import cz.jirutka.rsql.parser.ast.Node;
 import me.plich.cashregistersystem.config.rsql.CustomRsqlVisitor;
+import me.plich.cashregistersystem.model.Device;
 import me.plich.cashregistersystem.model.Order;
 import me.plich.cashregistersystem.repository.DeviceRepository;
 import me.plich.cashregistersystem.repository.OrderRepository;
@@ -15,7 +16,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalDate;
 import java.util.List;
+
+import static me.plich.cashregistersystem.model.OrderType.*;
 
 @Service
 public class OrderService {
@@ -29,9 +33,41 @@ public class OrderService {
     @Autowired
     UserService userService;
 
+    LocalDate today = LocalDate.now();
+
     public void addOrder(Order order, Long deviceID) {
+        Device device = deviceRepository.findById(deviceID).get();
         order.setUser(userRepository.findById(userService.currentLoggedUserId()).get());
-        order.setDevice(deviceRepository.findById(deviceID).get());
+        order.setDevice(device);
+        if(order.getOrderType() == fiscalization && device.getDateOfFiscalization() == null) {
+            device.setDateOfFiscalization(today);
+            device.setDailyReports(1);
+            device.setActive(true);
+            if (device.getReviewsFrequency() == 12) {
+                device.setPlannedReview(today.plusYears(1));
+            } else {
+                device.setPlannedReview(today.plusYears(2));
+            }
+            //generowanie zgłoszeń
+        }
+        if(order.getOrderType() == overview) {
+            device.setLastReview(today);
+            if(device.getReviewsFrequency() == 12) {
+                device.setPlannedReview(today.plusYears(1));
+            } else{
+                device.setPlannedReview(today.plusYears(2));
+            }
+            device.setDailyReports(order.getDailyReportTo());
+        }
+        if(order.getOrderType() == repair) {
+            if(order.getDailyReportTo() != null) {
+                device.setDailyReports(order.getDailyReportTo());
+            }
+        }
+        if(order.getOrderType() == deregistration && device.getDateOfDeRegistration() == null){
+            device.setDateOfDeRegistration(today);
+            device.setActive(false);
+        }
         orderRepository.save(order);
     }
 
@@ -94,6 +130,9 @@ public class OrderService {
             }
             if(order.getReceiptTo() != null) {
                 orderToUpdate.setReceiptTo(order.getReceiptTo());
+            }
+            if(order.getDescription() != null) {
+                orderToUpdate.setDescription(order.getDescription());
             }
             orderRepository.save(orderToUpdate);
 

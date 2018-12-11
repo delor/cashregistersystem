@@ -6,6 +6,7 @@ import me.plich.cashregistersystem.model.Order;
 import me.plich.cashregistersystem.model.View;
 import me.plich.cashregistersystem.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,27 +24,32 @@ public class OrderController {
     }
 
     @GetMapping
+    @ResponseStatus(HttpStatus.OK)
     @JsonView(View.Public.class)
     public List<Order> getAllUserOrders() {
         return orderService.getAllUserOrders();
     }
 
     @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteOrder(@PathVariable Long id) {
         orderService.deleteOrder(id);
     }
 
     @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public Order getOrder(@PathVariable Long id) {
         return orderService.getOrder(id);
     }
 
     @PatchMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateOrder(@PathVariable Long id, @RequestBody Order order) {
         orderService.updateOrder(id, order);
     }
 
     @GetMapping("/advanced")
+    @ResponseStatus(HttpStatus.OK)
     public List<Order> findAllByRsql(@RequestParam(value = "search") String search) {
         return orderService.findAllByRsql(search);
     }

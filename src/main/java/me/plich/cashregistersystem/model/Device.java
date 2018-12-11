@@ -2,6 +2,10 @@ package me.plich.cashregistersystem.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 
 
 import javax.persistence.*;
@@ -27,24 +31,26 @@ public class Device implements Serializable {
     private String serialNumber;
     @JsonView(View.Public.class)
     @NotNull
-    private Producer producer;
+    private String producer;
     @JsonView(View.Public.class)
     @NotNull
-    private Model model;
+    private String model;
     private LocalDate dateOfFiscalization;
     private LocalDate dateOfDeRegistration;
     @JsonView(View.Public.class)
     private String evidenceNumber;
     @JsonView(View.Public.class)
     @NotNull
-    private String reviewsFrequency;
+    private int reviewsFrequency;
     private LocalDate lastReview;
+
     private LocalDate plannedReview;
     @JsonView(View.Public.class)
-    private String dailyReports;
+    private int dailyReports;
     @JsonView(View.Public.class)
     private Boolean active;
     @JsonView(View.Public.class)
+    @NotNull
     private Boolean mobile;
     @JsonView(View.Public.class)
     private Boolean reserve;
@@ -68,7 +74,7 @@ public class Device implements Serializable {
 
     public Device(){}
 
-    public Device(String uniqueNumber, String serialNumber, Producer producer, Model model, String reviewsFrequency, String description, Location location, User user, Customer customer) {
+    public Device(String uniqueNumber, String serialNumber, String producer, String model, int reviewsFrequency, String description, Location location, User user, Customer customer) {
         this.uniqueNumber = uniqueNumber;
         this.serialNumber = serialNumber;
         this.producer = producer;
@@ -100,19 +106,19 @@ public class Device implements Serializable {
         this.serialNumber = serialNumber;
     }
 
-    public Producer getProducer() {
+    public String getProducer() {
         return producer;
     }
 
-    public void setProducer(Producer producer) {
+    public void setProducer(String producer) {
         this.producer = producer;
     }
 
-    public Model getModel() {
+    public String getModel() {
         return model;
     }
 
-    public void setModel(Model model) {
+    public void setModel(String model) {
         this.model = model;
     }
 
@@ -140,11 +146,11 @@ public class Device implements Serializable {
         this.evidenceNumber = evidenceNumber;
     }
 
-    public String getReviewsFrequency() {
+    public int getReviewsFrequency() {
         return reviewsFrequency;
     }
 
-    public void setReviewsFrequency(String reviewsFrequency) {
+    public void setReviewsFrequency(int reviewsFrequency) {
         this.reviewsFrequency = reviewsFrequency;
     }
 
@@ -164,11 +170,11 @@ public class Device implements Serializable {
         this.plannedReview = plannedReview;
     }
 
-    public String getDailyReports() {
+    public int getDailyReports() {
         return dailyReports;
     }
 
-    public void setDailyReports(String dailyReports) {
+    public void setDailyReports(int dailyReports) {
         this.dailyReports = dailyReports;
     }
 

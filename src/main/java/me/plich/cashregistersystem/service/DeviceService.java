@@ -10,12 +10,14 @@ import me.plich.cashregistersystem.repository.LocationRepository;
 import me.plich.cashregistersystem.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
+import java.util.Iterator;
 import java.util.List;
 
 @Service
@@ -150,5 +152,18 @@ public class DeviceService {
         if(device.getReviewsFrequency() == "24") {
             device.setPlannedReview(LocalDate.now().plusYears(2));
         } device.setPlannedReview(LocalDate.now().plusYears(1));
+    }
+
+    public List<Device> devicesToReviewInNext7days() {
+        LocalDate date = LocalDate.now();
+        List<Device> devices = deviceRepository.findByUser_Id(userService.currentLoggedUserId());
+        Iterator<Device> deviceIterator = devices.iterator();
+        while(deviceIterator.hasNext()) {
+            Device device = deviceIterator.next();
+            if(device.getPlannedReview().isBefore(date) || device.getPlannedReview().isAfter(date.plusDays(7))) {
+            deviceIterator.remove();
+            }
+        }
+        return devices;
     }
 }

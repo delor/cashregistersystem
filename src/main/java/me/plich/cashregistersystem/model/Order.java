@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
+@Table(name = "\"ORDERS\"")
 public class Order implements Serializable {
 
     @Id
@@ -25,25 +26,27 @@ public class Order implements Serializable {
     @JsonView(View.Public.class)
     @NotNull
     private StateOfSeals seals;
-    private String generalCounterFrom;
-    private String generalCounterTo;
-    private String dailyReportFrom;
-    private String dailyReportTo;
-    private String resettingFramesFrom;
-    private String resettingFramesTo;
-    private String receiptFrom;
-    private String receiptTo;
+    private Integer generalCounterFrom;
+    private Integer generalCounterTo;
+    private Integer dailyReportFrom;
+    private Integer dailyReportTo;
+    private Integer resettingFramesFrom;
+    private Integer resettingFramesTo;
+    private Integer receiptFrom;
+    private Integer receiptTo;
+    private String description;
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToOne
     @JoinColumn(name = "device_id")
+    @JsonView(View.Public.class)
     private Device device;
 
     public Order(){}
 
-    public Order(OrderType orderType, LocalDate orderDate, StateOfSeals seals, String generalCounterFrom, String generalCounterTo, String dailyReportFrom, String dailyReportTo, String resettingFramesFrom, String resettingFramesTo, String receiptFrom, String receiptTo, User user, Device device) {
+    public Order(OrderType orderType, LocalDate orderDate, StateOfSeals seals, Integer generalCounterFrom, Integer generalCounterTo, Integer dailyReportFrom, Integer dailyReportTo, Integer resettingFramesFrom, Integer resettingFramesTo, Integer receiptFrom, Integer receiptTo, String description, User user, Device device) {
         this.orderType = orderType;
         this.orderDate = orderDate;
         this.seals = seals;
@@ -55,6 +58,7 @@ public class Order implements Serializable {
         this.resettingFramesTo = resettingFramesTo;
         this.receiptFrom = receiptFrom;
         this.receiptTo = receiptTo;
+        this.description = description;
         this.user = user;
         this.device = device;
     }
@@ -87,68 +91,76 @@ public class Order implements Serializable {
         this.seals = seals;
     }
 
-    public String getGeneralCounterFrom() {
+    public Integer getGeneralCounterFrom() {
         return generalCounterFrom;
     }
 
-    public void setGeneralCounterFrom(String generalCounterFrom) {
+    public void setGeneralCounterFrom(Integer generalCounterFrom) {
         this.generalCounterFrom = generalCounterFrom;
     }
 
-    public String getGeneralCounterTo() {
+    public Integer getGeneralCounterTo() {
         return generalCounterTo;
     }
 
-    public void setGeneralCounterTo(String generalCounterTo) {
+    public void setGeneralCounterTo(Integer generalCounterTo) {
         this.generalCounterTo = generalCounterTo;
     }
 
-    public String getDailyReportFrom() {
+    public Integer getDailyReportFrom() {
         return dailyReportFrom;
     }
 
-    public void setDailyReportFrom(String dailyReportFrom) {
+    public void setDailyReportFrom(Integer dailyReportFrom) {
         this.dailyReportFrom = dailyReportFrom;
     }
 
-    public String getDailyReportTo() {
+    public Integer getDailyReportTo() {
         return dailyReportTo;
     }
 
-    public void setDailyReportTo(String dailyReportTo) {
+    public void setDailyReportTo(Integer dailyReportTo) {
         this.dailyReportTo = dailyReportTo;
     }
 
-    public String getResettingFramesFrom() {
+    public Integer getResettingFramesFrom() {
         return resettingFramesFrom;
     }
 
-    public void setResettingFramesFrom(String resettingFramesFrom) {
+    public void setResettingFramesFrom(Integer resettingFramesFrom) {
         this.resettingFramesFrom = resettingFramesFrom;
     }
 
-    public String getResettingFramesTo() {
+    public Integer getResettingFramesTo() {
         return resettingFramesTo;
     }
 
-    public void setResettingFramesTo(String resettingFramesTo) {
+    public void setResettingFramesTo(Integer resettingFramesTo) {
         this.resettingFramesTo = resettingFramesTo;
     }
 
-    public String getReceiptFrom() {
+    public Integer getReceiptFrom() {
         return receiptFrom;
     }
 
-    public void setReceiptFrom(String receiptFrom) {
+    public void setReceiptFrom(Integer receiptFrom) {
         this.receiptFrom = receiptFrom;
     }
 
-    public String getReceiptTo() {
+    public Integer getReceiptTo() {
         return receiptTo;
     }
 
-    public void setReceiptTo(String receiptTo) {
+    public void setReceiptTo(Integer receiptTo) {
         this.receiptTo = receiptTo;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public User getUser() {
@@ -172,24 +184,25 @@ public class Order implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Order order = (Order) o;
-        return generalCounterFrom == order.generalCounterFrom &&
-                generalCounterTo == order.generalCounterTo &&
-                dailyReportFrom == order.dailyReportFrom &&
-                dailyReportTo == order.dailyReportTo &&
-                resettingFramesFrom == order.resettingFramesFrom &&
-                resettingFramesTo == order.resettingFramesTo &&
-                receiptFrom == order.receiptFrom &&
-                receiptTo == order.receiptTo &&
-                Objects.equals(id, order.id) &&
+        return Objects.equals(id, order.id) &&
                 orderType == order.orderType &&
                 Objects.equals(orderDate, order.orderDate) &&
                 seals == order.seals &&
+                Objects.equals(generalCounterFrom, order.generalCounterFrom) &&
+                Objects.equals(generalCounterTo, order.generalCounterTo) &&
+                Objects.equals(dailyReportFrom, order.dailyReportFrom) &&
+                Objects.equals(dailyReportTo, order.dailyReportTo) &&
+                Objects.equals(resettingFramesFrom, order.resettingFramesFrom) &&
+                Objects.equals(resettingFramesTo, order.resettingFramesTo) &&
+                Objects.equals(receiptFrom, order.receiptFrom) &&
+                Objects.equals(receiptTo, order.receiptTo) &&
+                Objects.equals(description, order.description) &&
                 Objects.equals(user, order.user) &&
                 Objects.equals(device, order.device);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, orderType, orderDate, seals, generalCounterFrom, generalCounterTo, dailyReportFrom, dailyReportTo, resettingFramesFrom, resettingFramesTo, receiptFrom, receiptTo, user, device);
+        return Objects.hash(id, orderType, orderDate, seals, generalCounterFrom, generalCounterTo, dailyReportFrom, dailyReportTo, resettingFramesFrom, resettingFramesTo, receiptFrom, receiptTo, description, user, device);
     }
 }
