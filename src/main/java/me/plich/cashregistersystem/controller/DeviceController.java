@@ -1,6 +1,8 @@
 package me.plich.cashregistersystem.controller;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import me.plich.cashregistersystem.model.Device;
 import me.plich.cashregistersystem.model.Order;
 import me.plich.cashregistersystem.model.View;
@@ -14,6 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/devices")
+@Api(description = "Set of endpoints for Creating, Retrieving, Updating and Deleting of devices.")
 public class DeviceController {
 
     @Autowired
@@ -23,18 +26,21 @@ public class DeviceController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
+    @ApiOperation("Creates new device")
     public void addDevice(@RequestBody Device device, @RequestHeader Long customerID, @RequestHeader Long locationID) {
         deviceService.addDevice(device, customerID, locationID);
     }
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     @JsonView(View.Public.class)
+    @ApiOperation("Returns list of all user devices")
     public @ResponseBody  List<Device> getAllUserDevices() {
         return deviceService.getAllUserDevices();
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ApiOperation("Deletes devices with a specific id from system")
     public void deleteDevice(@PathVariable Long id) {
         deviceService.deleteDevice(id);
     }
@@ -42,12 +48,14 @@ public class DeviceController {
     @JsonView(View.Public.class)
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
+    @ApiOperation("Returns a device with a specific id")
     public Device getDevice(@PathVariable Long id) {
         return deviceService.getDevice(id);
     }
 
     @PatchMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ApiOperation("Updates the device with a specific id")
     public void updateDevice(@PathVariable Long id, @RequestBody Device device) {
         deviceService.updateDevice(id, device);
     }
@@ -55,12 +63,14 @@ public class DeviceController {
     @JsonView(View.Public.class)
     @GetMapping("/{id}/orders")
     @ResponseStatus(HttpStatus.OK)
+    @ApiOperation("Returns list of orders for device with a specific id")
     public List<Order> getDeviceOrders(@PathVariable Long id) {
         return orderService.getDeviceOrders(id);
     }
 
     @GetMapping("/advanced")
     @ResponseStatus(HttpStatus.OK)
+    @ApiOperation("Returns devices according to the criteria you want. Uses rsql.")
     public List<Device> findAllByRsql(@RequestParam(value = "search") String search) {
         return deviceService.findAllByRsql(search);
     }

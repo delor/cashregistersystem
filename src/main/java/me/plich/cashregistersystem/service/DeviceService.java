@@ -149,9 +149,11 @@ public class DeviceService {
 
     public void changeReviewDate(Long id) {
         Device device = deviceRepository.findById(id).get();
-        if(device.getReviewsFrequency() == "24") {
+        if(device.getReviewsFrequency() == 24) {
             device.setPlannedReview(LocalDate.now().plusYears(2));
-        } device.setPlannedReview(LocalDate.now().plusYears(1));
+        } else {
+            device.setPlannedReview(LocalDate.now().plusYears(1));
+        }
     }
 
     public List<Device> devicesToReviewInNext7days() {

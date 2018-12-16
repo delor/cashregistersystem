@@ -1,5 +1,7 @@
 package me.plich.cashregistersystem.controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import me.plich.cashregistersystem.exception.AppException;
 import me.plich.cashregistersystem.model.Role;
 import me.plich.cashregistersystem.model.RoleName;
@@ -31,6 +33,7 @@ import java.util.Collections;
 
 @RestController
 @RequestMapping
+@Api(description = "Set of endpoint for singin and singup")
 public class AuthController {
 
     @Autowired
@@ -49,6 +52,7 @@ public class AuthController {
     JwtTokenProvider tokenProvider;
 
     @PostMapping("/signin")
+    @ApiOperation("endpoint for logging in an existing user")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
         Authentication authentication = authenticationManager.authenticate(
@@ -65,6 +69,7 @@ public class AuthController {
     }
 
     @PostMapping("/signup")
+    @ApiOperation("endpoint for registering a new user")
     public ResponseEntity<?> registerUser(@Valid @RequestBody User user) {
         if(userRepository.existsByUsername(user.getUsername())) {
             return new ResponseEntity(new ApiResponse(false, "Username is already taken!"),

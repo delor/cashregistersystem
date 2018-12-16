@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -33,9 +34,9 @@ public class OrderService {
     @Autowired
     UserService userService;
 
-    LocalDate today = LocalDate.now();
 
-    public void addOrder(Order order, Long deviceID) {
+    public void addOrder(Order order, Long deviceID) throws IOException {
+        LocalDate today = order.getOrderDate();
         Device device = deviceRepository.findById(deviceID).get();
         order.setUser(userRepository.findById(userService.currentLoggedUserId()).get());
         order.setDevice(device);
@@ -48,7 +49,6 @@ public class OrderService {
             } else {
                 device.setPlannedReview(today.plusYears(2));
             }
-            //generowanie zgłoszeń
         }
         if(order.getOrderType() == overview) {
             device.setLastReview(today);
@@ -131,9 +131,9 @@ public class OrderService {
             if(order.getReceiptTo() != null) {
                 orderToUpdate.setReceiptTo(order.getReceiptTo());
             }
-            if(order.getDescription() != null) {
-                orderToUpdate.setDescription(order.getDescription());
-            }
+//            if(order.getDescription() != null) {
+//                orderToUpdate.setDescription(order.getDescription());
+//            }
             orderRepository.save(orderToUpdate);
 
         }

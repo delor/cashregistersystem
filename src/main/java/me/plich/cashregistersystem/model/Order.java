@@ -34,7 +34,7 @@ public class Order implements Serializable {
     private Integer resettingFramesTo;
     private Integer receiptFrom;
     private Integer receiptTo;
-    private String description;
+    //private String description;
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
@@ -46,7 +46,7 @@ public class Order implements Serializable {
 
     public Order(){}
 
-    public Order(OrderType orderType, LocalDate orderDate, StateOfSeals seals, Integer generalCounterFrom, Integer generalCounterTo, Integer dailyReportFrom, Integer dailyReportTo, Integer resettingFramesFrom, Integer resettingFramesTo, Integer receiptFrom, Integer receiptTo, String description, User user, Device device) {
+    public Order(OrderType orderType, LocalDate orderDate, StateOfSeals seals, Integer generalCounterFrom, Integer generalCounterTo, Integer dailyReportFrom, Integer dailyReportTo, Integer resettingFramesFrom, Integer resettingFramesTo, Integer receiptFrom, Integer receiptTo, User user, Device device) {
         this.orderType = orderType;
         this.orderDate = orderDate;
         this.seals = seals;
@@ -58,7 +58,7 @@ public class Order implements Serializable {
         this.resettingFramesTo = resettingFramesTo;
         this.receiptFrom = receiptFrom;
         this.receiptTo = receiptTo;
-        this.description = description;
+        //this.description = description;
         this.user = user;
         this.device = device;
     }
@@ -155,13 +155,13 @@ public class Order implements Serializable {
         this.receiptTo = receiptTo;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
+//    public String getDescription() {
+//        return description;
+//    }
+//
+//    public void setDescription(String description) {
+//        this.description = description;
+//    }
 
     public User getUser() {
         return user;
@@ -196,13 +196,13 @@ public class Order implements Serializable {
                 Objects.equals(resettingFramesTo, order.resettingFramesTo) &&
                 Objects.equals(receiptFrom, order.receiptFrom) &&
                 Objects.equals(receiptTo, order.receiptTo) &&
-                Objects.equals(description, order.description) &&
+//                Objects.equals(description, order.description) &&
                 Objects.equals(user, order.user) &&
                 Objects.equals(device, order.device);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, orderType, orderDate, seals, generalCounterFrom, generalCounterTo, dailyReportFrom, dailyReportTo, resettingFramesFrom, resettingFramesTo, receiptFrom, receiptTo, description, user, device);
+        return Objects.hash(id, orderType, orderDate, seals, generalCounterFrom, generalCounterTo, dailyReportFrom, dailyReportTo, resettingFramesFrom, resettingFramesTo, receiptFrom, receiptTo, user, device);
     }
 }
