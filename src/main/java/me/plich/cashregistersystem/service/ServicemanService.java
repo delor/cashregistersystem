@@ -40,9 +40,9 @@ public class ServicemanService {
         return null;
     }
 
-    public List<Serviceman> getAllUserServicemens() {
-        List<Serviceman> servicemens = servicemanRepository.findByUser_id(userService.currentLoggedUserId());
-        return servicemens;
+    public List<Serviceman> getAllUserserviceTechnicans() {
+        List<Serviceman> serviceTechnicans = servicemanRepository.findByUser_id(userService.currentLoggedUserId());
+        return serviceTechnicans;
     }
 
     public void updateServiceman(@PathVariable Long id, @RequestBody Serviceman serviceman) {

@@ -32,7 +32,7 @@ public class ServicemanController {
     @JsonView(View.Public.class)
     @ApiOperation("Returns list of service technicans")
     public List<Serviceman> getAllUserServicemens() {
-        return servicemanService.getAllUserServicemens();
+        return servicemanService.getAllUserserviceTechnicans();
     }
 
     @DeleteMapping("/{id}")

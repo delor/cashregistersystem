@@ -59,10 +59,8 @@ public class OrderService {
             }
             device.setDailyReports(order.getDailyReportTo());
         }
-        if(order.getOrderType() == repair) {
-            if(order.getDailyReportTo() != null) {
+        if(order.getOrderType() == repair && order.getDailyReportTo() != null) {
                 device.setDailyReports(order.getDailyReportTo());
-            }
         }
         if(order.getOrderType() == deregistration && device.getDateOfDeRegistration() == null){
             device.setDateOfDeRegistration(today);
@@ -131,9 +129,9 @@ public class OrderService {
             if(order.getReceiptTo() != null) {
                 orderToUpdate.setReceiptTo(order.getReceiptTo());
             }
-//            if(order.getDescription() != null) {
-//                orderToUpdate.setDescription(order.getDescription());
-//            }
+            if(order.getDescription() != null) {
+                orderToUpdate.setDescription(order.getDescription());
+            }
             orderRepository.save(orderToUpdate);
 
         }
