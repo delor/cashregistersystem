@@ -10,8 +10,11 @@ import me.plich.cashregistersystem.service.DeviceService;
 import me.plich.cashregistersystem.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @RestController
@@ -47,12 +50,15 @@ public class DeviceController {
 
     @JsonView(View.Public.class)
     @GetMapping("/{id}")
-    @ResponseStatus(HttpStatus.OK)
+//    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
     @ApiOperation("Returns a device with a specific id")
-    public Device getDevice(@PathVariable Long id) {
-        return deviceService.getDevice(id);
+    public ResponseEntity<Device> getDevice(@PathVariable Long id) {
+        Device device = deviceService.getDevice(id);
+        if(device != null) {
+            return new ResponseEntity<>(device, HttpStatus.OK);
+        } return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-
     @PatchMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @ApiOperation("Updates the device with a specific id")
