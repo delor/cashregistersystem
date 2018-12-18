@@ -55,10 +55,15 @@ public class DeviceService {
         }
     }
     public Device getDevice(@PathVariable Long id) {
-        Device device = deviceRepository.getOne(id);
-        if(device.getUser().getId()==userService.currentLoggedUserId()) {
-            return device;
-        }
+       try {
+           Device device = deviceRepository.getOne(id);
+           if(device.getUser().getId()==userService.currentLoggedUserId()) {
+               return device;
+           }
+       } catch (EntityNotFoundException ex) {
+           return null;
+       }
+
         return null;
     }
 

@@ -3,6 +3,7 @@ package me.plich.cashregistersystem.controller;
 import com.fasterxml.jackson.annotation.JsonView;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import me.plich.cashregistersystem.exception.ResourceNotFoundException;
 import me.plich.cashregistersystem.model.Device;
 import me.plich.cashregistersystem.model.Order;
 import me.plich.cashregistersystem.model.View;
@@ -53,12 +54,18 @@ public class DeviceController {
 //    @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     @ApiOperation("Returns a device with a specific id")
-    public ResponseEntity<Device> getDevice(@PathVariable Long id) {
-        Device device = deviceService.getDevice(id);
-        if(device != null) {
-            return new ResponseEntity<>(device, HttpStatus.OK);
-        } return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
+    public ResponseEntity<Device> getDevice(@PathVariable Long id) throws  ResourceNotFoundException {
+
+            Device device = deviceService.getDevice(id);
+            if(device == null) {
+                throw new ResourceNotFoundException("Device", "this ID", device);
+            }
+            else  {
+                return ResponseEntity.status(HttpStatus.OK).body(device);
+            }
+        }
+
+
     @PatchMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @ApiOperation("Updates the device with a specific id")
