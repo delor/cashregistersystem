@@ -21,12 +21,12 @@ The motivation to create such a tool is an attempt to implement the functionalit
 * Apache PDFBox
 * RSQL
 * SonarCube
-* JUnit
+
 
 ##To Do
 * Front-end using react.js
 * Improvements for SOLID & clean code
-* More tests
+* Tests (junit)
 * java doc
 
 ##Documentation
