@@ -129,9 +129,9 @@ public class OrderService {
             if(order.getReceiptTo() != null) {
                 orderToUpdate.setReceiptTo(order.getReceiptTo());
             }
-            if(order.getDescription() != null) {
-                orderToUpdate.setDescription(order.getDescription());
-            }
+//            if(order.getDescription() != null) {
+//                orderToUpdate.setDescription(order.getDescription());
+//            }
             orderRepository.save(orderToUpdate);
 
         }

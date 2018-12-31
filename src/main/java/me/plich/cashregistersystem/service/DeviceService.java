@@ -10,14 +10,10 @@ import me.plich.cashregistersystem.repository.LocationRepository;
 import me.plich.cashregistersystem.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
-
 import javax.persistence.EntityNotFoundException;
 import java.time.LocalDate;
 import java.util.Iterator;
@@ -45,7 +41,7 @@ public class DeviceService {
         deviceRepository.save(device);
     }
 
-    public void deleteDevice(@PathVariable Long id) {
+    public void deleteDevice(Long id) {
         Optional<Device> deviceOpt = deviceRepository.findById(id);
         if(deviceOpt.isPresent()) {
             Device device = deviceOpt.get();
@@ -54,7 +50,7 @@ public class DeviceService {
             }
         }
     }
-    public Device getDevice(@PathVariable Long id) {
+    public Device getDevice(Long id) {
        try {
            Device device = deviceRepository.getOne(id);
            if(device.getUser().getId()==userService.currentLoggedUserId()) {

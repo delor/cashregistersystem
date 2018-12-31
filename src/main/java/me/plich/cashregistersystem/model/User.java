@@ -194,7 +194,7 @@ public class User implements Serializable {
     }
 
     public void setCustomers(List<Customer> customers) {
-        customers = customers;
+        this.customers = customers;
     }
 
     public List<Device> getDevices() {

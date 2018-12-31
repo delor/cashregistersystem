@@ -22,9 +22,10 @@ The motivation to create such a tool is an attempt to implement the functionalit
 * RSQL
 * SonarCube
 
-
-##To Do
-* Front-end using react.js
+##TO DO #1
+*Addition of DTO & modelmapper objects
+##To Do #2
+*
 * Improvements for SOLID & clean code
 * Tests (junit)
 * java doc

@@ -2,5 +2,5 @@ projectKey=me.plich:cashregistersystem
 serverUrl=http://localhost:9000
 serverVersion=7.4.0.18908
 dashboardUrl=http://localhost:9000/dashboard?id=me.plich%3Acashregistersystem
-ceTaskId=AWe4fsDEmNSTB9CuTJc1
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AWe4fsDEmNSTB9CuTJc1
+ceTaskId=AWf2VjJQCdBvMoFkZyOm
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AWf2VjJQCdBvMoFkZyOm

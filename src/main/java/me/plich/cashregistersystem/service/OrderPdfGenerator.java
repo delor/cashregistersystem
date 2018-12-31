@@ -11,7 +11,6 @@ import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.io.IOException;
 
 
@@ -30,7 +29,8 @@ public class OrderPdfGenerator {
         Customer customer = this.customerRepository.findById(customerID).get();
         Device device = this.deviceRepository.findById(deviceID).get();
 
-            PDDocument document = new PDDocument();
+
+        PDDocument document = new PDDocument();
             PDPage page = new PDPage();
             document.addPage(page);
 

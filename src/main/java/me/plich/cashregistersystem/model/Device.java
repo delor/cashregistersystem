@@ -50,7 +50,7 @@ public class Device implements Serializable {
     @JsonView(View.Public.class)
     private Boolean active;
     @JsonView(View.Public.class)
-    @NotNull
+//    @NotNull
     private Boolean mobile;
     @JsonView(View.Public.class)
     private Boolean reserve;

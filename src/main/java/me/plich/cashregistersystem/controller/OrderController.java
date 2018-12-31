@@ -6,13 +6,17 @@ import io.swagger.annotations.ApiOperation;
 import me.plich.cashregistersystem.model.Location;
 import me.plich.cashregistersystem.model.Order;
 import me.plich.cashregistersystem.model.View;
+import me.plich.cashregistersystem.service.OrderPdfGenerator;
 import me.plich.cashregistersystem.service.OrderService;
+import org.apache.pdfbox.pdmodel.PDDocument;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.List;
+
+import static me.plich.cashregistersystem.model.OrderType.fiscalization;
 
 @RestController
 @RequestMapping("/orders")
@@ -21,6 +25,8 @@ public class OrderController {
 
     @Autowired
     OrderService orderService;
+    @Autowired
+    OrderPdfGenerator orderPdfGenerator;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -64,4 +70,13 @@ public class OrderController {
     public List<Order> findAllByRsql(@RequestParam(value = "search") String search) {
         return orderService.findAllByRsql(search);
     }
+
+    @GetMapping("/pdf")
+    @ResponseStatus(HttpStatus.OK)
+    @ApiOperation("Returns a PDF document with order details for tax office")
+    public PDDocument getOrderPDF(@RequestHeader Long customerID, @RequestHeader Long deviceID) throws IOException {
+        return orderPdfGenerator.customerOrder(customerID, deviceID);
+    }
+
+
 }
