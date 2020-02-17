@@ -18,13 +18,13 @@ public class Order implements Serializable {
     @JsonView(View.Public.class)
     private Long id;
     @JsonView(View.Public.class)
-    @NotNull
+    @Column(nullable=false)
     private OrderType orderType;
     @JsonView(View.Public.class)
-    @NotNull
+    @Column(nullable=false)
     private LocalDate orderDate;
     @JsonView(View.Public.class)
-    @NotNull
+    @Column(nullable=false)
     private StateOfSeals seals;
     private Integer generalCounterFrom;
     private Integer generalCounterTo;
@@ -34,7 +34,6 @@ public class Order implements Serializable {
     private Integer resettingFramesTo;
     private Integer receiptFrom;
     private Integer receiptTo;
-//    private String description;
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
@@ -58,7 +57,6 @@ public class Order implements Serializable {
         this.resettingFramesTo = resettingFramesTo;
         this.receiptFrom = receiptFrom;
         this.receiptTo = receiptTo;
-//        this.description = description;
         this.user = user;
         this.device = device;
     }
@@ -155,14 +153,6 @@ public class Order implements Serializable {
         this.receiptTo = receiptTo;
     }
 
-//    public String getDescription() {
-//        return description;
-//    }
-//
-//    public void setDescription(String description) {
-//        this.description = description;
-//    }
-
     public User getUser() {
         return user;
     }
@@ -196,7 +186,6 @@ public class Order implements Serializable {
                 Objects.equals(resettingFramesTo, order.resettingFramesTo) &&
                 Objects.equals(receiptFrom, order.receiptFrom) &&
                 Objects.equals(receiptTo, order.receiptTo) &&
-//                Objects.equals(description, order.description) &&
                 Objects.equals(user, order.user) &&
                 Objects.equals(device, order.device);
     }

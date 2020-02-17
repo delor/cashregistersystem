@@ -9,7 +9,6 @@ import me.plich.cashregistersystem.model.User;
 import me.plich.cashregistersystem.payload.ApiResponse;
 import me.plich.cashregistersystem.payload.JwtAuthenticationResponse;
 import me.plich.cashregistersystem.payload.LoginRequest;
-//import me.plich.cashregistersystem.payload.SignUpRequest;
 import me.plich.cashregistersystem.repository.RoleRepository;
 import me.plich.cashregistersystem.repository.UserRepository;
 import me.plich.cashregistersystem.security.JwtTokenProvider;

@@ -60,12 +60,6 @@ public class LocationController {
         locationService.updateLocation(id, location);
     }
 
-    @GetMapping("/advanced")
-    @ResponseStatus(HttpStatus.OK)
-    @ApiOperation("Returns location according to the criteria you want. Uses rsql.")
-    public List<Location> findAllByRsql(@RequestParam(value = "search") String search) {
-        return locationService.findAllByRsql(search);
-    }
 
     @GetMapping("/{id}/devices")
     @ResponseStatus(HttpStatus.OK)

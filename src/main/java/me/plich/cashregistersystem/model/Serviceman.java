@@ -16,10 +16,10 @@ public class Serviceman implements Serializable {
     @JsonView(View.Public.class)
     private Long id;
     @JsonView(View.Public.class)
-    @NotNull
+    @Column(nullable=false)
     private String firstName;
     @JsonView(View.Public.class)
-    @NotNull
+    @Column(nullable=false)
     private String lastName;
     @ManyToOne
     @JoinColumn(name = "user_id")

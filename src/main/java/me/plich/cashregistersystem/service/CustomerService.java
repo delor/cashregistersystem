@@ -1,19 +1,15 @@
 package me.plich.cashregistersystem.service;
 
 
-import cz.jirutka.rsql.parser.RSQLParser;
-import cz.jirutka.rsql.parser.ast.Node;
-import me.plich.cashregistersystem.config.rsql.CustomRsqlVisitor;
-import me.plich.cashregistersystem.model.Customer;
 
+import me.plich.cashregistersystem.model.Customer;
 import me.plich.cashregistersystem.repository.CustomerRepository;
 import me.plich.cashregistersystem.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 import java.util.List;
@@ -78,9 +74,6 @@ public class CustomerService {
             if (customer.getZipCode() != null) {
                 customerToUpdate.setZipCode(customer.getZipCode());
             }
-            if (customer.getZipCode() != null) {
-                customerToUpdate.setZipCode(customer.getZipCode());
-            }
             if (customer.getPlace() != null) {
                 customerToUpdate.setPlace(customer.getPlace());
             }
@@ -102,17 +95,6 @@ public class CustomerService {
 
             customerRepository.save(customerToUpdate);
         }
-    }
-    public List<Customer> findAllByRsql(@RequestParam(value = "search") String search) {
-        Node rootNode = new RSQLParser().parse(search);
-        Specification<Customer> spec = rootNode.accept(new CustomRsqlVisitor<Customer>());
-        List<Customer> customers =  customerRepository.findAll(spec);
-        for (Customer rsqlCustomers : customers) {
-            if (rsqlCustomers.getUser().getId() != userService.currentLoggedUserId()) {
-                customers.remove(rsqlCustomers);
-            }
-        }
-        return customers;
     }
 }
 

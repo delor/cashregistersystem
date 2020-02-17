@@ -1,19 +1,15 @@
 package me.plich.cashregistersystem.service;
 
-import cz.jirutka.rsql.parser.RSQLParser;
-import cz.jirutka.rsql.parser.ast.Node;
-import me.plich.cashregistersystem.config.rsql.CustomRsqlVisitor;
+
 import me.plich.cashregistersystem.model.Device;
 import me.plich.cashregistersystem.repository.CustomerRepository;
 import me.plich.cashregistersystem.repository.DeviceRepository;
 import me.plich.cashregistersystem.repository.LocationRepository;
 import me.plich.cashregistersystem.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import javax.persistence.EntityNotFoundException;
 import java.time.LocalDate;
 import java.util.Iterator;
@@ -137,17 +133,6 @@ public class DeviceService {
                 deviceRepository.save(deviceToUpdate);
             }
         }
-    }
-    public List<Device> findAllByRsql(@RequestParam(value = "search") String search) {
-        Node rootNode = new RSQLParser().parse(search);
-        Specification<Device> spec = rootNode.accept(new CustomRsqlVisitor<Device>());
-        List<Device> devices =  deviceRepository.findAll(spec);
-        for (Device rsqlDevices : devices) {
-            if (rsqlDevices.getUser().getId() != userService.currentLoggedUserId()) {
-                devices.remove(rsqlDevices);
-            }
-        }
-        return devices;
     }
 
     public void fiscalization(Long id) {

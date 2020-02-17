@@ -19,7 +19,6 @@ The motivation to create such a tool is an attempt to implement the functionalit
 * H2 DB (tests)
 * Swagger 
 * Apache PDFBox
-* RSQL
 * SonarCube
 
 ##TO DO #1

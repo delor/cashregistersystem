@@ -16,38 +16,49 @@ public class User implements Serializable {
     @JsonView(View.Public.class)
     private Long id;
     @JsonView(View.Public.class)
-    @NotNull
+    @Column(nullable=false)
     private String nip;
+
     @JsonView(View.Public.class)
-    @NotNull
+    @Column(nullable=false)
     private String name;
+
     @JsonView(View.Public.class)
-    @NotNull
+    @Column(nullable=false)
     private String username;
+
     @JsonView(View.Public.class)
-    @NotNull
+    @Column(nullable=false)
     private String street;
+
     @JsonView(View.Public.class)
-    @NotNull
+    @Column(nullable=false)
     private String houseNumber;
+
     @JsonView(View.Public.class)
     private String flatNumber;
+
     @JsonView(View.Public.class)
-    @NotNull
+    @Column(nullable=false)
     private String zipCode;
+
     @JsonView(View.Public.class)
-    @NotNull
+    @Column(nullable=false)
     private String place;
+
     @JsonView(View.Public.class)
-    @NotNull
+    @Column(nullable=false)
     private String voivodeship;
+
     @JsonView(View.Public.class)
     private String telephone;
+
     @JsonView(View.Public.class)
-    @NotNull
+    @Column(nullable=false)
     private String email;
+
     @JsonView(View.Public.class)
-    @NotNull
+    @Column(nullable=false)
     private String password;
 
     @ManyToMany(fetch = FetchType.LAZY)

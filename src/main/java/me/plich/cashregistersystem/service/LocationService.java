@@ -1,20 +1,16 @@
 package me.plich.cashregistersystem.service;
 
 
-import cz.jirutka.rsql.parser.RSQLParser;
-import cz.jirutka.rsql.parser.ast.Node;
-import me.plich.cashregistersystem.config.rsql.CustomRsqlVisitor;
 import me.plich.cashregistersystem.model.Location;
 import me.plich.cashregistersystem.repository.CustomerRepository;
 import me.plich.cashregistersystem.repository.DeviceRepository;
 import me.plich.cashregistersystem.repository.LocationRepository;
 import me.plich.cashregistersystem.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+
 
 import java.util.List;
 
@@ -99,15 +95,5 @@ public class LocationService {
             locationRepository.save(locationToUpdate);
         }
     }
-    public List<Location> findAllByRsql(@RequestParam(value = "search") String search) {
-        Node rootNode = new RSQLParser().parse(search);
-        Specification<Location> spec = rootNode.accept(new CustomRsqlVisitor<Location>());
-        List<Location> locations =  locationRepository.findAll(spec);
-        for (Location rsqlLocations : locations) {
-            if (rsqlLocations.getUser().getId() != userService.currentLoggedUserId()) {
-                locations.remove(rsqlLocations);
-            }
-        }
-        return locations;
-    }
+
 }

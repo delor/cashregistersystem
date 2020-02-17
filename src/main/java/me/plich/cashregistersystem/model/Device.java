@@ -24,23 +24,23 @@ public class Device implements Serializable {
     @JsonView(View.Public.class)
     private Long id;
     @JsonView(View.Public.class)
-    @NotNull
+    @Column(nullable=false)
     private String uniqueNumber;
     @JsonView(View.Public.class)
-    @NotNull
+    @Column(nullable=false)
     private String serialNumber;
     @JsonView(View.Public.class)
-    @NotNull
+    @Column(nullable=false)
     private String producer;
     @JsonView(View.Public.class)
-    @NotNull
+    @Column(nullable=false)
     private String model;
     private LocalDate dateOfFiscalization;
     private LocalDate dateOfDeRegistration;
     @JsonView(View.Public.class)
     private String evidenceNumber;
     @JsonView(View.Public.class)
-    @NotNull
+    @Column(nullable=false)
     private Integer reviewsFrequency;
     private LocalDate lastReview;
 
@@ -50,7 +50,7 @@ public class Device implements Serializable {
     @JsonView(View.Public.class)
     private Boolean active;
     @JsonView(View.Public.class)
-//    @NotNull
+//    @Column(nullable=false)
     private Boolean mobile;
     @JsonView(View.Public.class)
     private Boolean reserve;

@@ -27,6 +27,5 @@ public class ReviewsController {
         return deviceService.devicesToReviewInNext7days();
     }
 
-    //overdue - przeterminowane
 
 }

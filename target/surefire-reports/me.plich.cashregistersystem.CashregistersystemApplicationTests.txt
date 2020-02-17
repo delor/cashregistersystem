@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: me.plich.cashregistersystem.CashregistersystemApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.97 s <<< FAILURE! - in me.plich.cashregistersystem.CashregistersystemApplicationTests
+contextLoads  Time elapsed: 0.002 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: org.springframework.beans.factory.support.BeanDefinitionOverrideException: Invalid bean definition with name 'passwordEncoder' defined in class path resource [me/plich/cashregistersystem/config/SecurityConfig.class]: Cannot register bean definition [Root bean: class [null]; scope=; abstract=false; lazyInit=null; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=securityConfig; factoryMethodName=passwordEncoder; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [me/plich/cashregistersystem/config/SecurityConfig.class]] for bean 'passwordEncoder': There is already [Root bean: class [null]; scope=; abstract=false; lazyInit=null; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=beanConfig; factoryMethodName=passwordEncoder; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [me/plich/cashregistersystem/config/BeanConfig.class]] bound.
+

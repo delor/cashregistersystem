@@ -1,17 +1,20 @@
 package me.plich.cashregistersystem.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-@Entity
-public class Admin {
+@Entity(name = "admins")
+public class Admin implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(nullable=false)
     private String name;
+    @Column(nullable=false)
     private String password;
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_roles",
@@ -20,12 +23,6 @@ public class Admin {
     private Set<Role> roles = new HashSet<>();
 
     public Admin(){}
-
-    public Admin(String name, String password, Set<Role> roles) {
-        this.name = name;
-        this.password = password;
-        this.roles = roles;
-    }
 
     public Long getId() {
         return id;

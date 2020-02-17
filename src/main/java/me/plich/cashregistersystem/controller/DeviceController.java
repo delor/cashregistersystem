@@ -11,11 +11,9 @@ import me.plich.cashregistersystem.service.DeviceService;
 import me.plich.cashregistersystem.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @RestController
@@ -51,7 +49,7 @@ public class DeviceController {
 
     @JsonView(View.Public.class)
     @GetMapping("/{id}")
-//    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     @ApiOperation("Returns a device with a specific id")
     public ResponseEntity<Device> getDevice(@PathVariable Long id) throws  ResourceNotFoundException {
@@ -81,12 +79,7 @@ public class DeviceController {
         return orderService.getDeviceOrders(id);
     }
 
-    @GetMapping("/advanced")
-    @ResponseStatus(HttpStatus.OK)
-    @ApiOperation("Returns devices according to the criteria you want. Uses rsql.")
-    public List<Device> findAllByRsql(@RequestParam(value = "search") String search) {
-        return deviceService.findAllByRsql(search);
-    }
+
 
 
 

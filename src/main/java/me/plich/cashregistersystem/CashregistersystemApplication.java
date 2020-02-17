@@ -1,6 +1,6 @@
 package me.plich.cashregistersystem;
 
-import org.modelmapper.ModelMapper;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
@@ -26,9 +26,5 @@ public class CashregistersystemApplication {
         SpringApplication.run(CashregistersystemApplication.class, args);
     }
 
-    @Bean
-    public ModelMapper modelMapper() {
-        return new ModelMapper();
-    }
 }
   

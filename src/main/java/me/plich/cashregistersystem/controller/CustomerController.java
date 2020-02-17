@@ -1,22 +1,17 @@
 package me.plich.cashregistersystem.controller;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import cz.jirutka.rsql.parser.RSQLParser;
-import cz.jirutka.rsql.parser.ast.Node;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import me.plich.cashregistersystem.config.rsql.CustomRsqlVisitor;
 import me.plich.cashregistersystem.model.Customer;
 import me.plich.cashregistersystem.model.Device;
 import me.plich.cashregistersystem.model.Location;
 import me.plich.cashregistersystem.model.View;
-
 import me.plich.cashregistersystem.service.CustomerService;
 import me.plich.cashregistersystem.service.DeviceService;
 import me.plich.cashregistersystem.service.LocationService;
 import me.plich.cashregistersystem.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -65,12 +60,6 @@ public class CustomerController {
         return customerService.getCustomer(id);
     }
 
-    @GetMapping("/advanced")
-    @ResponseStatus(HttpStatus.OK)
-    @ApiOperation("Returns customers according to the criteria you want. Uses rsql.")
-    public List<Customer> findAllByRsql(@RequestParam(value = "search") String search) {
-       return customerService.findAllByRsql(search);
-    }
 
     @PatchMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
