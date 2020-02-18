@@ -42,24 +42,6 @@ public class UserService {
         if(user.getUsername() != null) {
             userToUpdate.setUsername(user.getUsername());
         }
-        if(user.getStreet() != null) {
-            userToUpdate.setStreet(user.getStreet());
-        }
-        if(user.getHouseNumber() != null) {
-            userToUpdate.setHouseNumber(user.getHouseNumber());
-        }
-        if(user.getFlatNumber() != null) {
-            userToUpdate.setFlatNumber(user.getFlatNumber());
-        }
-        if(user.getZipCode() != null) {
-            userToUpdate.setZipCode(user.getZipCode());
-        }
-        if(user.getPlace() != null) {
-            userToUpdate.setPlace(user.getPlace());
-        }
-        if(user.getVoivodeship() != null) {
-            userToUpdate.setVoivodeship(user.getVoivodeship());
-        }
         if(user.getTelephone() != null) {
             userToUpdate.setTelephone(user.getTelephone());
         }

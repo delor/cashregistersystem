@@ -15,9 +15,14 @@ public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonView(View.Public.class)
     private Long id;
+
     @JsonView(View.Public.class)
     @Column(nullable=false)
     private String nip;
+
+    @JsonView(View.Public.class)
+    @Column(nullable=true)
+    private String regon;
 
     @JsonView(View.Public.class)
     @Column(nullable=false)
@@ -26,29 +31,6 @@ public class User implements Serializable {
     @JsonView(View.Public.class)
     @Column(nullable=false)
     private String username;
-
-    @JsonView(View.Public.class)
-    @Column(nullable=false)
-    private String street;
-
-    @JsonView(View.Public.class)
-    @Column(nullable=false)
-    private String houseNumber;
-
-    @JsonView(View.Public.class)
-    private String flatNumber;
-
-    @JsonView(View.Public.class)
-    @Column(nullable=false)
-    private String zipCode;
-
-    @JsonView(View.Public.class)
-    @Column(nullable=false)
-    private String place;
-
-    @JsonView(View.Public.class)
-    @Column(nullable=false)
-    private String voivodeship;
 
     @JsonView(View.Public.class)
     private String telephone;
@@ -82,23 +64,10 @@ public class User implements Serializable {
     @OneToMany(mappedBy="user")
     private List<Order> orders = new ArrayList<Order>();
 
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Address address;
+
     public User(){}
-
-
-    public User(String nip, String name, String username, String street, String houseNumber, String flatNumber, String zipCode, String place, String voivodeship, String telephone, String email, String password) {
-        this.nip = nip;
-        this.name = name;
-        this.username = username;
-        this.street = street;
-        this.houseNumber = houseNumber;
-        this.flatNumber = flatNumber;
-        this.zipCode = zipCode;
-        this.place = place;
-        this.voivodeship = voivodeship;
-        this.telephone = telephone;
-        this.email = email;
-        this.password = password;
-    }
 
     public Long getId() {
         return id;
@@ -112,60 +81,28 @@ public class User implements Serializable {
         this.nip = nip;
     }
 
+    public String getRegon() {
+        return regon;
+    }
+
+    public void setRegon(String regon) {
+        this.regon = regon;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getUsername() {
         return username;
     }
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getStreet() {
-        return street;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
-    public String getHouseNumber() {
-        return houseNumber;
-    }
-
-    public void setHouseNumber(String houseNumber) {
-        this.houseNumber = houseNumber;
-    }
-
-    public String getFlatNumber() {
-        return flatNumber;
-    }
-
-    public void setFlatNumber(String flatNumber) {
-        this.flatNumber = flatNumber;
-    }
-
-    public String getZipCode() {
-        return zipCode;
-    }
-
-    public void setZipCode(String zipCode) {
-        this.zipCode = zipCode;
-    }
-
-    public String getPlace() {
-        return place;
-    }
-
-    public void setPlace(String place) {
-        this.place = place;
-    }
-
-    public String getVoivodeship() {
-        return voivodeship;
-    }
-
-    public void setVoivodeship(String voivodeship) {
-        this.voivodeship = voivodeship;
     }
 
     public String getTelephone() {
@@ -240,12 +177,12 @@ public class User implements Serializable {
         this.orders = orders;
     }
 
-    public String getName() {
-        return name;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     @Override
@@ -253,29 +190,25 @@ public class User implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return houseNumber == user.houseNumber &&
-                flatNumber == user.flatNumber &&
-                telephone == user.telephone &&
-                Objects.equals(id, user.id) &&
-                Objects.equals(nip, user.nip) &&
-                Objects.equals(name, user.name) &&
-                Objects.equals(username, user.username) &&
-                Objects.equals(street, user.street) &&
-                Objects.equals(zipCode, user.zipCode) &&
-                Objects.equals(place, user.place) &&
-                Objects.equals(voivodeship, user.voivodeship) &&
-                Objects.equals(email, user.email) &&
-                Objects.equals(password, user.password) &&
+        return id.equals(user.id) &&
+                nip.equals(user.nip) &&
+                Objects.equals(regon, user.regon) &&
+                name.equals(user.name) &&
+                username.equals(user.username) &&
+                Objects.equals(telephone, user.telephone) &&
+                email.equals(user.email) &&
+                password.equals(user.password) &&
                 Objects.equals(roles, user.roles) &&
                 Objects.equals(customers, user.customers) &&
                 Objects.equals(devices, user.devices) &&
                 Objects.equals(locations, user.locations) &&
                 Objects.equals(servicemens, user.servicemens) &&
-                Objects.equals(orders, user.orders);
+                Objects.equals(orders, user.orders) &&
+                address.equals(user.address);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nip, name, username, street, houseNumber, flatNumber, zipCode, place, voivodeship, telephone, email, password, roles, customers, devices, locations, servicemens, orders);
+        return Objects.hash(id, nip, regon, name, username, telephone, email, password, roles, customers, devices, locations, servicemens, orders, address);
     }
 }

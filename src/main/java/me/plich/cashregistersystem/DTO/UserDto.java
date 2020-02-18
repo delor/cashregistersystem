@@ -3,19 +3,24 @@ package me.plich.cashregistersystem.DTO;
 public class UserDto {
     private Long id;
     private String nip;
+    private String regon;
     private String name;
     private String username;
     private String street;
     private String houseNumber;
     private String flatNumber;
     private String zipCode;
-    private String place;
-    private String voivodeship;
+    private String city;
     private String telephone;
     private String email;
+    private String password;
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNip() {
@@ -24,6 +29,14 @@ public class UserDto {
 
     public void setNip(String nip) {
         this.nip = nip;
+    }
+
+    public String getRegon() {
+        return regon;
+    }
+
+    public void setRegon(String regon) {
+        this.regon = regon;
     }
 
     public String getName() {
@@ -74,20 +87,12 @@ public class UserDto {
         this.zipCode = zipCode;
     }
 
-    public String getPlace() {
-        return place;
+    public String getCity() {
+        return city;
     }
 
-    public void setPlace(String place) {
-        this.place = place;
-    }
-
-    public String getVoivodeship() {
-        return voivodeship;
-    }
-
-    public void setVoivodeship(String voivodeship) {
-        this.voivodeship = voivodeship;
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public String getTelephone() {
@@ -104,5 +109,13 @@ public class UserDto {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
