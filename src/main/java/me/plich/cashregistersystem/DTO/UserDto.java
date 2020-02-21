@@ -1,19 +1,28 @@
 package me.plich.cashregistersystem.DTO;
 
+
+import com.fasterxml.jackson.annotation.JsonView;
+import me.plich.cashregistersystem.model.View;
+
 public class UserDto {
+    @JsonView(View.Public.class)
     private Long id;
+    @JsonView(View.Public.class)
     private String nip;
+    @JsonView(View.Public.class)
     private String regon;
+    @JsonView(View.Public.class)
     private String name;
+    @JsonView(View.Public.class)
     private String username;
-    private String street;
-    private String houseNumber;
-    private String flatNumber;
-    private String zipCode;
-    private String city;
+    @JsonView(View.Public.class)
     private String telephone;
+    @JsonView(View.Public.class)
     private String email;
     private String password;
+    @JsonView(View.Public.class)
+    private AddressDto address;
+
 
     public Long getId() {
         return id;
@@ -55,46 +64,6 @@ public class UserDto {
         this.username = username;
     }
 
-    public String getStreet() {
-        return street;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
-    public String getHouseNumber() {
-        return houseNumber;
-    }
-
-    public void setHouseNumber(String houseNumber) {
-        this.houseNumber = houseNumber;
-    }
-
-    public String getFlatNumber() {
-        return flatNumber;
-    }
-
-    public void setFlatNumber(String flatNumber) {
-        this.flatNumber = flatNumber;
-    }
-
-    public String getZipCode() {
-        return zipCode;
-    }
-
-    public void setZipCode(String zipCode) {
-        this.zipCode = zipCode;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
     public String getTelephone() {
         return telephone;
     }
@@ -117,5 +86,28 @@ public class UserDto {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public AddressDto getAddress() {
+        return address;
+    }
+
+    public void setAddress(AddressDto address) {
+        this.address = address;
+    }
+
+    @Override
+    public String toString() {
+        return "UserDto{" +
+                "id=" + id +
+                ", nip='" + nip + '\'' +
+                ", regon='" + regon + '\'' +
+                ", name='" + name + '\'' +
+                ", username='" + username + '\'' +
+                ", telephone='" + telephone + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", address=" + address +
+                '}';
     }
 }

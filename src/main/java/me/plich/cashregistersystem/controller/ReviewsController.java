@@ -17,11 +17,16 @@ import java.util.List;
 @RequestMapping("/reviews")
 public class ReviewsController {
 
-    @Autowired
+
     DeviceService deviceService;
 
+    @Autowired
+    public ReviewsController(DeviceService deviceService) {
+        this.deviceService = deviceService;
+    }
+
     @JsonView(View.Public.class)
-    @GetMapping("/planned7")
+    @GetMapping("/planned")
     @ResponseStatus(HttpStatus.OK)
     public List<Device> devicesToReviewInNext7days() {
         return deviceService.devicesToReviewInNext7days();

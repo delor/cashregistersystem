@@ -19,16 +19,21 @@ import java.util.Optional;
 @Service
 public class DeviceService {
 
-    @Autowired
+
     DeviceRepository deviceRepository;
-    @Autowired
     UserRepository userRepository;
-    @Autowired
     CustomerRepository customerRepository;
-    @Autowired
     LocationRepository locationRepository;
-    @Autowired
     UserService userService;
+
+    @Autowired
+    public DeviceService(DeviceRepository deviceRepository, UserRepository userRepository, CustomerRepository customerRepository, LocationRepository locationRepository, UserService userService) {
+        this.deviceRepository = deviceRepository;
+        this.userRepository = userRepository;
+        this.customerRepository = customerRepository;
+        this.locationRepository = locationRepository;
+        this.userService = userService;
+    }
 
     public void addDevice(Device device, Long customerID, Long locationID) {
         device.setUser(userRepository.findById(userService.currentLoggedUserId()).get());

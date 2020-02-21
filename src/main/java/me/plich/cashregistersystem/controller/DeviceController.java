@@ -21,10 +21,15 @@ import java.util.List;
 @Api(description = "Set of endpoints for Creating, Retrieving, Updating and Deleting of devices.")
 public class DeviceController {
 
-    @Autowired
+
     DeviceService deviceService;
-    @Autowired
     OrderService orderService;
+
+    @Autowired
+    public DeviceController(DeviceService deviceService, OrderService orderService) {
+        this.deviceService = deviceService;
+        this.orderService = orderService;
+    }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)

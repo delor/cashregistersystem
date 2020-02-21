@@ -5,8 +5,6 @@ import io.swagger.annotations.ApiOperation;
 import me.plich.cashregistersystem.DTO.UserDto;
 import me.plich.cashregistersystem.exception.AppException;
 import me.plich.cashregistersystem.mapper.UserMapper;
-import me.plich.cashregistersystem.mapper.UserMapperImpl;
-import me.plich.cashregistersystem.model.Address;
 import me.plich.cashregistersystem.model.Role;
 import me.plich.cashregistersystem.model.RoleName;
 import me.plich.cashregistersystem.model.User;
@@ -24,34 +22,35 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
+import javax.validation.ConstraintViolationException;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.Collections;
 
 @RestController
-@RequestMapping
 @Api(description = "Set of endpoint for singin and singup")
 public class AuthController {
 
 
-    AuthenticationManager authenticationManager;
-    UserRepository userRepository;
-    RoleRepository roleRepository;
-    JwtTokenProvider tokenProvider;
-    UserMapper userMapper;
+    private AuthenticationManager authenticationManager;
+    private UserRepository userRepository;
+    private RoleRepository roleRepository;
+    private JwtTokenProvider tokenProvider;
+    private PasswordEncoder passwordEncoder;
+    private UserMapper userMapper;
+
+
 
     @Autowired
-    public AuthController(AuthenticationManager authenticationManager, UserRepository userRepository, RoleRepository roleRepository, JwtTokenProvider tokenProvider, UserMapper userMapper) {
+    public AuthController(AuthenticationManager authenticationManager, UserRepository userRepository, RoleRepository roleRepository, JwtTokenProvider tokenProvider, PasswordEncoder passwordEncoder, UserMapper userMapper) {
         this.authenticationManager = authenticationManager;
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.tokenProvider = tokenProvider;
+        this.passwordEncoder = passwordEncoder;
         this.userMapper = userMapper;
     }
 
@@ -74,8 +73,14 @@ public class AuthController {
 
     @PostMapping("/signup")
     @ApiOperation("endpoint for registering a new user")
-    public ResponseEntity<?> registerUser(@Valid @RequestBody UserDto userDto) {
+    public ResponseEntity<?> registerUser( @RequestBody UserDto userDto) {
+        System.out.println("userDto ="+userDto);
+
         User user = userMapper.convertUserDtoToUser(userDto);
+        user.setPassword(passwordEncoder.encode(userDto.getPassword()));
+
+
+        System.out.println("user = "+user);
 
         if(userRepository.existsByUsername(userDto.getUsername())) {
             return new ResponseEntity(new ApiResponse(false, "Username is already taken!"),
@@ -111,4 +116,11 @@ public class AuthController {
 
         return ResponseEntity.created(location).body(new ApiResponse(true, "User registered successfully"));
     }
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    ResponseEntity<String> handleConstraintViolationException(ConstraintViolationException e) {
+        return new ResponseEntity<>("not valid due to validation error: " + e.getMessage(), HttpStatus.BAD_REQUEST);
+    }
 }
+

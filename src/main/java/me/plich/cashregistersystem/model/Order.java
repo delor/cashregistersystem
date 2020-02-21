@@ -10,7 +10,7 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
-@Table(name = "\"ORDERS\"")
+@Table(name = "orders")
 public class Order implements Serializable {
 
     @Id

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface DeviceRepository extends JpaRepository<Device, Long>, JpaSpecificationExecutor<Device> {
+public interface DeviceRepository extends JpaRepository<Device, Long> {
     List<Device> findByUser_IdAndCustomer_Id(Long user_id, Long customer_id);
     List<Device> findByUser_IdAndLocation_Id(Long user_id, Long location_id);
     List<Device> findByUser_Id(Long user_id);

@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
 
-@Entity
+@Entity(name = "servicemens")
 public class Serviceman implements Serializable {
 
     @Id

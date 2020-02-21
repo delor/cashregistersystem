@@ -19,15 +19,19 @@ import static me.plich.cashregistersystem.model.OrderType.*;
 @Service
 public class OrderService {
 
-    @Autowired
+
     OrderRepository orderRepository;
-    @Autowired
     DeviceRepository deviceRepository;
-    @Autowired
     UserRepository userRepository;
-    @Autowired
     UserService userService;
 
+    @Autowired
+    public OrderService(OrderRepository orderRepository, DeviceRepository deviceRepository, UserRepository userRepository, UserService userService) {
+        this.orderRepository = orderRepository;
+        this.deviceRepository = deviceRepository;
+        this.userRepository = userRepository;
+        this.userService = userService;
+    }
 
     public void addOrder(Order order, Long deviceID) throws IOException {
         LocalDate today = order.getOrderDate();

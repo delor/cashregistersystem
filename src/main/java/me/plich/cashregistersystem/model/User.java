@@ -3,6 +3,8 @@ package me.plich.cashregistersystem.model;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.*;
@@ -37,6 +39,7 @@ public class User implements Serializable {
 
     @JsonView(View.Public.class)
     @Column(nullable=false)
+    @Email
     private String email;
 
     @JsonView(View.Public.class)
@@ -48,23 +51,24 @@ public class User implements Serializable {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
-
+    @JsonView(View.Public.class)
     @OneToMany(mappedBy="user")
     private List<Customer> customers = new ArrayList<Customer>();
-
+    @JsonView(View.Public.class)
     @OneToMany(mappedBy="user")
     private List<Device> devices = new ArrayList<Device>();
-
+    @JsonView(View.Public.class)
     @OneToMany(mappedBy="user")
     private List<Location> locations = new ArrayList<Location>();
-
+    @JsonView(View.Public.class)
     @OneToMany(mappedBy="user")
     private List<Serviceman> servicemens = new ArrayList<Serviceman>();
-
+    @JsonView(View.Public.class)
     @OneToMany(mappedBy="user")
     private List<Order> orders = new ArrayList<Order>();
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonView(View.Public.class)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Address address;
 
     public User(){}
@@ -210,5 +214,26 @@ public class User implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(id, nip, regon, name, username, telephone, email, password, roles, customers, devices, locations, servicemens, orders, address);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", nip='" + nip + '\'' +
+                ", regon='" + regon + '\'' +
+                ", name='" + name + '\'' +
+                ", username='" + username + '\'' +
+                ", telephone='" + telephone + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", roles=" + roles +
+                ", customers=" + customers +
+                ", devices=" + devices +
+                ", locations=" + locations +
+                ", servicemens=" + servicemens +
+                ", orders=" + orders +
+                ", address=" + address +
+                '}';
     }
 }

@@ -21,14 +21,19 @@ import java.util.List;
 @Api(description = "Set of endpoints for Creating, Retrieving, Updating and Deleting of customers.")
 public class CustomerController {
 
-    @Autowired
+
     private CustomerService customerService;
+    private UserService userService;
+    private DeviceService deviceService;
+    private LocationService locationService;
+
     @Autowired
-    UserService userService;
-    @Autowired
-    DeviceService deviceService;
-    @Autowired
-    LocationService locationService;
+    public CustomerController(CustomerService customerService, UserService userService, DeviceService deviceService, LocationService locationService) {
+        this.customerService = customerService;
+        this.userService = userService;
+        this.deviceService = deviceService;
+        this.locationService = locationService;
+    }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)

@@ -1,5 +1,6 @@
 package me.plich.cashregistersystem.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.*;
@@ -7,10 +8,10 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Entity(name = "addresses")
-public class Address implements Serializable {
+public class Address {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @JsonView(View.Public.class)
@@ -32,11 +33,16 @@ public class Address implements Serializable {
     @Column(nullable=false)
     private String city;
 
+
     public Address() {
     }
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getStreet() {
@@ -95,5 +101,17 @@ public class Address implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(id, street, houseNumber, flatNumber, zipCode, city);
+    }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "id=" + id +
+                ", street='" + street + '\'' +
+                ", houseNumber='" + houseNumber + '\'' +
+                ", flatNumber='" + flatNumber + '\'' +
+                ", zipCode='" + zipCode + '\'' +
+                ", city='" + city + '\'' +
+                '}';
     }
 }

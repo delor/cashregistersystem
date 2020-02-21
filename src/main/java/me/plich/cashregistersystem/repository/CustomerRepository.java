@@ -9,6 +9,6 @@ import java.util.List;
 
 
 @Repository
-public interface CustomerRepository extends JpaRepository<Customer, Long>, JpaSpecificationExecutor<Customer> {
+public interface CustomerRepository extends JpaRepository<Customer, Long> {
     List<Customer> findByUser_id(Long user_id);
 }

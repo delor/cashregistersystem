@@ -27,9 +27,9 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
         prePostEnabled = true
 )
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
     @Autowired
     CustomUserDetailsService customUserDetailsService;
-
     @Autowired
     private JwtAuthenticationEntryPoint unauthorizedHandler;
 

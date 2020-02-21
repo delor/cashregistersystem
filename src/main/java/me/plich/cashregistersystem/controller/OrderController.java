@@ -18,9 +18,13 @@ import java.util.List;
 @Api(description = "Set of endpoints for Creating, Retrieving, Updating and Deleting of orders.")
 public class OrderController {
 
-    @Autowired
+
     OrderService orderService;
 
+    @Autowired
+    public OrderController(OrderService orderService) {
+        this.orderService = orderService;
+    }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)

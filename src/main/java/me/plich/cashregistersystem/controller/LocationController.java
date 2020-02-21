@@ -19,10 +19,15 @@ import java.util.List;
 @Api(description = "Set of endpoints for Creating, Retrieving, Updating and Deleting of locations.")
 public class LocationController {
 
-    @Autowired
+
     LocationService locationService;
-    @Autowired
     DeviceService deviceService;
+
+    @Autowired
+    public LocationController(LocationService locationService, DeviceService deviceService) {
+        this.locationService = locationService;
+        this.deviceService = deviceService;
+    }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)

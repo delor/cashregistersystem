@@ -17,16 +17,20 @@ import java.util.List;
 @Service
 public class LocationService {
 
-    @Autowired
     DeviceRepository deviceRepository;
-    @Autowired
     UserRepository userRepository;
-    @Autowired
     CustomerRepository customerRepository;
-    @Autowired
     LocationRepository locationRepository;
-    @Autowired
     UserService userService;
+
+    @Autowired
+    public LocationService(DeviceRepository deviceRepository, UserRepository userRepository, CustomerRepository customerRepository, LocationRepository locationRepository, UserService userService) {
+        this.deviceRepository = deviceRepository;
+        this.userRepository = userRepository;
+        this.customerRepository = customerRepository;
+        this.locationRepository = locationRepository;
+        this.userService = userService;
+    }
 
     public void addLocation(Location location, Long customerID) {
         location.setUser(userRepository.findById(userService.currentLoggedUserId()).get());

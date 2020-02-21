@@ -13,12 +13,17 @@ import java.util.List;
 @Service
 public class ServicemanService {
 
-    @Autowired
+
     UserRepository userRepository;
-    @Autowired
     ServicemanRepository servicemanRepository;
-    @Autowired
     UserService userService;
+
+    @Autowired
+    public ServicemanService(UserRepository userRepository, ServicemanRepository servicemanRepository, UserService userService) {
+        this.userRepository = userRepository;
+        this.servicemanRepository = servicemanRepository;
+        this.userService = userService;
+    }
 
     public void addServiceman(Serviceman serviceman) {
         serviceman.setUser(userRepository.findById(userService.currentLoggedUserId()).get());

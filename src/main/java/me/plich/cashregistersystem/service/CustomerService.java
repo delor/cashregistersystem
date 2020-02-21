@@ -17,14 +17,17 @@ import java.util.List;
 @Service
 public class CustomerService {
 
-    @Autowired
+
     CustomerRepository customerRepository;
-    @Autowired
     UserRepository userRepository;
-    @Autowired
     UserService userService;
 
-
+    @Autowired
+    public CustomerService(CustomerRepository customerRepository, UserRepository userRepository, UserService userService) {
+        this.customerRepository = customerRepository;
+        this.userRepository = userRepository;
+        this.userService = userService;
+    }
 
     public void addCustomer(Customer customer) {
         customer.setUser(userRepository.findById(userService.currentLoggedUserId()).get());

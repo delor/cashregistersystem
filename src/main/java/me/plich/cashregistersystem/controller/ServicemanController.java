@@ -17,8 +17,13 @@ import java.util.List;
 @Api(description = "Set of endpoints for Creating, Retrieving, Updating and Deleting of service technicians.")
 public class ServicemanController {
 
-    @Autowired
+
     ServicemanService servicemanService;
+
+    @Autowired
+    public ServicemanController(ServicemanService servicemanService) {
+        this.servicemanService = servicemanService;
+    }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
