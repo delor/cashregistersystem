@@ -2,13 +2,12 @@ package me.plich.cashregistersystem.DTO;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonView;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import me.plich.cashregistersystem.model.View;
 
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class AddressDto {
-    @JsonView(View.Public.class)
+
     private Long id;
     @JsonView(View.Public.class)
     private String street;

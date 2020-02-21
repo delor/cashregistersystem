@@ -1,18 +1,20 @@
 package me.plich.cashregistersystem.DTO;
 
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonView;
 import me.plich.cashregistersystem.model.View;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserDto {
-    @JsonView(View.Public.class)
+
     private Long id;
     @JsonView(View.Public.class)
     private String nip;
     @JsonView(View.Public.class)
     private String regon;
     @JsonView(View.Public.class)
-    private String name;
+    private String companyName;
     @JsonView(View.Public.class)
     private String username;
     @JsonView(View.Public.class)
@@ -23,6 +25,8 @@ public class UserDto {
     @JsonView(View.Public.class)
     private AddressDto address;
 
+    public UserDto() {
+    }
 
     public Long getId() {
         return id;
@@ -48,12 +52,12 @@ public class UserDto {
         this.regon = regon;
     }
 
-    public String getName() {
-        return name;
+    public String getCompanyName() {
+        return companyName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
     }
 
     public String getUsername() {
@@ -102,7 +106,7 @@ public class UserDto {
                 "id=" + id +
                 ", nip='" + nip + '\'' +
                 ", regon='" + regon + '\'' +
-                ", name='" + name + '\'' +
+                ", companyName='" + companyName + '\'' +
                 ", username='" + username + '\'' +
                 ", telephone='" + telephone + '\'' +
                 ", email='" + email + '\'' +

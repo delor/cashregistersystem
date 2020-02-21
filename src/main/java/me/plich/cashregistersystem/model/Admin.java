@@ -1,13 +1,14 @@
 package me.plich.cashregistersystem.model;
 
 import javax.persistence.*;
-import java.io.Serializable;
+import javax.validation.constraints.Email;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-@Entity(name = "admins")
-public class Admin implements Serializable {
+@Entity
+@Table(name = "admins")
+public class Admin {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,6 +17,11 @@ public class Admin implements Serializable {
     private String name;
     @Column(nullable=false)
     private String password;
+
+    @Column(nullable=false)
+    @Email
+    private String email;
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -52,19 +58,39 @@ public class Admin implements Serializable {
         this.roles = roles;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Admin admin = (Admin) o;
-        return Objects.equals(id, admin.id) &&
-                Objects.equals(name, admin.name) &&
-                Objects.equals(password, admin.password) &&
-                Objects.equals(roles, admin.roles);
+        return id.equals(admin.id) &&
+                name.equals(admin.name) &&
+                password.equals(admin.password) &&
+                email.equals(admin.email) &&
+                roles.equals(admin.roles);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, password, roles);
+        return Objects.hash(id, name, password, email, roles);
+    }
+
+    @Override
+    public String toString() {
+        return "Admin{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", roles=" + roles +
+                '}';
     }
 }

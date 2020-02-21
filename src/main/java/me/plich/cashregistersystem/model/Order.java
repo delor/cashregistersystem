@@ -1,29 +1,24 @@
 package me.plich.cashregistersystem.model;
 
-import com.fasterxml.jackson.annotation.JsonView;
-
-
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
 @Table(name = "orders")
-public class Order implements Serializable {
+public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonView(View.Public.class)
     private Long id;
-    @JsonView(View.Public.class)
+
+    @Enumerated(EnumType.STRING)
     @Column(nullable=false)
     private OrderType orderType;
-    @JsonView(View.Public.class)
+
     @Column(nullable=false)
     private LocalDate orderDate;
-    @JsonView(View.Public.class)
+
     @Column(nullable=false)
     private StateOfSeals seals;
     private Integer generalCounterFrom;
@@ -34,32 +29,20 @@ public class Order implements Serializable {
     private Integer resettingFramesTo;
     private Integer receiptFrom;
     private Integer receiptTo;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToOne
     @JoinColumn(name = "device_id")
-    @JsonView(View.Public.class)
     private Device device;
 
-    public Order(){}
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
 
-    public Order(OrderType orderType, LocalDate orderDate, StateOfSeals seals, Integer generalCounterFrom, Integer generalCounterTo, Integer dailyReportFrom, Integer dailyReportTo, Integer resettingFramesFrom, Integer resettingFramesTo, Integer receiptFrom,  Integer receiptTo, User user, Device device) {
-        this.orderType = orderType;
-        this.orderDate = orderDate;
-        this.seals = seals;
-        this.generalCounterFrom = generalCounterFrom;
-        this.generalCounterTo = generalCounterTo;
-        this.dailyReportFrom = dailyReportFrom;
-        this.dailyReportTo = dailyReportTo;
-        this.resettingFramesFrom = resettingFramesFrom;
-        this.resettingFramesTo = resettingFramesTo;
-        this.receiptFrom = receiptFrom;
-        this.receiptTo = receiptTo;
-        this.user = user;
-        this.device = device;
-    }
+    public Order(){}
 
     public Long getId() {
         return id;
@@ -169,14 +152,22 @@ public class Order implements Serializable {
         this.device = device;
     }
 
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Order order = (Order) o;
-        return Objects.equals(id, order.id) &&
+        return id.equals(order.id) &&
                 orderType == order.orderType &&
-                Objects.equals(orderDate, order.orderDate) &&
+                orderDate.equals(order.orderDate) &&
                 seals == order.seals &&
                 Objects.equals(generalCounterFrom, order.generalCounterFrom) &&
                 Objects.equals(generalCounterTo, order.generalCounterTo) &&
@@ -186,12 +177,13 @@ public class Order implements Serializable {
                 Objects.equals(resettingFramesTo, order.resettingFramesTo) &&
                 Objects.equals(receiptFrom, order.receiptFrom) &&
                 Objects.equals(receiptTo, order.receiptTo) &&
-                Objects.equals(user, order.user) &&
-                Objects.equals(device, order.device);
+                user.equals(order.user) &&
+                device.equals(order.device) &&
+                customer.equals(order.customer);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, orderType, orderDate, seals, generalCounterFrom, generalCounterTo, dailyReportFrom, dailyReportTo, resettingFramesFrom, resettingFramesTo, receiptFrom, receiptTo, user, device);
+        return Objects.hash(id, orderType, orderDate, seals, generalCounterFrom, generalCounterTo, dailyReportFrom, dailyReportTo, resettingFramesFrom, resettingFramesTo, receiptFrom, receiptTo, user, device, customer);
     }
 }

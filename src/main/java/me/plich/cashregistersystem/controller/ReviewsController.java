@@ -25,12 +25,12 @@ public class ReviewsController {
         this.deviceService = deviceService;
     }
 
-    @JsonView(View.Public.class)
-    @GetMapping("/planned")
-    @ResponseStatus(HttpStatus.OK)
-    public List<Device> devicesToReviewInNext7days() {
-        return deviceService.devicesToReviewInNext7days();
-    }
+//    @JsonView(View.Public.class)
+//    @GetMapping("/planned")
+//    @ResponseStatus(HttpStatus.OK)
+//    public List<Device> devicesToReviewInNext7days() {
+//        return deviceService.devicesToReviewInNext7days();
+//    }
 
 
 }

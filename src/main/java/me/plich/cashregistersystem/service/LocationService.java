@@ -64,40 +64,8 @@ public class LocationService {
     }
 
     public void updateLocation(@PathVariable Long id, @RequestBody Location location) {
-        Location locationToUpdate = locationRepository.getOne(id);
-        if(locationToUpdate.getUser().getId()==userService.currentLoggedUserId()) {
-           if(location.getName() != null) {
-               locationToUpdate.setName(location.getName());
-           }
-            if(location.getStreet() != null) {
-                locationToUpdate.setStreet(location.getStreet());
-            }
-            if(location.getHouseNumber() !=  null) {
-                locationToUpdate.setHouseNumber(location.getHouseNumber());
-            }
-            if(location.getFlatNumber() != null) {
-                locationToUpdate.setFlatNumber(location.getFlatNumber());
-            }
-            if(location.getZipCode() != null) {
-                locationToUpdate.setZipCode(location.getZipCode());
-            }
-            if(location.getPlace() != null) {
-                locationToUpdate.setPlace(location.getPlace());
-            }
-            if(location.getVoivodeship() != null) {
-                locationToUpdate.setVoivodeship(location.getVoivodeship());
-            }
-            if(location.getTelephone() != null) {
-                locationToUpdate.setTelephone(location.getTelephone());
-            }
-            if(location.getEmail() != null) {
-                locationToUpdate.setEmail(location.getEmail());
-            }
-            if(location.getDescription() != null) {
-                locationToUpdate.setDescription(location.getDescription());
-            }
-            locationRepository.save(locationToUpdate);
-        }
+
+        //do zaimplementowania metoda na wzor tej z userService
     }
 
 }

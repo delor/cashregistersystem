@@ -1,37 +1,28 @@
 package me.plich.cashregistersystem.model;
 
-import com.fasterxml.jackson.annotation.JsonView;
-
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import java.io.Serializable;
 import java.util.Objects;
 
-@Entity(name = "servicemens")
-public class Serviceman implements Serializable {
+@Entity
+@Table(name = "servicemens")
+public class Serviceman {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonView(View.Public.class)
     private Long id;
-    @JsonView(View.Public.class)
+    
     @Column(nullable=false)
     private String firstName;
-    @JsonView(View.Public.class)
+    
     @Column(nullable=false)
     private String lastName;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
     public Serviceman(){}
-
-    public Serviceman(String firstName, String lastName, User user) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.user = user;
-    }
 
     public Long getId() {
         return id;
@@ -66,14 +57,24 @@ public class Serviceman implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Serviceman that = (Serviceman) o;
-        return Objects.equals(id, that.id) &&
-                Objects.equals(firstName, that.firstName) &&
-                Objects.equals(lastName, that.lastName) &&
-                Objects.equals(user, that.user);
+        return id.equals(that.id) &&
+                firstName.equals(that.firstName) &&
+                lastName.equals(that.lastName) &&
+                user.equals(that.user);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(id, firstName, lastName, user);
+    }
+
+    @Override
+    public String toString() {
+        return "Serviceman{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", user=" + user +
+                '}';
     }
 }

@@ -1,94 +1,77 @@
 package me.plich.cashregistersystem.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonView;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
-
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-@Entity(name = "devices")
-public class Device implements Serializable {
+@Entity
+@Table(name = "devices")
+public class Device  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonView(View.Public.class)
     private Long id;
-    @JsonView(View.Public.class)
+   
     @Column(nullable=false)
     private String uniqueNumber;
-    @JsonView(View.Public.class)
+   
     @Column(nullable=false)
     private String serialNumber;
-    @JsonView(View.Public.class)
-    @Column(nullable=false)
-    private String producer;
-    @JsonView(View.Public.class)
+
+    @ManyToOne
+    @JoinColumn(name = "producer_id")
+    private Producer producer;
+   
     @Column(nullable=false)
     private String model;
+
     private LocalDate dateOfFiscalization;
+
     private LocalDate dateOfDeRegistration;
-    @JsonView(View.Public.class)
+   
     private String evidenceNumber;
-    @JsonView(View.Public.class)
+   
     @Column(nullable=false)
-    private Integer reviewsFrequency;
+    private int reviewsFrequency;
+
     private LocalDate lastReview;
 
     private LocalDate plannedReview;
-    @JsonView(View.Public.class)
-    private Integer dailyReports;
-    @JsonView(View.Public.class)
+   
+    private int dailyReports;
+   
     private Boolean active;
-    @JsonView(View.Public.class)
-//    @Column(nullable=false)
+
     private Boolean mobile;
-    @JsonView(View.Public.class)
+   
     private Boolean reserve;
-    @JsonView(View.Public.class)
+   
     private String description;
+
     @ManyToOne
-    @JsonIgnore
     @JoinColumn(name = "location_id")
     private Location location;
+
     @ManyToOne
-    @JsonIgnore
     @JoinColumn(name = "user_id")
     private User user;
+
     @ManyToOne
-    @JsonIgnore
     @JoinColumn(name = "customer_id")
     private Customer customer;
-    @JsonIgnore
+
     @OneToMany(mappedBy="device")
     private List<Order> orders = new ArrayList<Order>();
 
     public Device(){}
 
-    public Device(String uniqueNumber, String serialNumber, String producer, String model, Integer reviewsFrequency, String description, Location location, User user, Customer customer) {
-        this.uniqueNumber = uniqueNumber;
-        this.serialNumber = serialNumber;
-        this.producer = producer;
-        this.model = model;
-        this.reviewsFrequency = reviewsFrequency;
-        this.description = description;
-        this.location = location;
-        this.user = user;
-        this.customer = customer;
-    }
-
     public Long getId() {
         return id;
     }
+
 
     public String getUniqueNumber() {
         return uniqueNumber;
@@ -106,11 +89,11 @@ public class Device implements Serializable {
         this.serialNumber = serialNumber;
     }
 
-    public String getProducer() {
+    public Producer getProducer() {
         return producer;
     }
 
-    public void setProducer(String producer) {
+    public void setProducer(Producer producer) {
         this.producer = producer;
     }
 
@@ -146,11 +129,11 @@ public class Device implements Serializable {
         this.evidenceNumber = evidenceNumber;
     }
 
-    public Integer getReviewsFrequency() {
+    public int getReviewsFrequency() {
         return reviewsFrequency;
     }
 
-    public void setReviewsFrequency(Integer reviewsFrequency) {
+    public void setReviewsFrequency(int reviewsFrequency) {
         this.reviewsFrequency = reviewsFrequency;
     }
 
@@ -170,11 +153,11 @@ public class Device implements Serializable {
         this.plannedReview = plannedReview;
     }
 
-    public Integer getDailyReports() {
+    public int getDailyReports() {
         return dailyReports;
     }
 
-    public void setDailyReports(Integer dailyReports) {
+    public void setDailyReports(int dailyReports) {
         this.dailyReports = dailyReports;
     }
 
@@ -249,11 +232,11 @@ public class Device implements Serializable {
         Device device = (Device) o;
         return reviewsFrequency == device.reviewsFrequency &&
                 dailyReports == device.dailyReports &&
-                Objects.equals(id, device.id) &&
-                Objects.equals(uniqueNumber, device.uniqueNumber) &&
-                Objects.equals(serialNumber, device.serialNumber) &&
-                producer == device.producer &&
-                model == device.model &&
+                id.equals(device.id) &&
+                uniqueNumber.equals(device.uniqueNumber) &&
+                serialNumber.equals(device.serialNumber) &&
+                producer.equals(device.producer) &&
+                model.equals(device.model) &&
                 Objects.equals(dateOfFiscalization, device.dateOfFiscalization) &&
                 Objects.equals(dateOfDeRegistration, device.dateOfDeRegistration) &&
                 Objects.equals(evidenceNumber, device.evidenceNumber) &&
@@ -264,13 +247,39 @@ public class Device implements Serializable {
                 Objects.equals(reserve, device.reserve) &&
                 Objects.equals(description, device.description) &&
                 Objects.equals(location, device.location) &&
-                Objects.equals(user, device.user) &&
-                Objects.equals(customer, device.customer) &&
+                user.equals(device.user) &&
+                customer.equals(device.customer) &&
                 Objects.equals(orders, device.orders);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(id, uniqueNumber, serialNumber, producer, model, dateOfFiscalization, dateOfDeRegistration, evidenceNumber, reviewsFrequency, lastReview, plannedReview, dailyReports, active, mobile, reserve, description, location, user, customer, orders);
+    }
+
+    @Override
+    public String toString() {
+        return "Device{" +
+                "id=" + id +
+                ", uniqueNumber='" + uniqueNumber + '\'' +
+                ", serialNumber='" + serialNumber + '\'' +
+                ", producer=" + producer +
+                ", model='" + model + '\'' +
+                ", dateOfFiscalization=" + dateOfFiscalization +
+                ", dateOfDeRegistration=" + dateOfDeRegistration +
+                ", evidenceNumber='" + evidenceNumber + '\'' +
+                ", reviewsFrequency=" + reviewsFrequency +
+                ", lastReview=" + lastReview +
+                ", plannedReview=" + plannedReview +
+                ", dailyReports=" + dailyReports +
+                ", active=" + active +
+                ", mobile=" + mobile +
+                ", reserve=" + reserve +
+                ", description='" + description + '\'' +
+                ", location=" + location +
+                ", user=" + user +
+                ", customer=" + customer +
+                ", orders=" + orders +
+                '}';
     }
 }

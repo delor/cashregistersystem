@@ -1,58 +1,41 @@
 package me.plich.cashregistersystem.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonView;
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 
-@Entity(name = "customers")
-public class Customer  implements Serializable{
+@Entity
+@Table(name = "customers")
+public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonView(View.Public.class)
     private Long id;
-    @JsonView(View.Public.class)
+    
     @Column(nullable=false)
     private String nip;
-    @JsonView(View.Public.class)
+    
     @Column(nullable=false)
-    private String name;
-    @JsonView(View.Public.class)
-    @Column(nullable=false)
-    private String street;
-    @JsonView(View.Public.class)
-    @Column(nullable=false)
-    private String houseNumber;
-    @JsonView(View.Public.class)
-    private String flatNumber;
-    @JsonView(View.Public.class)
-    @Column(nullable=false)
-    private String zipCode;
-    @JsonView(View.Public.class)
-    @Column(nullable=false)
-    private String place;
-    @JsonView(View.Public.class)
-    @Column(nullable=false)
-    private String voivodeship;
-    @JsonView(View.Public.class)
+    private String companyName;
+
     @Column(nullable=false)
     private String telephone;
-    @JsonView(View.Public.class)
+    
     private String email;
-    @JsonView(View.Public.class)
+    
     @Column(nullable=false)
     private String taxOffice;
-    @JsonView(View.Public.class)
+    
     private String description;
+
     @ManyToOne
     @JoinColumn(name = "user")
-    @JsonIgnore
     private User user;
+
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Address address;
 
     @OneToMany(mappedBy="customer")
     private List<Device> devices = new ArrayList<Device>();
@@ -60,25 +43,10 @@ public class Customer  implements Serializable{
     @OneToMany(mappedBy="customer")
     private List<Location> locations = new ArrayList<Location>();
 
-    public Customer(){}
+    @OneToMany(mappedBy="customer")
+    private List<Order> orders = new ArrayList<Order>();
 
-    public Customer(String nip, String name, String street, String houseNumber, String flatNumber, String zipCode, String place, String voivodeship, String telephone, String email, String taxOffice, String description, User user, List<Device> devices, List<Location> locations) {
-        this.nip = nip;
-        this.name = name;
-        this.street = street;
-        this.houseNumber = houseNumber;
-        this.flatNumber = flatNumber;
-        this.zipCode = zipCode;
-        this.place = place;
-        this.voivodeship = voivodeship;
-        this.telephone = telephone;
-        this.email = email;
-        this.taxOffice = taxOffice;
-        this.description = description;
-        this.user = user;
-        this.devices = devices;
-        this.locations = locations;
-    }
+    public Customer(){}
 
     public Long getId() {
         return id;
@@ -92,60 +60,12 @@ public class Customer  implements Serializable{
         this.nip = nip;
     }
 
-    public String getName() {
-        return name;
+    public String getCompanyName() {
+        return companyName;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getStreet() {
-        return street;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
-    public String getHouseNumber() {
-        return houseNumber;
-    }
-
-    public void setHouseNumber(String houseNumber) {
-        this.houseNumber = houseNumber;
-    }
-
-    public String getFlatNumber() {
-        return flatNumber;
-    }
-
-    public void setFlatNumber(String flatNumber) {
-        this.flatNumber = flatNumber;
-    }
-
-    public String getZipCode() {
-        return zipCode;
-    }
-
-    public void setZipCode(String zipCode) {
-        this.zipCode = zipCode;
-    }
-
-    public String getPlace() {
-        return place;
-    }
-
-    public void setPlace(String place) {
-        this.place = place;
-    }
-
-    public String getVoivodeship() {
-        return voivodeship;
-    }
-
-    public void setVoivodeship(String voivodeship) {
-        this.voivodeship = voivodeship;
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
     }
 
     public String getTelephone() {
@@ -188,6 +108,14 @@ public class Customer  implements Serializable{
         this.user = user;
     }
 
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
     public List<Device> getDevices() {
         return devices;
     }
@@ -204,46 +132,53 @@ public class Customer  implements Serializable{
         this.locations = locations;
     }
 
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Customer customer = (Customer) o;
-        return houseNumber == customer.houseNumber &&
-                flatNumber == customer.flatNumber &&
-                telephone == customer.telephone &&
-                Objects.equals(id, customer.id) &&
-                Objects.equals(nip, customer.nip) &&
-                Objects.equals(name, customer.name) &&
-                Objects.equals(street, customer.street) &&
-                Objects.equals(zipCode, customer.zipCode) &&
-                Objects.equals(place, customer.place) &&
-                Objects.equals(voivodeship, customer.voivodeship) &&
+        return id.equals(customer.id) &&
+                nip.equals(customer.nip) &&
+                companyName.equals(customer.companyName) &&
+                Objects.equals(telephone, customer.telephone) &&
                 Objects.equals(email, customer.email) &&
                 Objects.equals(taxOffice, customer.taxOffice) &&
                 Objects.equals(description, customer.description) &&
-                Objects.equals(user, customer.user) &&
+                user.equals(customer.user) &&
+                address.equals(customer.address) &&
                 Objects.equals(devices, customer.devices) &&
-                Objects.equals(locations, customer.locations);
+                Objects.equals(locations, customer.locations) &&
+                Objects.equals(orders, customer.orders);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nip, name, street, houseNumber, flatNumber, zipCode, place, voivodeship, telephone, email, taxOffice, description, user, devices, locations);
+        return Objects.hash(id, nip, companyName, telephone, email, taxOffice, description, user, address, devices, locations, orders);
     }
 
     @Override
     public String toString() {
-        return ", name='" + name + '\'' +
-                "nip='" + nip + '\'' +
-                ", street='" + street + '\'' +
-                ", houseNumber='" + houseNumber + '\'' +
-                ", flatNumber='" + flatNumber + '\'' +
-                ", zipCode='" + zipCode + '\'' +
-                ", place='" + place + '\'' +
-                ", voivodeship='" + voivodeship + '\'' +
+        return "Customer{" +
+                "id=" + id +
+                ", nip='" + nip + '\'' +
+                ", companyName='" + companyName + '\'' +
                 ", telephone='" + telephone + '\'' +
                 ", email='" + email + '\'' +
+                ", taxOffice='" + taxOffice + '\'' +
+                ", description='" + description + '\'' +
+                ", user=" + user +
+                ", address=" + address +
+                ", devices=" + devices +
+                ", locations=" + locations +
+                ", orders=" + orders +
                 '}';
     }
 }

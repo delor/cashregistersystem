@@ -1,11 +1,8 @@
 package me.plich.cashregistersystem.model;
 
-import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.*;
 
@@ -15,34 +12,25 @@ public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonView(View.Public.class)
     private Long id;
 
-    @JsonView(View.Public.class)
     @Column(nullable=false)
     private String nip;
 
-    @JsonView(View.Public.class)
-    @Column(nullable=true)
     private String regon;
 
-    @JsonView(View.Public.class)
     @Column(nullable=false)
-    private String name;
+    private String companyName;
 
-    @JsonView(View.Public.class)
     @Column(nullable=false)
     private String username;
 
-    @JsonView(View.Public.class)
     private String telephone;
 
-    @JsonView(View.Public.class)
     @Column(nullable=false)
     @Email
     private String email;
 
-    @JsonView(View.Public.class)
     @Column(nullable=false)
     private String password;
 
@@ -51,24 +39,24 @@ public class User implements Serializable {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
-    @JsonView(View.Public.class)
+
     @OneToMany(mappedBy="user")
     private List<Customer> customers = new ArrayList<Customer>();
-    @JsonView(View.Public.class)
+
     @OneToMany(mappedBy="user")
     private List<Device> devices = new ArrayList<Device>();
-    @JsonView(View.Public.class)
+
     @OneToMany(mappedBy="user")
     private List<Location> locations = new ArrayList<Location>();
-    @JsonView(View.Public.class)
+
     @OneToMany(mappedBy="user")
     private List<Serviceman> servicemens = new ArrayList<Serviceman>();
-    @JsonView(View.Public.class)
+
     @OneToMany(mappedBy="user")
     private List<Order> orders = new ArrayList<Order>();
 
-    @JsonView(View.Public.class)
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Address address;
 
     public User(){}
@@ -93,12 +81,12 @@ public class User implements Serializable {
         this.regon = regon;
     }
 
-    public String getName() {
-        return name;
+    public String getCompanyName() {
+        return companyName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
     }
 
     public String getUsername() {
@@ -197,12 +185,12 @@ public class User implements Serializable {
         return id.equals(user.id) &&
                 nip.equals(user.nip) &&
                 Objects.equals(regon, user.regon) &&
-                name.equals(user.name) &&
+                companyName.equals(user.companyName) &&
                 username.equals(user.username) &&
                 Objects.equals(telephone, user.telephone) &&
                 email.equals(user.email) &&
                 password.equals(user.password) &&
-                Objects.equals(roles, user.roles) &&
+                roles.equals(user.roles) &&
                 Objects.equals(customers, user.customers) &&
                 Objects.equals(devices, user.devices) &&
                 Objects.equals(locations, user.locations) &&
@@ -213,7 +201,7 @@ public class User implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nip, regon, name, username, telephone, email, password, roles, customers, devices, locations, servicemens, orders, address);
+        return Objects.hash(id, nip, regon, companyName, username, telephone, email, password, roles, customers, devices, locations, servicemens, orders, address);
     }
 
     @Override
@@ -222,7 +210,7 @@ public class User implements Serializable {
                 "id=" + id +
                 ", nip='" + nip + '\'' +
                 ", regon='" + regon + '\'' +
-                ", name='" + name + '\'' +
+                ", companyName='" + companyName + '\'' +
                 ", username='" + username + '\'' +
                 ", telephone='" + telephone + '\'' +
                 ", email='" + email + '\'' +

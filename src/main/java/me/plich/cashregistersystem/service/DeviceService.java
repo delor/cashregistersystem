@@ -82,92 +82,23 @@ public class DeviceService {
     }
 
     public void updateDevice(@PathVariable Long id, @RequestBody Device device) {
-        Optional<Device> deviceToUpdateOpt = deviceRepository.findById(id);
-        if (deviceToUpdateOpt.isPresent()) {
-            Device deviceToUpdate = deviceToUpdateOpt.get();
-
-            if (deviceToUpdate.getUser().getId() == userService.currentLoggedUserId()) {
-                if (device.getUniqueNumber() != null) {
-                    deviceToUpdate.setUniqueNumber(device.getUniqueNumber());
-                }
-                if (device.getSerialNumber() != null) {
-                    deviceToUpdate.setSerialNumber(device.getSerialNumber());
-                }
-                if (device.getProducer() != null) {
-                    deviceToUpdate.setProducer(device.getProducer());
-                }
-                if (device.getModel() != null) {
-                    deviceToUpdate.setModel(device.getModel());
-                }
-                if (device.getDateOfFiscalization() != null) {
-                    deviceToUpdate.setDateOfFiscalization(device.getDateOfFiscalization());
-                }
-                if (device.getDateOfDeRegistration() != null) {
-                    deviceToUpdate.setDateOfDeRegistration(device.getDateOfDeRegistration());
-                }
-                if (device.getEvidenceNumber() != null) {
-                    deviceToUpdate.setEvidenceNumber(device.getEvidenceNumber());
-                }
-                if (device.getReviewsFrequency() != null) {
-                    deviceToUpdate.setReviewsFrequency(device.getReviewsFrequency());
-                }
-                if (device.getLastReview() != null) {
-                    deviceToUpdate.setLastReview(device.getLastReview());
-                }
-                if (device.getPlannedReview() != null) {
-                    deviceToUpdate.setPlannedReview(device.getPlannedReview());
-                }
-                if (device.getDailyReports() != null) {
-                    deviceToUpdate.setDailyReports(device.getDailyReports());
-                }
-                if (device.getActive() != null) {
-                    deviceToUpdate.setActive(device.getActive());
-                }
-                if (device.getMobile() != null) {
-                    deviceToUpdate.setMobile(device.getMobile());
-                }
-                if (device.getReserve() != null) {
-                    deviceToUpdate.setReserve(device.getReserve());
-                }
-                if (device.getDescription() != null) {
-                    deviceToUpdate.setDescription(device.getDescription());
-                }
-                if (device.getLocation() != null) {
-                    deviceToUpdate.setLocation(device.getLocation());
-                }
-                deviceRepository.save(deviceToUpdate);
-            }
-        }
-    }
-
-    public void fiscalization(Long id) {
-        Device device = deviceRepository.findById(id).get();
-        device.setActive(true);
-        device.setDateOfFiscalization(LocalDate.now());
-        changeReviewDate(id);
+        //do zaimplementowania analogicznie jak w przypadku encji user
+         }
 
 
-    }
 
-    public void changeReviewDate(Long id) {
-        Device device = deviceRepository.findById(id).get();
-        if(device.getReviewsFrequency() == 24) {
-            device.setPlannedReview(LocalDate.now().plusYears(2));
-        } else {
-            device.setPlannedReview(LocalDate.now().plusYears(1));
-        }
-    }
+//    public void fiscalization(Long id) {
+//
+//    }
 
-    public List<Device> devicesToReviewInNext7days() {
-        LocalDate date = LocalDate.now();
-        List<Device> devices = deviceRepository.findByUser_Id(userService.currentLoggedUserId());
-        Iterator<Device> deviceIterator = devices.iterator();
-        while(deviceIterator.hasNext()) {
-            Device device = deviceIterator.next();
-            if(device.getPlannedReview().isBefore(date) || device.getPlannedReview().isAfter(date.plusDays(7))) {
-            deviceIterator.remove();
-            }
-        }
-        return devices;
-    }
+//    public void changeReviewDate(Long id) {
+//        Device device = deviceRepository.findById(id).get();
+//        if(device.getReviewsFrequency() == 24) {
+//            device.setPlannedReview(LocalDate.now().plusYears(2));
+//        } else {
+//            device.setPlannedReview(LocalDate.now().plusYears(1));
+//        }
+//    }
+
+//dorobić metodę zwracającą kasy do przeglądu w ciągu następnych x dni
 }

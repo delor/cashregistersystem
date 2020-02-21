@@ -9,9 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
-
-
-
 import java.util.List;
 
 @Service
@@ -57,47 +54,9 @@ public class CustomerService {
 
     public void updateCustomer(@PathVariable Long id, @RequestBody Customer customer) {
         Customer customerToUpdate = customerRepository.getOne(id);
-        if(customerToUpdate.getUser().getId()==userService.currentLoggedUserId()) {
-
-            if (customer.getNip() != null) {
-                customerToUpdate.setNip(customer.getNip());
-            }
-            if (customer.getName() != null) {
-                customerToUpdate.setName(customer.getName());
-            }
-            if (customer.getStreet() != null) {
-                customerToUpdate.setStreet(customer.getStreet());
-            }
-            if (customer.getHouseNumber() != null) {
-                customerToUpdate.setHouseNumber(customer.getHouseNumber());
-            }
-            if (customer.getFlatNumber() != null) {
-                customerToUpdate.setFlatNumber(customer.getFlatNumber());
-            }
-            if (customer.getZipCode() != null) {
-                customerToUpdate.setZipCode(customer.getZipCode());
-            }
-            if (customer.getPlace() != null) {
-                customerToUpdate.setPlace(customer.getPlace());
-            }
-            if (customer.getVoivodeship() != null) {
-                customerToUpdate.setVoivodeship(customer.getVoivodeship());
-            }
-            if (customer.getTelephone() != null) {
-                customerToUpdate.setTelephone(customer.getTelephone());
-            }
-            if (customer.getEmail() != null) {
-                customerToUpdate.setEmail(customer.getEmail());
-            }
-            if (customer.getTaxOffice() != null) {
-                customerToUpdate.setTaxOffice(customer.getTaxOffice());
-            }
-            if (customer.getDescription() != null) {
-                customerToUpdate.setDescription(customer.getDescription());
-            }
-
+        //do zaimplementowania analogicznie jak w przypadku encji user
             customerRepository.save(customerToUpdate);
         }
     }
-}
+
 

@@ -20,7 +20,7 @@ public class BeanConfig {
     @Bean
     public Jaxb2Marshaller marshaller() {
         Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
-        marshaller.setContextPath("me.plich.fisserwis.generated.datastore");
+        marshaller.setContextPath("me.plich.cashregistersystem.generated.datastore");
         return marshaller;
     }
     @Bean

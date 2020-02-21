@@ -1,35 +1,28 @@
 package me.plich.cashregistersystem.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Objects;
 
-@Entity(name = "addresses")
+@Entity
+@Table(name = "addresses")
 public class Address {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @JsonView(View.Public.class)
     @Column(nullable=true)
     private String street;
 
-    @JsonView(View.Public.class)
     @Column(nullable=false)
     private String houseNumber;
 
-    @JsonView(View.Public.class)
     private String flatNumber;
 
-    @JsonView(View.Public.class)
     @Column(nullable=false)
     private String zipCode;
 
-    @JsonView(View.Public.class)
     @Column(nullable=false)
     private String city;
 
