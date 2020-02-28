@@ -16,6 +16,9 @@ public class Customer {
     
     @Column(nullable=false)
     private String nip;
+
+    @Column(nullable=true)
+    private String regon;
     
     @Column(nullable=false)
     private String companyName;
@@ -58,6 +61,14 @@ public class Customer {
 
     public void setNip(String nip) {
         this.nip = nip;
+    }
+
+    public String getRegon() {
+        return regon;
+    }
+
+    public void setRegon(String regon) {
+        this.regon = regon;
     }
 
     public String getCompanyName() {
@@ -147,10 +158,11 @@ public class Customer {
         Customer customer = (Customer) o;
         return id.equals(customer.id) &&
                 nip.equals(customer.nip) &&
+                Objects.equals(regon, customer.regon) &&
                 companyName.equals(customer.companyName) &&
                 Objects.equals(telephone, customer.telephone) &&
-                Objects.equals(email, customer.email) &&
-                Objects.equals(taxOffice, customer.taxOffice) &&
+                email.equals(customer.email) &&
+                taxOffice.equals(customer.taxOffice) &&
                 Objects.equals(description, customer.description) &&
                 user.equals(customer.user) &&
                 address.equals(customer.address) &&
@@ -161,7 +173,7 @@ public class Customer {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nip, companyName, telephone, email, taxOffice, description, user, address, devices, locations, orders);
+        return Objects.hash(id, nip, regon, companyName, telephone, email, taxOffice, description, user, address, devices, locations, orders);
     }
 
     @Override
@@ -169,6 +181,7 @@ public class Customer {
         return "Customer{" +
                 "id=" + id +
                 ", nip='" + nip + '\'' +
+                ", regon='" + regon + '\'' +
                 ", companyName='" + companyName + '\'' +
                 ", telephone='" + telephone + '\'' +
                 ", email='" + email + '\'' +

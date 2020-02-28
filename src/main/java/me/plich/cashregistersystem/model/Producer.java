@@ -33,6 +33,9 @@ public class Producer {
     @OneToMany(mappedBy="producer")
     private List<Device> devices = new ArrayList<Device>();
 
+    @OneToMany(mappedBy="producer")
+    private List<Model> models = new ArrayList<Model>();
+
     public Producer() {
     }
 
@@ -96,6 +99,14 @@ public class Producer {
         this.devices = devices;
     }
 
+    public List<Model> getModels() {
+        return models;
+    }
+
+    public void setModels(List<Model> models) {
+        this.models = models;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -106,14 +117,15 @@ public class Producer {
                 Objects.equals(regon, producer.regon) &&
                 companyName.equals(producer.companyName) &&
                 Objects.equals(telephone, producer.telephone) &&
-                email.equals(producer.email) &&
+                Objects.equals(email, producer.email) &&
                 address.equals(producer.address) &&
-                Objects.equals(devices, producer.devices);
+                Objects.equals(devices, producer.devices) &&
+                Objects.equals(models, producer.models);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nip, regon, companyName, telephone, email, address, devices);
+        return Objects.hash(id, nip, regon, companyName, telephone, email, address, devices, models);
     }
 
     @Override
@@ -127,6 +139,7 @@ public class Producer {
                 ", email='" + email + '\'' +
                 ", address=" + address +
                 ", devices=" + devices +
+                ", models=" + models +
                 '}';
     }
 }

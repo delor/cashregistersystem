@@ -1,78 +1,53 @@
-package me.plich.cashregistersystem.model;
+package me.plich.cashregistersystem.DTO;
 
-
-import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonView;
+import me.plich.cashregistersystem.model.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 
-@Entity
-@Table(name = "devices")
-public class Device  {
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class DeviceDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonView(View.Public.class)
     private Long id;
-   
-    @Column(nullable=false)
+    @JsonView(View.Public.class)
     private String uniqueNumber;
-   
-    @Column(nullable=false)
+    @JsonView(View.Public.class)
     private String serialNumber;
-
-    @ManyToOne
-    @JoinColumn(name = "producer_id")
-    private Producer producer;
-
-    @ManyToOne
-    @JoinColumn(name = "model_id")
-    private Model model;
-
+    @JsonView(View.Public.class)
+    private ProducerDto producer;
+    @JsonView(View.Public.class)
+    private String model;
+    @JsonView(View.Public.class)
     private LocalDate dateOfFiscalization;
-
+    @JsonView(View.Public.class)
     private LocalDate dateOfDeRegistration;
-   
+    @JsonView(View.Public.class)
     private String evidenceNumber;
-   
-    @Column(nullable=false)
+    @JsonView(View.Public.class)
     private int reviewsFrequency;
-
+    @JsonView(View.Public.class)
     private LocalDate lastReview;
-
+    @JsonView(View.Public.class)
     private LocalDate plannedReview;
-   
+    @JsonView(View.Public.class)
     private int dailyReports;
-   
+    @JsonView(View.Public.class)
     private Boolean active;
-
+    @JsonView(View.Public.class)
     private Boolean mobile;
-   
+    @JsonView(View.Public.class)
     private Boolean reserve;
-   
+    @JsonView(View.Public.class)
     private String description;
-
-    @ManyToOne
-    @JoinColumn(name = "location_id")
-    private Location location;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-
-    @ManyToOne
-    @JoinColumn(name = "customer_id")
-    private Customer customer;
-
-    @OneToMany(mappedBy="device")
-    private List<Order> orders = new ArrayList<Order>();
-
-    public Device(){}
 
     public Long getId() {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getUniqueNumber() {
         return uniqueNumber;
@@ -90,19 +65,19 @@ public class Device  {
         this.serialNumber = serialNumber;
     }
 
-    public Producer getProducer() {
+    public ProducerDto getProducer() {
         return producer;
     }
 
-    public void setProducer(Producer producer) {
+    public void setProducer(ProducerDto producer) {
         this.producer = producer;
     }
 
-    public Model getModel() {
+    public String getModel() {
         return model;
     }
 
-    public void setModel(Model model) {
+    public void setModel(String model) {
         this.model = model;
     }
 
@@ -194,78 +169,14 @@ public class Device  {
         this.description = description;
     }
 
-    public Location getLocation() {
-        return location;
-    }
-
-    public void setLocation(Location location) {
-        this.location = location;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
-    public List<Order> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Device device = (Device) o;
-        return reviewsFrequency == device.reviewsFrequency &&
-                dailyReports == device.dailyReports &&
-                id.equals(device.id) &&
-                uniqueNumber.equals(device.uniqueNumber) &&
-                serialNumber.equals(device.serialNumber) &&
-                producer.equals(device.producer) &&
-                model.equals(device.model) &&
-                Objects.equals(dateOfFiscalization, device.dateOfFiscalization) &&
-                Objects.equals(dateOfDeRegistration, device.dateOfDeRegistration) &&
-                Objects.equals(evidenceNumber, device.evidenceNumber) &&
-                Objects.equals(lastReview, device.lastReview) &&
-                Objects.equals(plannedReview, device.plannedReview) &&
-                Objects.equals(active, device.active) &&
-                Objects.equals(mobile, device.mobile) &&
-                Objects.equals(reserve, device.reserve) &&
-                Objects.equals(description, device.description) &&
-                Objects.equals(location, device.location) &&
-                user.equals(device.user) &&
-                customer.equals(device.customer) &&
-                Objects.equals(orders, device.orders);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, uniqueNumber, serialNumber, producer, model, dateOfFiscalization, dateOfDeRegistration, evidenceNumber, reviewsFrequency, lastReview, plannedReview, dailyReports, active, mobile, reserve, description, location, user, customer, orders);
-    }
-
     @Override
     public String toString() {
-        return "Device{" +
+        return "DeviceDto{" +
                 "id=" + id +
                 ", uniqueNumber='" + uniqueNumber + '\'' +
                 ", serialNumber='" + serialNumber + '\'' +
                 ", producer=" + producer +
-                ", model=" + model +
+                ", model='" + model + '\'' +
                 ", dateOfFiscalization=" + dateOfFiscalization +
                 ", dateOfDeRegistration=" + dateOfDeRegistration +
                 ", evidenceNumber='" + evidenceNumber + '\'' +
@@ -277,10 +188,6 @@ public class Device  {
                 ", mobile=" + mobile +
                 ", reserve=" + reserve +
                 ", description='" + description + '\'' +
-                ", location=" + location +
-                ", user=" + user +
-                ", customer=" + customer +
-                ", orders=" + orders +
                 '}';
     }
 }

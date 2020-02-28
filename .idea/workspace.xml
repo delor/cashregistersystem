@@ -2,85 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7f759164-a79e-44b2-9bc3-382c3274990c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/META-INF/sun-jaxb.episode" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/META-INF/sun-jaxb.episode" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/DTO/AddressDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/DTO/AddressDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/DTO/UserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/DTO/UserDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/config/BeanConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/config/BeanConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/controller/ReviewsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/controller/ReviewsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/generated/datastore/ArrayOfint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/generated/datastore/ArrayOfint.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/generated/datastore/ArrayOfstring.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/generated/datastore/ArrayOfstring.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/generated/datastore/GetID.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/generated/datastore/GetID.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/generated/datastore/GetIDResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/generated/datastore/GetIDResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/generated/datastore/GetMigrationData201901.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/generated/datastore/GetMigrationData201901.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/generated/datastore/GetMigrationData201901Response.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/generated/datastore/GetMigrationData201901Response.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/generated/datastore/ObjectFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/generated/datastore/ObjectFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/generated/datastore/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/generated/datastore/package-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/model/Address.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/model/Address.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/model/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/model/Admin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/mapper/UserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/mapper/UserMapperImpl.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/model/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/model/Customer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/model/Device.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/model/Device.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/model/Location.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/model/Location.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/model/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/model/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/model/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/model/Role.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/model/Serviceman.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/model/Serviceman.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/security/UserPrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/security/UserPrincipal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/service/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/service/CustomerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/service/DeviceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/service/DeviceService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/service/LocationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/service/LocationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/fisserwis/generated/datastore/ArrayOfint.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/fisserwis/generated/datastore/ArrayOfstring.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/fisserwis/generated/datastore/GetID.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/fisserwis/generated/datastore/GetIDResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/fisserwis/generated/datastore/GetMigrationData201901.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/fisserwis/generated/datastore/GetMigrationData201901Response.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/fisserwis/generated/datastore/ObjectFactory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/fisserwis/generated/datastore/package-info.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/cashregistersystem.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/sun-jaxb.episode" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/model/Producer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/model/Producer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/DTO/AddressDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/DTO/AddressDto.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/DTO/UserDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/DTO/UserDto.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/config/BeanConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/config/BeanConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/controller/ReviewsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/controller/ReviewsController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/mapper/UserMapperImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/mapper/UserMapperImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/model/Address.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/model/Address.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/model/Admin.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/model/Admin.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/model/Customer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/model/Customer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/model/Device.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/model/Device.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/model/Location.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/model/Location.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/model/Order.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/model/Order.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/model/Role.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/model/Role.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/model/Serviceman.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/model/Serviceman.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/model/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/security/UserPrincipal.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/security/UserPrincipal.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/service/CustomerService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/service/CustomerService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/service/DeviceService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/service/DeviceService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/service/LocationService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/service/LocationService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/service/OrderService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/service/OrderService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/fisserwis/generated/datastore/ArrayOfint.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/fisserwis/generated/datastore/ArrayOfstring.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/fisserwis/generated/datastore/GetID.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/fisserwis/generated/datastore/GetIDResponse.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/fisserwis/generated/datastore/GetMigrationData201901.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/fisserwis/generated/datastore/GetMigrationData201901Response.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/fisserwis/generated/datastore/ObjectFactory.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/fisserwis/generated/datastore/package-info.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/me/plich/cashregistersystem/mapper/AddressMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/annotations/me/plich/cashregistersystem/mapper/AddressMapperImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/me/plich/cashregistersystem/mapper/UserMapperImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/target/generated-sources/annotations/me/plich/cashregistersystem/mapper/UserMapperImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-me.plich.cashregistersystem.CashregistersystemApplicationTests.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-me.plich.cashregistersystem.CashregistersystemApplicationTests.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/me.plich.cashregistersystem.CashregistersystemApplicationTests.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/me.plich.cashregistersystem.CashregistersystemApplicationTests.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire/surefire11393508375779927419tmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire/surefire_014570393370210271737tmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire/surefirebooter5247398725300954782.jar" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,6 +25,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -110,11 +45,6 @@
       </MavenImportingSettings>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="953" />
-    <option name="width" value="974" />
-    <option name="height" value="1167" />
-  </component>
   <component name="ProjectId" id="1Y8OofuR97LwuKJYSHITZ3oF0kc" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -129,6 +59,7 @@
     <property name="RequestMappingsPanelOrder1" value="1" />
     <property name="RequestMappingsPanelWidth0" value="75" />
     <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="add_unversioned_files" value="true" />
     <property name="aspect.path.notification.shown" value="true" />
@@ -141,9 +72,9 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
@@ -190,7 +121,12 @@
       <workItem from="1546270247782" duration="4353000" />
       <workItem from="1546420081188" duration="137000" />
       <workItem from="1546778557262" duration="1101000" />
-      <workItem from="1582320935743" duration="7815000" />
+      <workItem from="1582320935743" duration="7939000" />
+      <workItem from="1582392969068" duration="2395000" />
+      <workItem from="1582653615981" duration="364000" />
+      <workItem from="1582655041484" duration="966000" />
+      <workItem from="1582746448891" duration="7356000" />
+      <workItem from="1582910713550" duration="4832000" />
     </task>
     <servers />
   </component>
@@ -207,141 +143,77 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="765" y="204" key="#com.intellij.ide.util.MemberChooser" timestamp="1582328464511">
+    <state x="552" y="181" key="#Project_Structure" timestamp="1582653973001">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="552" y="181" key="#Project_Structure/0.0.1920.1040@0.0.1920.1040" timestamp="1582653973001" />
+    <state x="765" y="204" key="#com.intellij.ide.util.MemberChooser" timestamp="1582918951675">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="765" y="204" key="#com.intellij.ide.util.MemberChooser/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1582918951675" />
     <state x="765" y="204" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/-1920.104.1920.1040@0.0.1920.1040" timestamp="1582328464511" />
-    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1582321019345">
+    <state x="761" y="388" width="413" height="267" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1582911604504">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="761" y="388" width="413" height="267" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1582911604504" />
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1582656431013">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-1920.104.1920.1040@0.0.1920.1040" timestamp="1582321019345" />
-    <state width="1877" height="240" key="GridCell.Tab.0.bottom" timestamp="1582328604583">
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1582656431013" />
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1582656612215">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="240" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.104.1920.1040@0.0.1920.1040" timestamp="1582328604583" />
-    <state width="1877" height="240" key="GridCell.Tab.0.center" timestamp="1582328604583">
+    <state width="1877" height="239" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.104.1920.1040@0.0.1920.1040" timestamp="1582470988239" />
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1582656612215" />
+    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1582656612214">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="240" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.104.1920.1040@0.0.1920.1040" timestamp="1582328604583" />
-    <state width="1877" height="240" key="GridCell.Tab.0.left" timestamp="1582328604583">
+    <state width="1877" height="239" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.104.1920.1040@0.0.1920.1040" timestamp="1582470988239" />
+    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1582656612214" />
+    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1582656612214">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="240" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.104.1920.1040@0.0.1920.1040" timestamp="1582328604583" />
-    <state width="1877" height="240" key="GridCell.Tab.0.right" timestamp="1582328604583">
+    <state width="1877" height="239" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.104.1920.1040@0.0.1920.1040" timestamp="1582470988239" />
+    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1582656612214" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1582656612215">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="240" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.104.1920.1040@0.0.1920.1040" timestamp="1582328604583" />
-    <state width="1877" height="240" key="GridCell.Tab.1.bottom" timestamp="1582328604584">
+    <state width="1877" height="239" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.104.1920.1040@0.0.1920.1040" timestamp="1582470988239" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1582656612215" />
+    <state width="1877" height="282" key="GridCell.Tab.1.bottom" timestamp="1582656612215">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="240" key="GridCell.Tab.1.bottom/0.0.1920.1040/-1920.104.1920.1040@0.0.1920.1040" timestamp="1582328604584" />
-    <state width="1877" height="240" key="GridCell.Tab.1.center" timestamp="1582328604584">
+    <state width="1877" height="239" key="GridCell.Tab.1.bottom/0.0.1920.1040/-1920.104.1920.1040@0.0.1920.1040" timestamp="1582470988240" />
+    <state width="1877" height="282" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1582656612215" />
+    <state width="1877" height="282" key="GridCell.Tab.1.center" timestamp="1582656612215">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="240" key="GridCell.Tab.1.center/0.0.1920.1040/-1920.104.1920.1040@0.0.1920.1040" timestamp="1582328604583" />
-    <state width="1877" height="240" key="GridCell.Tab.1.left" timestamp="1582328604583">
+    <state width="1877" height="239" key="GridCell.Tab.1.center/0.0.1920.1040/-1920.104.1920.1040@0.0.1920.1040" timestamp="1582470988240" />
+    <state width="1877" height="282" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1582656612215" />
+    <state width="1877" height="282" key="GridCell.Tab.1.left" timestamp="1582656612215">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="240" key="GridCell.Tab.1.left/0.0.1920.1040/-1920.104.1920.1040@0.0.1920.1040" timestamp="1582328604583" />
-    <state width="1877" height="240" key="GridCell.Tab.1.right" timestamp="1582328604584">
+    <state width="1877" height="239" key="GridCell.Tab.1.left/0.0.1920.1040/-1920.104.1920.1040@0.0.1920.1040" timestamp="1582470988240" />
+    <state width="1877" height="282" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1582656612215" />
+    <state width="1877" height="282" key="GridCell.Tab.1.right" timestamp="1582656612215">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="240" key="GridCell.Tab.1.right/0.0.1920.1040/-1920.104.1920.1040@0.0.1920.1040" timestamp="1582328604584" />
-    <state x="461" y="163" key="SettingsEditor" timestamp="1582321027314">
+    <state width="1877" height="239" key="GridCell.Tab.1.right/0.0.1920.1040/-1920.104.1920.1040@0.0.1920.1040" timestamp="1582470988240" />
+    <state width="1877" height="282" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1582656612215" />
+    <state x="461" y="163" key="SettingsEditor" timestamp="1582656434926">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="163" key="SettingsEditor/0.0.1920.1040/-1920.104.1920.1040@0.0.1920.1040" timestamp="1582321027314" />
-    <state x="656" y="252" width="607" height="536" key="find.popup" timestamp="1582321211975">
+    <state x="461" y="163" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1582656434926" />
+    <state x="668" y="347" key="com.intellij.ide.util.TipDialog" timestamp="1582653618163">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="668" y="347" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582653618163" />
+    <state x="656" y="252" width="710" height="546" key="find.popup" timestamp="1582919118212">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="656" y="252" width="710" height="546" key="find.popup/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1582919118212" />
     <state x="656" y="252" width="607" height="536" key="find.popup/0.0.1920.1040/-1920.104.1920.1040@0.0.1920.1040" timestamp="1582321211975" />
-  </component>
-  <component name="masterDetails">
-    <states>
-      <state key="ArtifactsStructureConfigurable.UI">
-        <settings>
-          <artifact-editor />
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="FacetStructureConfigurable.UI">
-        <settings>
-          <last-edited>Spring</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="GlobalLibrariesConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="JdkListConfigurable.UI">
-        <settings>
-          <last-edited>1.8</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ModuleStructureConfigurable.UI">
-        <settings>
-          <last-edited>cashregistersystem</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-                <option value="0.6" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ProjectJDKs.UI">
-        <settings>
-          <last-edited>1.8</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ProjectLibrariesConfigurable.UI">
-        <settings>
-          <last-edited>Maven: antlr:antlr:2.7.7</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-    </states>
   </component>
 </project>

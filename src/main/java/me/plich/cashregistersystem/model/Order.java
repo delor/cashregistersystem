@@ -21,14 +21,14 @@ public class Order {
 
     @Column(nullable=false)
     private StateOfSeals seals;
-    private Integer generalCounterFrom;
-    private Integer generalCounterTo;
-    private Integer dailyReportFrom;
-    private Integer dailyReportTo;
-    private Integer resettingFramesFrom;
-    private Integer resettingFramesTo;
-    private Integer receiptFrom;
-    private Integer receiptTo;
+    private int generalCounterFrom;
+    private int generalCounterTo;
+    private int dailyReportFrom;
+    private int dailyReportTo;
+    private int resettingFramesFrom;
+    private int resettingFramesTo;
+    private int receiptFrom;
+    private int receiptTo;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -72,67 +72,67 @@ public class Order {
         this.seals = seals;
     }
 
-    public Integer getGeneralCounterFrom() {
+    public int getGeneralCounterFrom() {
         return generalCounterFrom;
     }
 
-    public void setGeneralCounterFrom(Integer generalCounterFrom) {
+    public void setGeneralCounterFrom(int generalCounterFrom) {
         this.generalCounterFrom = generalCounterFrom;
     }
 
-    public Integer getGeneralCounterTo() {
+    public int getGeneralCounterTo() {
         return generalCounterTo;
     }
 
-    public void setGeneralCounterTo(Integer generalCounterTo) {
+    public void setGeneralCounterTo(int generalCounterTo) {
         this.generalCounterTo = generalCounterTo;
     }
 
-    public Integer getDailyReportFrom() {
+    public int getDailyReportFrom() {
         return dailyReportFrom;
     }
 
-    public void setDailyReportFrom(Integer dailyReportFrom) {
+    public void setDailyReportFrom(int dailyReportFrom) {
         this.dailyReportFrom = dailyReportFrom;
     }
 
-    public Integer getDailyReportTo() {
+    public int getDailyReportTo() {
         return dailyReportTo;
     }
 
-    public void setDailyReportTo(Integer dailyReportTo) {
+    public void setDailyReportTo(int dailyReportTo) {
         this.dailyReportTo = dailyReportTo;
     }
 
-    public Integer getResettingFramesFrom() {
+    public int getResettingFramesFrom() {
         return resettingFramesFrom;
     }
 
-    public void setResettingFramesFrom(Integer resettingFramesFrom) {
+    public void setResettingFramesFrom(int resettingFramesFrom) {
         this.resettingFramesFrom = resettingFramesFrom;
     }
 
-    public Integer getResettingFramesTo() {
+    public int getResettingFramesTo() {
         return resettingFramesTo;
     }
 
-    public void setResettingFramesTo(Integer resettingFramesTo) {
+    public void setResettingFramesTo(int resettingFramesTo) {
         this.resettingFramesTo = resettingFramesTo;
     }
 
-    public Integer getReceiptFrom() {
+    public int getReceiptFrom() {
         return receiptFrom;
     }
 
-    public void setReceiptFrom(Integer receiptFrom) {
+    public void setReceiptFrom(int receiptFrom) {
         this.receiptFrom = receiptFrom;
     }
 
-    public Integer getReceiptTo() {
+    public int getReceiptTo() {
         return receiptTo;
     }
 
-    public void setReceiptTo(Integer receiptTo) {
+    public void setReceiptTo(int receiptTo) {
         this.receiptTo = receiptTo;
     }
 

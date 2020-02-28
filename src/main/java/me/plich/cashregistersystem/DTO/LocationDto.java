@@ -1,28 +1,22 @@
 package me.plich.cashregistersystem.DTO;
 
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonView;
-import me.plich.cashregistersystem.model.View;
+import me.plich.cashregistersystem.model.*;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class UserDto {
+public class LocationDto {
 
     @JsonView(View.Public.class)
     private Long id;
     @JsonView(View.Public.class)
-    private String nip;
-    @JsonView(View.Public.class)
-    private String regon;
-    @JsonView(View.Public.class)
-    private String companyName;
-    @JsonView(View.Public.class)
-    private String username;
+    private String name;
     @JsonView(View.Public.class)
     private String telephone;
     @JsonView(View.Public.class)
     private String email;
-    private String password;
+    @JsonView(View.Public.class)
+    private String description;
     @JsonView(View.Public.class)
     private AddressDto address;
 
@@ -34,36 +28,12 @@ public class UserDto {
         this.id = id;
     }
 
-    public String getNip() {
-        return nip;
+    public String getName() {
+        return name;
     }
 
-    public void setNip(String nip) {
-        this.nip = nip;
-    }
-
-    public String getRegon() {
-        return regon;
-    }
-
-    public void setRegon(String regon) {
-        this.regon = regon;
-    }
-
-    public String getCompanyName() {
-        return companyName;
-    }
-
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getTelephone() {
@@ -82,12 +52,12 @@ public class UserDto {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
+    public String getDescription() {
+        return description;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public AddressDto getAddress() {
@@ -100,15 +70,12 @@ public class UserDto {
 
     @Override
     public String toString() {
-        return "UserDto{" +
+        return "LocationDto{" +
                 "id=" + id +
-                ", nip='" + nip + '\'' +
-                ", regon='" + regon + '\'' +
-                ", companyName='" + companyName + '\'' +
-                ", username='" + username + '\'' +
+                ", name='" + name + '\'' +
                 ", telephone='" + telephone + '\'' +
                 ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
+                ", description='" + description + '\'' +
                 ", address=" + address +
                 '}';
     }

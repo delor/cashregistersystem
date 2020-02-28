@@ -1,12 +1,13 @@
 package me.plich.cashregistersystem.DTO;
 
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonView;
 import me.plich.cashregistersystem.model.View;
 
+
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class UserDto {
+public class CustomerDto {
 
     @JsonView(View.Public.class)
     private Long id;
@@ -17,12 +18,13 @@ public class UserDto {
     @JsonView(View.Public.class)
     private String companyName;
     @JsonView(View.Public.class)
-    private String username;
-    @JsonView(View.Public.class)
     private String telephone;
     @JsonView(View.Public.class)
     private String email;
-    private String password;
+    @JsonView(View.Public.class)
+    private String taxOffice;
+    @JsonView(View.Public.class)
+    private String description;
     @JsonView(View.Public.class)
     private AddressDto address;
 
@@ -58,14 +60,6 @@ public class UserDto {
         this.companyName = companyName;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     public String getTelephone() {
         return telephone;
     }
@@ -82,12 +76,20 @@ public class UserDto {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
+    public String getTaxOffice() {
+        return taxOffice;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setTaxOffice(String taxOffice) {
+        this.taxOffice = taxOffice;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public AddressDto getAddress() {
@@ -100,15 +102,15 @@ public class UserDto {
 
     @Override
     public String toString() {
-        return "UserDto{" +
+        return "CustomerDto{" +
                 "id=" + id +
                 ", nip='" + nip + '\'' +
                 ", regon='" + regon + '\'' +
                 ", companyName='" + companyName + '\'' +
-                ", username='" + username + '\'' +
                 ", telephone='" + telephone + '\'' +
                 ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
+                ", taxOffice='" + taxOffice + '\'' +
+                ", description='" + description + '\'' +
                 ", address=" + address +
                 '}';
     }
