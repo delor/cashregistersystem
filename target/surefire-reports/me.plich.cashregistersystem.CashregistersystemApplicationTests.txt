@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: me.plich.cashregistersystem.CashregistersystemApplicationTests
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 14.351 s - in me.plich.cashregistersystem.CashregistersystemApplicationTests

@@ -17,7 +17,7 @@ public class DeviceDto {
     @JsonView(View.Public.class)
     private ProducerDto producer;
     @JsonView(View.Public.class)
-    private String model;
+    private ModelDto model;
     @JsonView(View.Public.class)
     private LocalDate dateOfFiscalization;
     @JsonView(View.Public.class)
@@ -73,11 +73,11 @@ public class DeviceDto {
         this.producer = producer;
     }
 
-    public String getModel() {
+    public ModelDto getModel() {
         return model;
     }
 
-    public void setModel(String model) {
+    public void setModel(ModelDto model) {
         this.model = model;
     }
 

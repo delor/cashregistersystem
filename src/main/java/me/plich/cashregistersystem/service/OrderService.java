@@ -34,36 +34,36 @@ public class OrderService {
     }
 
     public void addOrder(Order order, Long deviceID) throws IOException {
-        LocalDate today = order.getOrderDate();
-        Device device = deviceRepository.findById(deviceID).get();
-        order.setUser(userRepository.findById(userService.currentLoggedUserId()).get());
-        order.setDevice(device);
-        if(order.getOrderType() == fiscalization && device.getDateOfFiscalization() == null) {
-            device.setDateOfFiscalization(today);
-            device.setDailyReports(1);
-            device.setActive(true);
-            if (device.getReviewsFrequency() == 12) {
-                device.setPlannedReview(today.plusYears(1));
-            } else {
-                device.setPlannedReview(today.plusYears(2));
-            }
-        }
-        if(order.getOrderType() == overview) {
-            device.setLastReview(today);
-            if(device.getReviewsFrequency() == 12) {
-                device.setPlannedReview(today.plusYears(1));
-            } else{
-                device.setPlannedReview(today.plusYears(2));
-            }
-            device.setDailyReports(order.getDailyReportTo());
-        }
-        if(order.getOrderType() == repair && order.getDailyReportTo() != null) {
-                device.setDailyReports(order.getDailyReportTo());
-        }
-        if(order.getOrderType() == deregistration && device.getDateOfDeRegistration() == null){
-            device.setDateOfDeRegistration(today);
-            device.setActive(false);
-        }
+//        LocalDate today = order.getOrderDate();
+//        Device device = deviceRepository.findById(deviceID).get();
+//        order.setUser(userRepository.findById(userService.currentLoggedUserId()).get());
+//        order.setDevice(device);
+//        if(order.getOrderType() == fiscalization && device.getDateOfFiscalization() == null) {
+//            device.setDateOfFiscalization(today);
+//            device.setDailyReports(1);
+//            device.setActive(true);
+//            if (device.getReviewsFrequency() == 12) {
+//                device.setPlannedReview(today.plusYears(1));
+//            } else {
+//                device.setPlannedReview(today.plusYears(2));
+//            }
+//        }
+//        if(order.getOrderType() == overview) {
+//            device.setLastReview(today);
+//            if(device.getReviewsFrequency() == 12) {
+//                device.setPlannedReview(today.plusYears(1));
+//            } else{
+//                device.setPlannedReview(today.plusYears(2));
+//            }
+//            device.setDailyReports(order.getDailyReportTo());
+//        }
+//        if(order.getOrderType() == repair && order.getDailyReportTo() != null) {
+//                device.setDailyReports(order.getDailyReportTo());
+//        }
+//        if(order.getOrderType() == deregistration && device.getDateOfDeRegistration() == null){
+//            device.setDateOfDeRegistration(today);
+//            device.setActive(false);
+//        }
         orderRepository.save(order);
     }
 
@@ -93,44 +93,11 @@ public class OrderService {
 
     public void updateOrder(@PathVariable Long id, @RequestBody Order order) {
         Order orderToUpdate = orderRepository.getOne(id);
-        if(orderToUpdate.getUser().getId()==userService.currentLoggedUserId()) {
-            if(order.getOrderType() != null) {
-                orderToUpdate.setOrderType(order.getOrderType());
-            }
-            if(order.getOrderDate() != null) {
-                orderToUpdate.setOrderDate(order.getOrderDate());
-            }
-            if(order.getSeals() != null) {
-                orderToUpdate.setSeals(order.getSeals());
-            }
-            if(order.getGeneralCounterFrom() != null) {
-                orderToUpdate.setGeneralCounterFrom(order.getGeneralCounterFrom());
-            }
-            if(order.getGeneralCounterTo() != null) {
-                orderToUpdate.setGeneralCounterTo(order.getGeneralCounterTo());
-            }
-            if(order.getDailyReportFrom() != null) {
-                orderToUpdate.setDailyReportFrom(order.getDailyReportFrom());
-            }
-            if(order.getDailyReportTo() != null) {
-                orderToUpdate.setDailyReportTo(order.getDailyReportTo());
-            }
-            if(order.getResettingFramesFrom() != null) {
-                orderToUpdate.setResettingFramesFrom(order.getResettingFramesFrom());
-            }
-            if(order.getResettingFramesTo() != null) {
-                orderToUpdate.setResettingFramesTo(order.getResettingFramesTo());
-            }
-            if(order.getReceiptFrom() != null) {
-                orderToUpdate.setReceiptFrom(order.getReceiptFrom());
-            }
-            if(order.getReceiptTo() != null) {
-                orderToUpdate.setReceiptTo(order.getReceiptTo());
-            }
+
             orderRepository.save(orderToUpdate);
 
         }
     }
 
 
-}
+

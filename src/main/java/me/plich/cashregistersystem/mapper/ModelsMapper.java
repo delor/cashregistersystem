@@ -5,8 +5,8 @@ import me.plich.cashregistersystem.model.Model;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
-public interface ModelMapper {
-
+public interface ModelsMapper {
+//zmieniona nazwa interfejsu z uwagi na konflikt nazw beanów ze swagger
     Model convertModelDtoToModel(ModelDto modelDto);
     ModelDto convertModelToModelDto(Model model);
 }
