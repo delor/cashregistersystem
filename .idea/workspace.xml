@@ -3,8 +3,30 @@
   <component name="ChangeListManager">
     <list default="true" id="7f759164-a79e-44b2-9bc3-382c3274990c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/META-INF/sun-jaxb.episode" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/META-INF/sun-jaxb.episode" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/DTO/DeviceDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/DTO/DeviceDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/CashregistersystemApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/CashregistersystemApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/DTO/AddressDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/dto/AddressDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/DTO/AdminDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/dto/AdminDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/DTO/CustomerDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/dto/CustomerDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/DTO/DeviceDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/dto/DeviceDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/DTO/LocationDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/dto/LocationDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/DTO/ModelDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/dto/ModelDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/DTO/OrderDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/dto/OrderDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/DTO/ProducerDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/dto/ProducerDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/DTO/ServicemanDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/dto/ServicemanDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/DTO/UserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/dto/UserDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/controller/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/controller/CustomerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/controller/DeviceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/controller/DeviceController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/controller/LocationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/controller/LocationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/controller/OrderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/controller/ReviewsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/controller/ReviewsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/controller/ServicemanController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/controller/ServicemanController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/exception/BadRequestException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/exception/CustomGlobalExceptionHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/exception/ResourceNotFoundException.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/generated/datastore/ArrayOfint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/generated/datastore/ArrayOfint.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/generated/datastore/ArrayOfstring.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/generated/datastore/ArrayOfstring.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/generated/datastore/GetID.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/generated/datastore/GetID.java" afterDir="false" />
@@ -13,106 +35,50 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/generated/datastore/GetMigrationData201901Response.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/generated/datastore/GetMigrationData201901Response.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/generated/datastore/ObjectFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/generated/datastore/ObjectFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/generated/datastore/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/generated/datastore/package-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/mapper/ModelMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/mapper/ModelsMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/service/OrderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application-development.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application-production.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/data.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/CashregistersystemApplication.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/DTO/AddressDto.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/DTO/UserDto.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/config/BeanConfig.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/config/SecurityConfig.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/config/WebMvcConfig.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/controller/AuthController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/controller/CustomerController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/controller/DeviceController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/controller/LocationController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/controller/OrderController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/controller/ReviewsController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/controller/ServicemanController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/controller/UserController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/exception/AppException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/exception/BadRequestException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/exception/IncorrectEmailAdvice.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/exception/IncorrectEmailException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/exception/ResourceNotFoundException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/generated/datastore/ArrayOfint.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/generated/datastore/ArrayOfstring.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/generated/datastore/GetID.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/generated/datastore/GetIDResponse.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/generated/datastore/GetMigrationData201901.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/generated/datastore/GetMigrationData201901Response.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/generated/datastore/ObjectFactory.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/generated/datastore/package-info.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/mapper/AddressMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/mapper/AddressMapperImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/mapper/UserMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/mapper/UserMapperImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/model/Address.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/model/Admin.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/model/Customer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/model/Device.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/model/Location.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/model/Order.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/model/OrderType.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/model/Role.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/model/RoleName.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/model/Serviceman.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/model/StateOfSeals.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/model/User.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/model/View$ExtendedPublic.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/model/View$Internal.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/model/View$Public.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/model/View.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/payload/ApiResponse.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/payload/JwtAuthenticationResponse.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/payload/LoginRequest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/repository/AddressRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/repository/AdminRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/repository/CustomerRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/repository/DeviceRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/repository/LocationRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/repository/OrderRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/repository/RoleRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/repository/ServicemanRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/repository/UserRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/security/CurrentUser.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/security/CustomUserDetailsService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/security/JwtAuthenticationEntryPoint.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/security/JwtAuthenticationFilter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/security/JwtTokenProvider.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/security/UserPrincipal.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/service/CustomerService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/service/DataStoreProviderService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/service/DeviceService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/service/LocationService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/service/OrderService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/service/ServicemanService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/me/plich/cashregistersystem/service/UserService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/wsdl/DataStoreProvider201901.wsdl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/me/plich/cashregistersystem/mapper/AddressMapperImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/generated-sources/annotations/me/plich/cashregistersystem/mapper/UserMapperImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-me.plich.cashregistersystem.CashregistersystemApplicationTests.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/me.plich.cashregistersystem.CashregistersystemApplicationTests.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/me/plich/cashregistersystem/CashregistersystemApplicationTests.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/mapper/AddressMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/mapper/AddressMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/mapper/AdminMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/mapper/AdminMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/mapper/CustomerMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/mapper/CustomerMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/mapper/DeviceMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/mapper/DeviceMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/mapper/LocationMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/mapper/LocationMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/mapper/ModelsMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/mapper/ModelsMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/mapper/OrderMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/mapper/OrderMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/mapper/ProducerMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/mapper/ProducerMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/mapper/ServicemanMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/mapper/ServicemanMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/mapper/UserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/model/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/model/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/model/Device.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/model/Device.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/model/Location.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/model/Location.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/model/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/model/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/model/Serviceman.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/model/Serviceman.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/repository/CustomerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/repository/CustomerRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/repository/DeviceRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/repository/DeviceRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/repository/LocationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/repository/LocationRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/repository/OrderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/repository/OrderRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/repository/ServicemanRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/repository/ServicemanRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/service/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/service/CustomerServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/service/DeviceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/service/DeviceServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/service/LocationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/service/LocationServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/service/OrderServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/service/ServicemanService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/service/ServicemanServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/plich/cashregistersystem/service/UserServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ErrorTreeViewConfiguration">
+    <option name="autoscrollToSource" value="true" />
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="true" />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -164,6 +130,11 @@
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="me.plich.cashregistersystem.exception" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="CashregistersystemApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="cashregistersystem" />
@@ -212,7 +183,11 @@
       <workItem from="1582653615981" duration="364000" />
       <workItem from="1582655041484" duration="966000" />
       <workItem from="1582746448891" duration="7356000" />
-      <workItem from="1582910713550" duration="6593000" />
+      <workItem from="1582910713550" duration="9794000" />
+      <workItem from="1582966481387" duration="12308000" />
+      <workItem from="1583166149965" duration="17403000" />
+      <workItem from="1583218026202" duration="12654000" />
+      <workItem from="1583341547540" duration="32986000" />
     </task>
     <servers />
   </component>
@@ -233,11 +208,15 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="181" key="#Project_Structure/0.0.1920.1040@0.0.1920.1040" timestamp="1582653973001" />
-    <state x="765" y="204" key="#com.intellij.ide.util.MemberChooser" timestamp="1582919641278">
+    <state x="765" y="204" key="#com.intellij.ide.util.MemberChooser" timestamp="1583441343170">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="765" y="204" key="#com.intellij.ide.util.MemberChooser/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1582919641278" />
+    <state x="765" y="204" key="#com.intellij.ide.util.MemberChooser/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1583441343170" />
     <state x="765" y="204" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/-1920.104.1920.1040@0.0.1920.1040" timestamp="1582328464511" />
+    <state x="690" y="300" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1583269863257">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="690" y="300" key="#com.intellij.ide.util.PackageChooserDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1583269863257" />
     <state x="761" y="388" width="413" height="267" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1582911604504">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -247,54 +226,54 @@
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-1920.104.1920.1040@0.0.1920.1040" timestamp="1582321019345" />
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1582656431013" />
-    <state width="1877" height="338" key="GridCell.Tab.0.bottom" timestamp="1582920791971">
+    <state width="1877" height="327" key="GridCell.Tab.0.bottom" timestamp="1583189827269">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="338" key="GridCell.Tab.0.bottom/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1582920791971" />
+    <state width="1877" height="327" key="GridCell.Tab.0.bottom/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1583189827269" />
     <state width="1877" height="239" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.104.1920.1040@0.0.1920.1040" timestamp="1582470988239" />
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1582656612215" />
-    <state width="1877" height="338" key="GridCell.Tab.0.center" timestamp="1582920791971">
+    <state width="1877" height="541" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1583171167303" />
+    <state width="1877" height="327" key="GridCell.Tab.0.center" timestamp="1583189827269">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="338" key="GridCell.Tab.0.center/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1582920791971" />
+    <state width="1877" height="327" key="GridCell.Tab.0.center/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1583189827269" />
     <state width="1877" height="239" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.104.1920.1040@0.0.1920.1040" timestamp="1582470988239" />
-    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1582656612214" />
-    <state width="1877" height="338" key="GridCell.Tab.0.left" timestamp="1582920791971">
+    <state width="1877" height="541" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1583171167302" />
+    <state width="1877" height="327" key="GridCell.Tab.0.left" timestamp="1583189827269">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="338" key="GridCell.Tab.0.left/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1582920791971" />
+    <state width="1877" height="327" key="GridCell.Tab.0.left/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1583189827269" />
     <state width="1877" height="239" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.104.1920.1040@0.0.1920.1040" timestamp="1582470988239" />
-    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1582656612214" />
-    <state width="1877" height="338" key="GridCell.Tab.0.right" timestamp="1582920791971">
+    <state width="1877" height="541" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1583171167302" />
+    <state width="1877" height="327" key="GridCell.Tab.0.right" timestamp="1583189827269">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="338" key="GridCell.Tab.0.right/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1582920791971" />
+    <state width="1877" height="327" key="GridCell.Tab.0.right/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1583189827269" />
     <state width="1877" height="239" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.104.1920.1040@0.0.1920.1040" timestamp="1582470988239" />
-    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1582656612215" />
-    <state width="1877" height="338" key="GridCell.Tab.1.bottom" timestamp="1582920791971">
+    <state width="1877" height="541" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1583171167303" />
+    <state width="1877" height="327" key="GridCell.Tab.1.bottom" timestamp="1583189827270">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="338" key="GridCell.Tab.1.bottom/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1582920791971" />
+    <state width="1877" height="327" key="GridCell.Tab.1.bottom/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1583189827270" />
     <state width="1877" height="239" key="GridCell.Tab.1.bottom/0.0.1920.1040/-1920.104.1920.1040@0.0.1920.1040" timestamp="1582470988240" />
-    <state width="1877" height="282" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1582656612215" />
-    <state width="1877" height="338" key="GridCell.Tab.1.center" timestamp="1582920791971">
+    <state width="1877" height="541" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1583171167303" />
+    <state width="1877" height="327" key="GridCell.Tab.1.center" timestamp="1583189827270">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="338" key="GridCell.Tab.1.center/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1582920791971" />
+    <state width="1877" height="327" key="GridCell.Tab.1.center/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1583189827270" />
     <state width="1877" height="239" key="GridCell.Tab.1.center/0.0.1920.1040/-1920.104.1920.1040@0.0.1920.1040" timestamp="1582470988240" />
-    <state width="1877" height="282" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1582656612215" />
-    <state width="1877" height="338" key="GridCell.Tab.1.left" timestamp="1582920791971">
+    <state width="1877" height="541" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1583171167303" />
+    <state width="1877" height="327" key="GridCell.Tab.1.left" timestamp="1583189827269">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="338" key="GridCell.Tab.1.left/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1582920791971" />
+    <state width="1877" height="327" key="GridCell.Tab.1.left/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1583189827269" />
     <state width="1877" height="239" key="GridCell.Tab.1.left/0.0.1920.1040/-1920.104.1920.1040@0.0.1920.1040" timestamp="1582470988240" />
-    <state width="1877" height="282" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1582656612215" />
-    <state width="1877" height="338" key="GridCell.Tab.1.right" timestamp="1582920791971">
+    <state width="1877" height="541" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1583171167303" />
+    <state width="1877" height="327" key="GridCell.Tab.1.right" timestamp="1583189827270">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="338" key="GridCell.Tab.1.right/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1582920791971" />
+    <state width="1877" height="327" key="GridCell.Tab.1.right/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1583189827270" />
     <state width="1877" height="239" key="GridCell.Tab.1.right/0.0.1920.1040/-1920.104.1920.1040@0.0.1920.1040" timestamp="1582470988240" />
-    <state width="1877" height="282" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1582656612215" />
+    <state width="1877" height="541" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1583171167303" />
     <state width="1877" height="348" key="GridCell.Tab.2.bottom" timestamp="1582920699999">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -316,14 +295,22 @@
     </state>
     <state x="461" y="163" key="SettingsEditor/0.0.1920.1040/-1920.104.1920.1040@0.0.1920.1040" timestamp="1582321027314" />
     <state x="461" y="163" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1582656434926" />
+    <state x="776" y="300" key="chooseDestDirectoryDialog" timestamp="1583263244530">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="776" y="300" key="chooseDestDirectoryDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1583263244530" />
     <state x="668" y="347" key="com.intellij.ide.util.TipDialog" timestamp="1582653618163">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="668" y="347" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582653618163" />
-    <state x="656" y="252" width="710" height="546" key="find.popup" timestamp="1582920747734">
+    <state x="-1128" y="-12" width="767" height="1028" maximized="true" key="dock-window-1" timestamp="1583362585576">
+      <screen x="-1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="-1128" y="-12" width="767" height="1028" maximized="true" key="dock-window-1/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1583362585576" />
+    <state x="348" y="103" width="1417" height="849" key="find.popup" timestamp="1583442053369">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="656" y="252" width="710" height="546" key="find.popup/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1582920747734" />
+    <state x="348" y="103" width="1417" height="849" key="find.popup/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1583442053369" />
     <state x="656" y="252" width="607" height="536" key="find.popup/0.0.1920.1040/-1920.104.1920.1040@0.0.1920.1040" timestamp="1582321211975" />
   </component>
 </project>

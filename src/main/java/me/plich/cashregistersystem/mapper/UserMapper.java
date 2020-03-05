@@ -1,7 +1,7 @@
 package me.plich.cashregistersystem.mapper;
 
 
-import me.plich.cashregistersystem.DTO.UserDto;
+import me.plich.cashregistersystem.dto.UserDto;
 import me.plich.cashregistersystem.model.User;
 import org.mapstruct.Mapper;
 

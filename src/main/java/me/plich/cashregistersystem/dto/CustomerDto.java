@@ -1,20 +1,28 @@
-package me.plich.cashregistersystem.DTO;
+package me.plich.cashregistersystem.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonView;
-import me.plich.cashregistersystem.model.*;
+import me.plich.cashregistersystem.model.View;
+
+
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class LocationDto {
+public class CustomerDto {
 
     @JsonView(View.Public.class)
     private Long id;
     @JsonView(View.Public.class)
-    private String name;
+    private String nip;
+    @JsonView(View.Public.class)
+    private String regon;
+    @JsonView(View.Public.class)
+    private String companyName;
     @JsonView(View.Public.class)
     private String telephone;
     @JsonView(View.Public.class)
     private String email;
+    @JsonView(View.Public.class)
+    private String taxOffice;
     @JsonView(View.Public.class)
     private String description;
     @JsonView(View.Public.class)
@@ -28,12 +36,28 @@ public class LocationDto {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getNip() {
+        return nip;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNip(String nip) {
+        this.nip = nip;
+    }
+
+    public String getRegon() {
+        return regon;
+    }
+
+    public void setRegon(String regon) {
+        this.regon = regon;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
     }
 
     public String getTelephone() {
@@ -50,6 +74,14 @@ public class LocationDto {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getTaxOffice() {
+        return taxOffice;
+    }
+
+    public void setTaxOffice(String taxOffice) {
+        this.taxOffice = taxOffice;
     }
 
     public String getDescription() {
@@ -70,11 +102,14 @@ public class LocationDto {
 
     @Override
     public String toString() {
-        return "LocationDto{" +
+        return "CustomerDto{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", nip='" + nip + '\'' +
+                ", regon='" + regon + '\'' +
+                ", companyName='" + companyName + '\'' +
                 ", telephone='" + telephone + '\'' +
                 ", email='" + email + '\'' +
+                ", taxOffice='" + taxOffice + '\'' +
                 ", description='" + description + '\'' +
                 ", address=" + address +
                 '}';

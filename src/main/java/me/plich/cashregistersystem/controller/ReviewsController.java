@@ -3,7 +3,7 @@ package me.plich.cashregistersystem.controller;
 import com.fasterxml.jackson.annotation.JsonView;
 import me.plich.cashregistersystem.model.Device;
 import me.plich.cashregistersystem.model.View;
-import me.plich.cashregistersystem.service.DeviceService;
+import me.plich.cashregistersystem.service.IDeviceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,10 +18,10 @@ import java.util.List;
 public class ReviewsController {
 
 
-    DeviceService deviceService;
+    IDeviceService deviceService;
 
     @Autowired
-    public ReviewsController(DeviceService deviceService) {
+    public ReviewsController(IDeviceService deviceService) {
         this.deviceService = deviceService;
     }
 

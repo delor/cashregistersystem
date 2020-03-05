@@ -1,11 +1,12 @@
-package me.plich.cashregistersystem.DTO;
+package me.plich.cashregistersystem.dto;
+
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonView;
 import me.plich.cashregistersystem.model.View;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ProducerDto {
+public class UserDto {
 
     @JsonView(View.Public.class)
     private Long id;
@@ -16,9 +17,12 @@ public class ProducerDto {
     @JsonView(View.Public.class)
     private String companyName;
     @JsonView(View.Public.class)
+    private String username;
+    @JsonView(View.Public.class)
     private String telephone;
     @JsonView(View.Public.class)
     private String email;
+    private String password;
     @JsonView(View.Public.class)
     private AddressDto address;
 
@@ -54,6 +58,14 @@ public class ProducerDto {
         this.companyName = companyName;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public String getTelephone() {
         return telephone;
     }
@@ -70,6 +82,14 @@ public class ProducerDto {
         this.email = email;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public AddressDto getAddress() {
         return address;
     }
@@ -78,16 +98,4 @@ public class ProducerDto {
         this.address = address;
     }
 
-    @Override
-    public String toString() {
-        return "ProducerDto{" +
-                "id=" + id +
-                ", nip='" + nip + '\'' +
-                ", regon='" + regon + '\'' +
-                ", companyName='" + companyName + '\'' +
-                ", telephone='" + telephone + '\'' +
-                ", email='" + email + '\'' +
-                ", address=" + address +
-                '}';
-    }
 }

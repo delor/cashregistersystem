@@ -1,64 +1,89 @@
 package me.plich.cashregistersystem.controller;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import me.plich.cashregistersystem.dto.ServicemanDto;
+import me.plich.cashregistersystem.mapper.ServicemanMapper;
 import me.plich.cashregistersystem.model.Serviceman;
 import me.plich.cashregistersystem.model.View;
-import me.plich.cashregistersystem.service.ServicemanService;
+import me.plich.cashregistersystem.service.IServicemanService;
+import me.plich.cashregistersystem.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/serviceman")
-@Api(description = "Set of endpoints for Creating, Retrieving, Updating and Deleting of service technicians.")
+@ApiOperation("Set of endpoints for Creating, Retrieving, Updating and Deleting of service technicians.")
 public class ServicemanController {
 
 
-    ServicemanService servicemanService;
+    private IServicemanService servicemanService;
+    private IUserService userService;
+    private ServicemanMapper servicemanMapper;
 
     @Autowired
-    public ServicemanController(ServicemanService servicemanService) {
+    public ServicemanController(@Qualifier("servicemanService") IServicemanService servicemanService,
+                                @Qualifier("userService") IUserService userService,
+                                ServicemanMapper servicemanMapper) {
         this.servicemanService = servicemanService;
+        this.userService = userService;
+        this.servicemanMapper = servicemanMapper;
     }
 
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    @ApiOperation("Creates new serviceman")
-    public void addServiceman(@RequestBody Serviceman serviceman) {
-        servicemanService.addServiceman(serviceman);
+    @JsonView(View.Public.class)
+    @ApiOperation("Create new serviceman")
+    public ResponseEntity<ServicemanDto> addServiceman(@RequestBody ServicemanDto servicemanDto) {
+        Long userId = userService.getCurrentLoggedUserId();
+        Serviceman servicemanFromDto = servicemanMapper.convertServicemanDtoToServiceman(servicemanDto);
+        Serviceman createdServiceman = servicemanService.addServiceman(userId, servicemanFromDto);
+        ServicemanDto createdServicemanDto = servicemanMapper.convertServicemanToServicemanDto(createdServiceman);
+        return new ResponseEntity(createdServicemanDto, HttpStatus.CREATED);
     }
 
     @GetMapping
-    @ResponseStatus(HttpStatus.OK)
     @JsonView(View.Public.class)
-    @ApiOperation("Returns list of service technicans")
-    public List<Serviceman> getAllUserServicemens() {
-        return servicemanService.getAllUserserviceTechnicans();
+    @ApiOperation("Returns list of servicemens")
+    public ResponseEntity<List<ServicemanDto>> getAllServicemens() {
+        Long userId = userService.getCurrentLoggedUserId();
+        List<Serviceman> servicemensList = servicemanService.getAllUsersServicemen(userId);
+        List<ServicemanDto> servicemanDto = servicemensList.stream()
+                .map(serviceman -> servicemanMapper.convertServicemanToServicemanDto(serviceman)) //przeanalizować możliwość wykorzystania referencji do metody
+                .collect(Collectors.toList());
+        return new ResponseEntity(servicemanDto, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    @ApiOperation("Deletes serviceman with a specific id from system")
-    public void deleteServiceman(@PathVariable Long id) {
-        servicemanService.deleteServiceman(id);
+    @ApiOperation("Delete serviceman with a specific id")
+    public ResponseEntity deleteServiceman(@PathVariable Long servicemanId) {
+        Long userId = userService.getCurrentLoggedUserId();
+        servicemanService.deleteServiceman(userId, servicemanId);
+        return new ResponseEntity(HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
-    @ResponseStatus(HttpStatus.OK)
     @JsonView(View.Public.class)
-    @ApiOperation("Returns a serviceman with a specific id")
-    public Serviceman getServiceman(@PathVariable Long id) {
-        return servicemanService.getServiceman(id);
+    @GetMapping("/{id}")
+    @ApiOperation("Returns serviceman with specific id")
+    public ResponseEntity<ServicemanDto> getServiceman(@PathVariable Long servicemanId) {
+        Long userId = userService.getCurrentLoggedUserId();
+        Serviceman serviceman = servicemanService.getServiceman(userId, servicemanId);
+        ServicemanDto servicemanDto = servicemanMapper.convertServicemanToServicemanDto(serviceman);
+        return new ResponseEntity<>(servicemanDto, HttpStatus.OK);
     }
 
     @PatchMapping("/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
     @ApiOperation("Updates the serviceman with a specific id")
-    public void updateServiceman(@PathVariable Long id, @RequestBody Serviceman serviceman) {
-        servicemanService.updateServiceman(id, serviceman);
+    public ResponseEntity<ServicemanDto> updateServiceman(@PathVariable Long servicemanId, @RequestBody ServicemanDto servicemanDto) {
+        Long userId = userService.getCurrentLoggedUserId();
+        Serviceman servicemanFromDto = servicemanMapper.convertServicemanDtoToServiceman(servicemanDto);
+        Serviceman updatedServiceman = servicemanService.updateServiceman(userId, servicemanFromDto, servicemanId);
+        ServicemanDto updatedServicemanDto = servicemanMapper.convertServicemanToServicemanDto(updatedServiceman);
+        return new ResponseEntity(updatedServicemanDto, HttpStatus.OK);
     }
 }

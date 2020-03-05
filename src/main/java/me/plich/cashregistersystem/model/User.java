@@ -1,14 +1,12 @@
 package me.plich.cashregistersystem.model;
 
-
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-import java.io.Serializable;
 import java.util.*;
 
 @Entity
 @Table(name="users")
-public class User implements Serializable {
+public class User  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,19 +38,19 @@ public class User implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
-    @OneToMany(mappedBy="user")
+    @OneToMany(mappedBy="user", orphanRemoval = true)
     private List<Customer> customers = new ArrayList<Customer>();
 
-    @OneToMany(mappedBy="user")
+    @OneToMany(mappedBy="user", orphanRemoval = true)
     private List<Device> devices = new ArrayList<Device>();
 
-    @OneToMany(mappedBy="user")
+    @OneToMany(mappedBy="user", orphanRemoval = true)
     private List<Location> locations = new ArrayList<Location>();
 
-    @OneToMany(mappedBy="user")
+    @OneToMany(mappedBy="user", orphanRemoval = true)
     private List<Serviceman> servicemens = new ArrayList<Serviceman>();
 
-    @OneToMany(mappedBy="user")
+    @OneToMany(mappedBy="user", orphanRemoval = true)
     private List<Order> orders = new ArrayList<Order>();
 
 
@@ -224,4 +222,5 @@ public class User implements Serializable {
                 ", address=" + address +
                 '}';
     }
+
 }

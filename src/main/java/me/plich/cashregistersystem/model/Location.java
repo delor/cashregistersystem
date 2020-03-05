@@ -7,7 +7,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "locations")
-public class Location {
+public class Location implements IUserChecker{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

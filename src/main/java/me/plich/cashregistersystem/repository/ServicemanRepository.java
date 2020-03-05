@@ -6,9 +6,10 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @Transactional
 public interface ServicemanRepository extends JpaRepository<Serviceman, Long> {
-    List<Serviceman> findByUser_id(Long user_id);
+
 }

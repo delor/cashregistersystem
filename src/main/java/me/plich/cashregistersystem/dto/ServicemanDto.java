@@ -1,21 +1,18 @@
-package me.plich.cashregistersystem.DTO;
+package me.plich.cashregistersystem.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonView;
 import me.plich.cashregistersystem.model.View;
 
-
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ModelDto {
+public class ServicemanDto {
 
     @JsonView(View.Public.class)
     private Long id;
-
     @JsonView(View.Public.class)
-    private String name;
-
+    private String firstName;
     @JsonView(View.Public.class)
-    private ProducerDto producer;
+    private String lastName;
 
     public Long getId() {
         return id;
@@ -25,28 +22,28 @@ public class ModelDto {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public ProducerDto getProducer() {
-        return producer;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setProducer(ProducerDto producer) {
-        this.producer = producer;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     @Override
     public String toString() {
-        return "ModelDto{" +
+        return "ServicemanDto{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
-                ", producer=" + producer +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
                 '}';
     }
 }

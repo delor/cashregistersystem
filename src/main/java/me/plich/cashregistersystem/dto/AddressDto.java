@@ -1,4 +1,4 @@
-package me.plich.cashregistersystem.DTO;
+package me.plich.cashregistersystem.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonView;
