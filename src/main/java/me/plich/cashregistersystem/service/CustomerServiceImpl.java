@@ -49,7 +49,6 @@ public class CustomerServiceImpl implements ICustomerService {
     public Customer addCustomer(Long userId, Customer customer) {
             customer.setUser(userRepository.findById(userId).get());
             return customerRepository.save(customer);
-        //duplikaty można ograć adnotacją unique na encji i obsługą wyjątku przy próbie zapisu
     }
 
     public void deleteCustomer(Long userId, Long customerId) {
@@ -63,13 +62,6 @@ public class CustomerServiceImpl implements ICustomerService {
     }
 
     public Customer getCustomer(Long userId, Long customerId) {
-//        Optional<Customer> customerOpt = customerRepository.findById(customerId);
-//        if(customerOpt.isPresent() && Utils.checkUser(userId, customerOpt.get())) {
-//            Customer customer = customerOpt.get();
-//            return customer;
-//        } else {
-//            throw new CustomerNotFoundException(customerId);
-//        }
         Customer customer = customerRepository.findById(customerId)
                 .orElseThrow(() -> new CustomerNotFoundException(customerId));
         if(Utils.checkUser(userId, customer)) {
@@ -84,19 +76,12 @@ public class CustomerServiceImpl implements ICustomerService {
     }
 
     public Customer updateCustomer(Long userId, Long customerId, Customer customerFromDto) {
-//        Optional<Customer> customerToUpdateOpt = customerRepository.findById(customerId);
-//        if (customerToUpdateOpt.isPresent() && Utils.checkUser(userId, customerToUpdateOpt.get())) {
-//            Customer customerToUpdate = customerToUpdateOpt.get();
-//            BeanUtils.copyProperties(customerFromDto, customerToUpdate, getNullPropertyNames(customerFromDto));
-//            return customerRepository.save(customerToUpdate);
-//            }
-//        else {
-//            throw new CustomerNotFoundException(customerId);
-//        }
         Customer customerToUpdate = customerRepository.findById(customerId)
                 .orElseThrow(() -> new CustomerNotFoundException(customerId));
+        Long addressId = customerToUpdate.getAddress().getId();
         if(Utils.checkUser(userId, customerToUpdate)) {
             BeanUtils.copyProperties(customerFromDto, customerToUpdate, getNullPropertyNames(customerFromDto));
+            customerToUpdate.getAddress().setId(addressId);
             return customerRepository.save(customerToUpdate);
         }
         else {
