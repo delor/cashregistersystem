@@ -1,7 +1,5 @@
 package me.plich.cashregistersystem.controller;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import me.plich.cashregistersystem.dto.UserDto;
 import me.plich.cashregistersystem.exception.AppException;
 import me.plich.cashregistersystem.mapper.UserMapper;
@@ -30,7 +28,6 @@ import java.net.URI;
 import java.util.Collections;
 
 @RestController
-@Api(description = "Set of endpoint for singin and singup")
 public class AuthController {
 
 
@@ -54,7 +51,6 @@ public class AuthController {
     }
 
     @PostMapping("/signin")
-    @ApiOperation("endpoint for logging in an existing user")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
         Authentication authentication = authenticationManager.authenticate(
@@ -71,7 +67,6 @@ public class AuthController {
     }
 
     @PostMapping("/signup")
-    @ApiOperation("endpoint for registering a new user")
     public ResponseEntity<?> registerUser( @RequestBody UserDto userDto) {
         System.out.println("userDto ="+userDto);
 
@@ -80,26 +75,25 @@ public class AuthController {
 
 
         System.out.println("user = "+user);
-        //do ogrania customowymi wyjątkami
-//        if(userRepository.existsByUsername(userDto.getUsername())) {
-//            return new ResponseEntity(new ApiResponse(false, "Username is already taken!"),
-//                    HttpStatus.BAD_REQUEST);
-//        }
-//
-//        if(userRepository.existsByEmail(userDto.getEmail())) {
-//            return new ResponseEntity(new ApiResponse(false, "Email Address already in use!"),
-//                    HttpStatus.BAD_REQUEST);
-//        }
-//
-//        if(userRepository.existsByNip(userDto.getNip())) {
-//            return new ResponseEntity(new ApiResponse(false, "Nip number already in use!"),
-//                    HttpStatus.BAD_REQUEST);
-//        }
-//
-//        if(userRepository.existsByRegon(userDto.getRegon())) {
-//            return new ResponseEntity(new ApiResponse(false, "Regon number already in use!"),
-//                    HttpStatus.BAD_REQUEST);
-//        }
+        if(userRepository.existsByUsername(userDto.getUsername())) {
+            return new ResponseEntity(new ApiResponse(false, "Username is already taken!"),
+                    HttpStatus.BAD_REQUEST);
+        }
+
+        if(userRepository.existsByEmail(userDto.getEmail())) {
+            return new ResponseEntity(new ApiResponse(false, "Email Address already in use!"),
+                    HttpStatus.BAD_REQUEST);
+        }
+
+        if(userRepository.existsByNip(userDto.getNip())) {
+            return new ResponseEntity(new ApiResponse(false, "Nip number already in use!"),
+                    HttpStatus.BAD_REQUEST);
+        }
+
+        if(userRepository.existsByRegon(userDto.getRegon())) {
+            return new ResponseEntity(new ApiResponse(false, "Regon number already in use!"),
+                    HttpStatus.BAD_REQUEST);
+        }
 
 
         Role userRole = roleRepository.findByName(RoleName.ROLE_USER)

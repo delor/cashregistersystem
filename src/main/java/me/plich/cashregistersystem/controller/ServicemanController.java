@@ -1,25 +1,25 @@
 package me.plich.cashregistersystem.controller;
 
-import com.fasterxml.jackson.annotation.JsonView;
-import io.swagger.annotations.ApiOperation;
+
 import me.plich.cashregistersystem.dto.ServicemanDto;
 import me.plich.cashregistersystem.mapper.ServicemanMapper;
 import me.plich.cashregistersystem.model.Serviceman;
-import me.plich.cashregistersystem.model.View;
 import me.plich.cashregistersystem.service.IServicemanService;
 import me.plich.cashregistersystem.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.Link;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/serviceman")
-@ApiOperation("Set of endpoints for Creating, Retrieving, Updating and Deleting of service technicians.")
 public class ServicemanController {
 
 
@@ -37,53 +37,58 @@ public class ServicemanController {
     }
 
     @PostMapping
-    @JsonView(View.Public.class)
-    @ApiOperation("Create new serviceman")
-    public ResponseEntity<ServicemanDto> addServiceman(@RequestBody ServicemanDto servicemanDto) {
+    public ResponseEntity<EntityModel<ServicemanDto>> addServiceman(@RequestBody ServicemanDto servicemanDto) {
         Long userId = userService.getCurrentLoggedUserId();
         Serviceman servicemanFromDto = servicemanMapper.convertServicemanDtoToServiceman(servicemanDto);
         Serviceman createdServiceman = servicemanService.addServiceman(userId, servicemanFromDto);
         ServicemanDto createdServicemanDto = servicemanMapper.convertServicemanToServicemanDto(createdServiceman);
-        return new ResponseEntity(createdServicemanDto, HttpStatus.CREATED);
+        Link selfLink = WebMvcLinkBuilder.linkTo(ServicemanController.class).slash(createdServicemanDto.getId()).withSelfRel();
+        Link servicemensLink = WebMvcLinkBuilder.linkTo(ServicemanController.class).withRel("servicemens");
+        EntityModel<ServicemanDto> resource = new EntityModel<>(createdServicemanDto, selfLink, servicemensLink);
+        return new ResponseEntity(resource, HttpStatus.CREATED);
     }
 
     @GetMapping
-    @JsonView(View.Public.class)
-    @ApiOperation("Returns list of servicemens")
-    public ResponseEntity<List<ServicemanDto>> getAllServicemens() {
+    public ResponseEntity<CollectionModel<ServicemanDto>> getAllServicemens() {
         Long userId = userService.getCurrentLoggedUserId();
         List<Serviceman> servicemensList = servicemanService.getAllUsersServicemen(userId);
-        List<ServicemanDto> servicemanDto = servicemensList.stream()
+        List<ServicemanDto> servicemensDto = servicemensList.stream()
                 .map(serviceman -> servicemanMapper.convertServicemanToServicemanDto(serviceman)) //przeanalizować możliwość wykorzystania referencji do metody
                 .collect(Collectors.toList());
-        return new ResponseEntity(servicemanDto, HttpStatus.OK);
+        Link link = WebMvcLinkBuilder.linkTo(ServicemanController.class).withSelfRel();
+        servicemensDto.forEach(servicemanDto -> servicemanDto.add(WebMvcLinkBuilder.linkTo(ServicemanController.class).slash(servicemanDto.getId()).withSelfRel()));
+        CollectionModel<ServicemanDto> resource = new CollectionModel<>(servicemensDto, link);
+        return new ResponseEntity(resource, HttpStatus.OK);
     }
 
-    @DeleteMapping("/{id}")
-    @ApiOperation("Delete serviceman with a specific id")
+    @DeleteMapping("/{servicemanId}")
     public ResponseEntity deleteServiceman(@PathVariable Long servicemanId) {
         Long userId = userService.getCurrentLoggedUserId();
         servicemanService.deleteServiceman(userId, servicemanId);
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    @JsonView(View.Public.class)
-    @GetMapping("/{id}")
-    @ApiOperation("Returns serviceman with specific id")
-    public ResponseEntity<ServicemanDto> getServiceman(@PathVariable Long servicemanId) {
+
+    @GetMapping("/{servicemanId}")
+    public ResponseEntity<EntityModel<ServicemanDto>> getServiceman(@PathVariable Long servicemanId) {
         Long userId = userService.getCurrentLoggedUserId();
         Serviceman serviceman = servicemanService.getServiceman(userId, servicemanId);
         ServicemanDto servicemanDto = servicemanMapper.convertServicemanToServicemanDto(serviceman);
-        return new ResponseEntity<>(servicemanDto, HttpStatus.OK);
+        Link selfLink = WebMvcLinkBuilder.linkTo(ServicemanController.class).slash(servicemanId).withSelfRel();
+        Link servicemensLink = WebMvcLinkBuilder.linkTo(ServicemanController.class).withRel("servicemens");
+        EntityModel<ServicemanDto> resource = new EntityModel<>(servicemanDto, selfLink, servicemensLink);
+        return new ResponseEntity<>(resource, HttpStatus.OK);
     }
 
-    @PatchMapping("/{id}")
-    @ApiOperation("Updates the serviceman with a specific id")
-    public ResponseEntity<ServicemanDto> updateServiceman(@PathVariable Long servicemanId, @RequestBody ServicemanDto servicemanDto) {
+    @PatchMapping("/{servicemanId}")
+    public ResponseEntity<EntityModel<ServicemanDto>> updateServiceman(@PathVariable Long servicemanId, @RequestBody ServicemanDto servicemanDto) {
         Long userId = userService.getCurrentLoggedUserId();
         Serviceman servicemanFromDto = servicemanMapper.convertServicemanDtoToServiceman(servicemanDto);
         Serviceman updatedServiceman = servicemanService.updateServiceman(userId, servicemanFromDto, servicemanId);
         ServicemanDto updatedServicemanDto = servicemanMapper.convertServicemanToServicemanDto(updatedServiceman);
-        return new ResponseEntity(updatedServicemanDto, HttpStatus.OK);
+        Link selfLink = WebMvcLinkBuilder.linkTo(ServicemanController.class).slash(updatedServicemanDto.getId()).withSelfRel();
+        Link servicemensLink = WebMvcLinkBuilder.linkTo(ServicemanController.class).withRel("servicemens");
+        EntityModel<ServicemanDto> resource = new EntityModel<>(updatedServicemanDto, selfLink, servicemensLink);
+        return new ResponseEntity(resource, HttpStatus.OK);
     }
 }

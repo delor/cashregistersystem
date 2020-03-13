@@ -3,21 +3,22 @@ package me.plich.cashregistersystem.dto;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonView;
 import me.plich.cashregistersystem.model.*;
+import org.springframework.hateoas.RepresentationModel;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class LocationDto {
+public class LocationDto extends RepresentationModel<LocationDto> {
 
-    @JsonView(View.Public.class)
+
     private Long id;
-    @JsonView(View.Public.class)
+
     private String name;
-    @JsonView(View.Public.class)
+
     private String telephone;
-    @JsonView(View.Public.class)
+
     private String email;
-    @JsonView(View.Public.class)
+
     private String description;
-    @JsonView(View.Public.class)
+
     private AddressDto address;
 
     public Long getId() {

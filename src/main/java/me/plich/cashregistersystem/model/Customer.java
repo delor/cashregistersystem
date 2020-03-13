@@ -1,10 +1,14 @@
 package me.plich.cashregistersystem.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonView;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import org.springframework.hateoas.RepresentationModel;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
 
 @Entity
 @Table(name = "customers")
@@ -33,7 +37,7 @@ public class Customer implements IUserChecker {
     
     private String description;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user")
     private User user;
 
@@ -176,22 +180,4 @@ public class Customer implements IUserChecker {
         return Objects.hash(id, nip, regon, companyName, telephone, email, taxOffice, description, user, address, devices, locations, orders);
     }
 
-    @Override
-    public String toString() {
-        return "Customer{" +
-                "id=" + id +
-                ", nip='" + nip + '\'' +
-                ", regon='" + regon + '\'' +
-                ", companyName='" + companyName + '\'' +
-                ", telephone='" + telephone + '\'' +
-                ", email='" + email + '\'' +
-                ", taxOffice='" + taxOffice + '\'' +
-                ", description='" + description + '\'' +
-                ", user=" + user +
-                ", address=" + address +
-                ", devices=" + devices +
-                ", locations=" + locations +
-                ", orders=" + orders +
-                '}';
-    }
 }

@@ -1,5 +1,8 @@
 package me.plich.cashregistersystem.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import java.util.*;
@@ -9,23 +12,23 @@ import java.util.*;
 public class User  {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(nullable=false)
+    @Column(nullable=false, unique = true)
     private String nip;
-
+    @Column(unique = true)
     private String regon;
 
-    @Column(nullable=false)
+    @Column(nullable=false, unique = true)
     private String companyName;
 
-    @Column(nullable=false)
+    @Column(nullable=false, unique = true)
     private String username;
 
     private String telephone;
 
-    @Column(nullable=false)
+    @Column(nullable=false, unique = true)
     @Email
     private String email;
 
@@ -38,19 +41,19 @@ public class User  {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
-    @OneToMany(mappedBy="user", orphanRemoval = true)
+    @OneToMany(mappedBy="user")
     private List<Customer> customers = new ArrayList<Customer>();
 
-    @OneToMany(mappedBy="user", orphanRemoval = true)
+    @OneToMany(mappedBy="user")
     private List<Device> devices = new ArrayList<Device>();
 
-    @OneToMany(mappedBy="user", orphanRemoval = true)
+    @OneToMany(mappedBy="user")
     private List<Location> locations = new ArrayList<Location>();
 
-    @OneToMany(mappedBy="user", orphanRemoval = true)
+    @OneToMany(mappedBy="user")
     private List<Serviceman> servicemens = new ArrayList<Serviceman>();
 
-    @OneToMany(mappedBy="user", orphanRemoval = true)
+    @OneToMany(mappedBy="user")
     private List<Order> orders = new ArrayList<Order>();
 
 
@@ -202,25 +205,5 @@ public class User  {
         return Objects.hash(id, nip, regon, companyName, username, telephone, email, password, roles, customers, devices, locations, servicemens, orders, address);
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", nip='" + nip + '\'' +
-                ", regon='" + regon + '\'' +
-                ", companyName='" + companyName + '\'' +
-                ", username='" + username + '\'' +
-                ", telephone='" + telephone + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", roles=" + roles +
-                ", customers=" + customers +
-                ", devices=" + devices +
-                ", locations=" + locations +
-                ", servicemens=" + servicemens +
-                ", orders=" + orders +
-                ", address=" + address +
-                '}';
-    }
 
 }

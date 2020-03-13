@@ -49,6 +49,7 @@ public class OrderServiceImpl implements IOrderService{
         if(Utils.checkUser(userId, device)) {
             order.setUser(user);
             order.setDevice(device);
+            order.setCustomer(device.getCustomer());
             return orderRepository.save(order);
         } else {
             throw new DeviceNotFoundException(deviceId);

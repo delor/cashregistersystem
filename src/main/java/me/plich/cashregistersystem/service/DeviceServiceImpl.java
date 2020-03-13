@@ -1,13 +1,7 @@
 package me.plich.cashregistersystem.service;
 
-import me.plich.cashregistersystem.exception.CustomerNotFoundException;
-import me.plich.cashregistersystem.exception.DeviceNotFoundException;
-import me.plich.cashregistersystem.exception.LocationNotFoundException;
-import me.plich.cashregistersystem.exception.OrderNotFoundException;
-import me.plich.cashregistersystem.model.Customer;
-import me.plich.cashregistersystem.model.Device;
-import me.plich.cashregistersystem.model.Location;
-import me.plich.cashregistersystem.model.Order;
+import me.plich.cashregistersystem.exception.*;
+import me.plich.cashregistersystem.model.*;
 import me.plich.cashregistersystem.repository.*;
 import me.plich.cashregistersystem.utils.Utils;
 import org.springframework.beans.BeanUtils;
@@ -26,24 +20,38 @@ public class DeviceServiceImpl implements IDeviceService {
     private CustomerRepository customerRepository;
     private LocationRepository locationRepository;
     private OrderRepository orderRepository;
+    private ProducerRepository producerRepository;
+    private ModelRepository modelRepository;
     private IUserService userService;
 
     @Autowired
-    public DeviceServiceImpl(DeviceRepository deviceRepository, UserRepository userRepository,OrderRepository orderRepository, CustomerRepository customerRepository, LocationRepository locationRepository, @Qualifier("userService") IUserService userService) {
+    public DeviceServiceImpl(DeviceRepository deviceRepository, UserRepository userRepository,OrderRepository orderRepository, CustomerRepository customerRepository, LocationRepository locationRepository, @Qualifier("userService") IUserService userService, ModelRepository modelRepository, ProducerRepository producerRepository) {
         this.deviceRepository = deviceRepository;
         this.userRepository = userRepository;
         this.customerRepository = customerRepository;
         this.locationRepository = locationRepository;
         this.orderRepository = orderRepository;
         this.userService = userService;
+        this.producerRepository = producerRepository;
+        this.modelRepository = modelRepository;
     }
 
-    public Device addDevice(Long userId, Device device, Long customerId) {
+    public Device addDevice(Long userId, Device device, Long customerId,Long producerId, Long modelId, Long locationId) {
+        System.out.println("locationId service = "+locationId);
         device.setUser(userRepository.findById(userId).get());
         Customer customer = customerRepository.findById(customerId)
                 .orElseThrow(() -> new CustomerNotFoundException(customerId));
+        Producer producer = producerRepository.findById(producerId)
+                .orElseThrow(() -> new ProducerNotFoundException(producerId));
+        Model model = modelRepository.findById(modelId)
+                .orElseThrow(() -> new ModelNotFoundException(modelId));
+        if(producerId != model.getProducer().getId()) {
+            throw new ModelNotFoundException(modelId);
+        }
         if(Utils.checkUser(userId, customer)) {
             device.setCustomer(customer);
+            device.setProducer(producer);
+            device.setModel(model);
             return  deviceRepository.save(device);
         } else {
             throw new CustomerNotFoundException(customerId);

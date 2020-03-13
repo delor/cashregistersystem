@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface IDeviceService {
 
-    Device addDevice(Long userId, Device device, Long customerID);
+    Device addDevice(Long userId, Device device, Long customerId, Long producerId, Long modelId, Long locationId);
     void deleteDevice(Long userId, Long deviceId);
     Device getDevice(Long userId, Long deviceId);
     Device getOrdersDevice(Long userId, Long orderId);

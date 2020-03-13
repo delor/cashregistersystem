@@ -1,38 +1,38 @@
 package me.plich.cashregistersystem.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonView;
 import me.plich.cashregistersystem.model.OrderType;
 import me.plich.cashregistersystem.model.StateOfSeals;
-import me.plich.cashregistersystem.model.View;
+import org.springframework.hateoas.RepresentationModel;
+
 import java.time.LocalDate;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class OrderDto {
+public class OrderDto extends RepresentationModel<OrderDto> {
 
-    @JsonView(View.Public.class)
+
     private Long id;
-    @JsonView(View.Public.class)
+
     private OrderType orderType;
-    @JsonView(View.Public.class)
+
     private LocalDate orderDate;
-    @JsonView(View.Public.class)
+
     private StateOfSeals seals;
-    @JsonView(View.Public.class)
+
     private int generalCounterFrom;
-    @JsonView(View.Public.class)
+
     private int generalCounterTo;
-    @JsonView(View.Public.class)
+
     private int dailyReportFrom;
-    @JsonView(View.Public.class)
+
     private int dailyReportTo;
-    @JsonView(View.Public.class)
+
     private int resettingFramesFrom;
-    @JsonView(View.Public.class)
+
     private int resettingFramesTo;
-    @JsonView(View.Public.class)
+
     private int receiptFrom;
-    @JsonView(View.Public.class)
+
     private int receiptTo;
 
     public Long getId() {

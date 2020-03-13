@@ -1,7 +1,5 @@
 package me.plich.cashregistersystem.controller;
 
-import com.fasterxml.jackson.annotation.JsonView;
-import io.swagger.annotations.ApiOperation;
 import me.plich.cashregistersystem.dto.CustomerDto;
 import me.plich.cashregistersystem.dto.DeviceDto;
 import me.plich.cashregistersystem.dto.LocationDto;
@@ -14,6 +12,10 @@ import me.plich.cashregistersystem.model.*;
 import me.plich.cashregistersystem.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.Link;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +24,6 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/customers")
-@ApiOperation("Set of endpoints for Creating, Retrieving, Updating and Deleting of customers.")
 public class CustomerController {
 
 
@@ -59,93 +60,102 @@ public class CustomerController {
     }
 
     @PostMapping
-    @JsonView(View.Public.class)
-    @ApiOperation("Create new customer")
-    public ResponseEntity<CustomerDto> addCustomer(@RequestBody CustomerDto customerDto) {
+    public ResponseEntity<EntityModel<CustomerDto>> addCustomer(@RequestBody CustomerDto customerDto) {
         Long userId = userService.getCurrentLoggedUserId();
         Customer customerFromDto = customerMapper.convertCustomerDtoToCustomer(customerDto);
         Customer createdCustomer = customerService.addCustomer(userId, customerFromDto);
         CustomerDto createdCustomerDto = customerMapper.convertCustomerToCustomerDto(createdCustomer);
-        return new ResponseEntity(createdCustomerDto, HttpStatus.CREATED);
+        Link selfLink = WebMvcLinkBuilder.linkTo(CustomerController.class).slash(createdCustomerDto.getId()).withSelfRel();
+        Link customersLink = WebMvcLinkBuilder.linkTo(CustomerController.class).withRel("customers");
+        EntityModel<CustomerDto> resource = new EntityModel<>(createdCustomerDto, selfLink, customersLink);
+        return new ResponseEntity(resource, HttpStatus.CREATED);
     }
 
     @GetMapping
-    @JsonView(View.Public.class)
-    @ApiOperation("Returns list of customers")
-    public ResponseEntity<List<CustomerDto>> getAllCustomers() {
+    public ResponseEntity<CollectionModel<CustomerDto>> getAllCustomers() {
         Long userId = userService.getCurrentLoggedUserId();
         List<Customer> customersList = customerService.getAllCustomers(userId);
         List<CustomerDto> customersDto = customersList.stream()
                 .map(customer -> customerMapper.convertCustomerToCustomerDto(customer)) //przeanalizować możliwość wykorzystania referencji do metody
                 .collect(Collectors.toList());
-        return new ResponseEntity(customersDto, HttpStatus.OK);
+        Link link = WebMvcLinkBuilder.linkTo(CustomerController.class).withSelfRel();
+        customersDto.forEach(customerDto -> customerDto.add(WebMvcLinkBuilder.linkTo(CustomerController.class).slash(customerDto.getId()).withSelfRel()));
+        CollectionModel<CustomerDto> resource = new CollectionModel<>(customersDto, link);
+        return new ResponseEntity(resource, HttpStatus.OK);
     }
 
-    @DeleteMapping("/{id}")
-    @ApiOperation("Deletes customer with a specific id")
+    @DeleteMapping("/{customerId}")
     public ResponseEntity deleteCustomer(@PathVariable Long customerId) {
         Long userId = userService.getCurrentLoggedUserId();
         customerService.deleteCustomer(userId, customerId);
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    @JsonView(View.Public.class)
-    @GetMapping("/{id}")
-    @ApiOperation("Returns customer with specific id")
-    public ResponseEntity<CustomerDto> getCustomer(@PathVariable Long customerId) {
+
+    @GetMapping("/{customerId}")
+    public ResponseEntity<EntityModel<CustomerDto>> getCustomer(@PathVariable Long customerId) {
+        Link selfLink = WebMvcLinkBuilder.linkTo(CustomerController.class).slash(customerId).withSelfRel();
+        Link customersLink = WebMvcLinkBuilder.linkTo(CustomerController.class).withRel("customers");
         Long userId = userService.getCurrentLoggedUserId();
         Customer customer = customerService.getCustomer(userId, customerId);
         CustomerDto customerDto = customerMapper.convertCustomerToCustomerDto(customer);
-        return new ResponseEntity<>(customerDto, HttpStatus.OK);
+        EntityModel<CustomerDto> resource = new EntityModel<>(customerDto, selfLink, customersLink);
+        return new ResponseEntity<>(resource, HttpStatus.OK);
     }
 
 
-    @PatchMapping("/{id}")
-    @ApiOperation("Updates the customer with a specific id")
-    public ResponseEntity<CustomerDto> updateCustomer(@PathVariable Long customerId, @RequestBody CustomerDto customerDto) {
+    @PatchMapping("/{customerId}")
+    public ResponseEntity<EntityModel<CustomerDto>> updateCustomer(@PathVariable Long customerId, @RequestBody CustomerDto customerDto) {
         Long userId = userService.getCurrentLoggedUserId();
         Customer customerFromDto = customerMapper.convertCustomerDtoToCustomer(customerDto);
         Customer updatedCustomer = customerService.updateCustomer(userId, customerId, customerFromDto);
         CustomerDto updatedCustomerDto = customerMapper.convertCustomerToCustomerDto(updatedCustomer);
-        return new ResponseEntity(updatedCustomerDto, HttpStatus.OK);
+        Link selfLink = WebMvcLinkBuilder.linkTo(CustomerController.class).slash(updatedCustomerDto.getId()).withSelfRel();
+        Link customersLink = WebMvcLinkBuilder.linkTo(CustomerController.class).withRel("customers");
+        EntityModel<CustomerDto> resource = new EntityModel<>(updatedCustomerDto, selfLink, customersLink);
+        return new ResponseEntity(resource, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}/devices")
-    @JsonView(View.Public.class)
-    @ApiOperation("Returns the list of customer devices with a specified id")
-    public ResponseEntity<List<DeviceDto>> getAllCustomerDevices(@PathVariable Long customerId) {
+    @GetMapping("/{customerId}/devices")
+    public ResponseEntity<CollectionModel<DeviceDto>> getAllCustomerDevices(@PathVariable Long customerId) {
         Long userId = userService.getCurrentLoggedUserId();
         List<Device> customerDevices = deviceService.findAllCustomerDevices(userId, customerId);
         List<DeviceDto> customerDevicesDto = customerDevices.stream()
                 .map(device -> deviceMapper.convertDevicetoDeviceDto(device))
                 .collect(Collectors.toList());
-        return new ResponseEntity<>(customerDevicesDto, HttpStatus.OK);
+        customerDevicesDto.forEach(deviceDto -> deviceDto.add(WebMvcLinkBuilder.linkTo(CustomerController.class).slash(deviceDto.getId()).withSelfRel()));
+        Link customersLink = WebMvcLinkBuilder.linkTo(CustomerController.class).withSelfRel();
+        Link devicesLink = WebMvcLinkBuilder.linkTo(DeviceController.class).withSelfRel();
+        CollectionModel<DeviceDto> resource = new CollectionModel<>(customerDevicesDto, customersLink, devicesLink);
+        return new ResponseEntity<>(resource, HttpStatus.OK);
     }
 
 
-    @GetMapping("/{id}/locations")
-    @JsonView(View.Public.class)
-    @ApiOperation("Returns the list of customer locations with a specified id")
-    public ResponseEntity<List<LocationDto>> getAllCustomerLocations(@PathVariable Long customerId) {
+    @GetMapping("/{customerId}/locations")
+    public ResponseEntity<CollectionModel<LocationDto>> getAllCustomerLocations(@PathVariable Long customerId) {
         Long userId = userService.getCurrentLoggedUserId();
         List<Location> locationList =  locationService.findAllCustomersLocations(userId, customerId);
         List<LocationDto> locationDtos = locationList.stream()
                 .map(location -> locationMapper.convertLocationToLocationDto(location))
                 .collect(Collectors.toList());
-        return new ResponseEntity(locationDtos, HttpStatus.OK);
+        locationDtos.forEach(locationDto -> locationDto.add(WebMvcLinkBuilder.linkTo(CustomerController.class).slash(locationDto.getId()).withSelfRel()));
+        Link customersLink = WebMvcLinkBuilder.linkTo(CustomerController.class).withRel("customers");
+        Link locationsLink = WebMvcLinkBuilder.linkTo(LocationController.class).withRel("locations");
+        CollectionModel<LocationDto> resource = new CollectionModel<>(locationDtos, customersLink, locationsLink);
+        return new ResponseEntity(resource, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}/orders")
-    @JsonView(View.Public.class)
-    @ApiOperation("Returns the list of customer orders with a specified id")
-    public ResponseEntity<List<OrderDto>> getAllCustomerOrders(@PathVariable Long customerId) {
+    @GetMapping("/{customerId}/orders")
+    public ResponseEntity<CollectionModel<OrderDto>> getAllCustomerOrders(@PathVariable Long customerId) {
         Long userId = userService.getCurrentLoggedUserId();
         List<Order> orderList =  orderService.findAllCustomersOrders(userId, customerId);
         List<OrderDto> orderDtos = orderList.stream()
                 .map(order -> orderMapper.convertOrderToOrderDto(order))
                 .collect(Collectors.toList());
-        return new ResponseEntity(orderDtos, HttpStatus.OK);
+        orderDtos.forEach(orderDto -> orderDto.add(WebMvcLinkBuilder.linkTo(CustomerController.class).slash(orderDto.getId()).withSelfRel()));
+        Link customersLink = WebMvcLinkBuilder.linkTo(CustomerController.class).withRel("customers");
+        Link ordersLink = WebMvcLinkBuilder.linkTo(OrderController.class).withRel("orders");
+        CollectionModel<OrderDto> resource = new CollectionModel<>(orderDtos, customersLink, ordersLink);
+        return new ResponseEntity(resource, HttpStatus.OK);
     }
-
-
 }

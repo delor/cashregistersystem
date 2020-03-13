@@ -1,7 +1,5 @@
 package me.plich.cashregistersystem.controller;
 
-import com.fasterxml.jackson.annotation.JsonView;
-import io.swagger.annotations.ApiOperation;
 import me.plich.cashregistersystem.dto.CustomerDto;
 import me.plich.cashregistersystem.dto.DeviceDto;
 import me.plich.cashregistersystem.dto.LocationDto;
@@ -14,16 +12,18 @@ import me.plich.cashregistersystem.model.*;
 import me.plich.cashregistersystem.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.Link;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/devices")
-@ApiOperation("Set of endpoints for Creating, Retrieving, Updating and Deleting of devices.")
 public class DeviceController {
 
 
@@ -58,89 +58,102 @@ public class DeviceController {
         this.customerMapper = customerMapper;
     }
 
-    @JsonView(View.Public.class)
+
     @PostMapping
-    @ApiOperation("Creates new device")
-    public ResponseEntity<DeviceDto> addDevice(@RequestBody DeviceDto deviceDto, @RequestHeader Long customerId) {
+    public ResponseEntity<EntityModel<DeviceDto>> addDevice(@RequestBody DeviceDto deviceDto, @RequestHeader Long customerId,@RequestHeader Long producerId,@RequestHeader Long modelId, @RequestHeader Long locationId) {
         Long userId = userService.getCurrentLoggedUserId();
+        System.out.println("locationId = "+locationId);
         Device deviceFromDto = deviceMapper.convertDeviceDtoToDevice(deviceDto);
-        Device createdDevice = deviceService.addDevice(userId, deviceFromDto, customerId);
+        Device createdDevice = deviceService.addDevice(userId, deviceFromDto, customerId, producerId, modelId, locationId);
         DeviceDto createdDeviceDto = deviceMapper.convertDevicetoDeviceDto(createdDevice);
-        return new ResponseEntity<>(createdDeviceDto, HttpStatus.CREATED);
+        Link selfLink = WebMvcLinkBuilder.linkTo(CustomerController.class).slash(createdDeviceDto.getId()).withSelfRel();
+        Link devicesLink = WebMvcLinkBuilder.linkTo(DeviceController.class).withRel("devices");
+        EntityModel<DeviceDto> resource = new EntityModel<>(createdDeviceDto, selfLink, devicesLink);
+        return new ResponseEntity(resource, HttpStatus.CREATED);
     }
 
     @GetMapping
-    @JsonView(View.Public.class)
-    @ApiOperation("Returns list of all user devices")
-    public ResponseEntity<List<DeviceDto>> getAllUserDevices() {
+    public ResponseEntity<CollectionModel<DeviceDto>> getAllUserDevices() {
         Long userId = userService.getCurrentLoggedUserId();
         List<Device> devices = deviceService.findAllUserDevices(userId);
         List<DeviceDto> deviceDtos = devices.stream()
                 .map(device -> deviceMapper.convertDevicetoDeviceDto(device))
                 .collect(Collectors.toList());
-        return new ResponseEntity(deviceDtos, HttpStatus.OK);
+        Link link = WebMvcLinkBuilder.linkTo(CustomerController.class).withSelfRel();
+        deviceDtos.forEach(deviceDto -> deviceDto.add(WebMvcLinkBuilder.linkTo(CustomerController.class).slash(deviceDto.getId()).withSelfRel()));
+        CollectionModel<DeviceDto> resource = new CollectionModel<>(deviceDtos, link);
+        return new ResponseEntity(resource, HttpStatus.OK);
     }
 
-    @DeleteMapping("/{id}")
-    @ApiOperation("Deletes device with a specific id")
+    @DeleteMapping("/{deviceId}")
     public ResponseEntity deleteDevice(@PathVariable Long deviceId) {
         Long userId = userService.getCurrentLoggedUserId();
         deviceService.deleteDevice(userId, deviceId);
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    @JsonView(View.Public.class)
-    @GetMapping("/{id}")
-    @ApiOperation("Returns a device with a specific id")
-    public ResponseEntity<DeviceDto> getDevice(@PathVariable Long deviceId) {
+
+    @GetMapping("/{deviceId}")
+    public ResponseEntity<EntityModel<DeviceDto>> getDevice(@PathVariable Long deviceId) {
         Long userId = userService.getCurrentLoggedUserId();
         Device device = deviceService.getDevice(userId, deviceId);
         DeviceDto deviceDto = deviceMapper.convertDevicetoDeviceDto(device);
-        return new ResponseEntity(deviceDto, HttpStatus.OK);
+        Link selfLink = WebMvcLinkBuilder.linkTo(CustomerController.class).slash(deviceId).withSelfRel();
+        Link devicesLink = WebMvcLinkBuilder.linkTo(DeviceController.class).withRel("devices");
+        EntityModel<DeviceDto> resource = new EntityModel<>(deviceDto, selfLink, devicesLink);
+        return new ResponseEntity<>(resource, HttpStatus.OK);
     }
 
 
-    @JsonView(View.Public.class)
-    @PatchMapping("/{id}")
-    @ApiOperation("Updates the device with a specific id")
-    public ResponseEntity<DeviceDto> updateDevice(@PathVariable Long deviceId, @RequestBody DeviceDto deviceDto) {
+
+    @PatchMapping("/{deviceId}")
+    public ResponseEntity<EntityModel<DeviceDto>> updateDevice(@PathVariable Long deviceId, @RequestBody DeviceDto deviceDto) {
         Long userId = userService.getCurrentLoggedUserId();
         Device deviceFromDto = deviceMapper.convertDeviceDtoToDevice(deviceDto);
         Device updatedDevice = deviceService.updateDevice(userId, deviceId, deviceFromDto);
         DeviceDto updatedDeviceDto = deviceMapper.convertDevicetoDeviceDto(updatedDevice);
-        return new ResponseEntity(updatedDeviceDto, HttpStatus.OK);
+        Link selfLink = WebMvcLinkBuilder.linkTo(DeviceController.class).slash(updatedDeviceDto.getId()).withSelfRel();
+        Link devicesLink = WebMvcLinkBuilder.linkTo(DeviceController.class).withRel("devices");
+        EntityModel<DeviceDto> resource = new EntityModel<>(updatedDeviceDto, selfLink, devicesLink);
+        return new ResponseEntity(resource, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}/orders")
-    @JsonView(View.Public.class)
-    @ApiOperation("Returns the list of devices orders with a specified id")
-    public ResponseEntity<List<OrderDto>> getAllDeviceOrders(@PathVariable Long deviceId) {
+    @GetMapping("/{deviceId}/orders")
+    public ResponseEntity<CollectionModel<OrderDto>> getAllDeviceOrders(@PathVariable Long deviceId) {
         Long userId = userService.getCurrentLoggedUserId();
         List<Order> orderList =  orderService.findAllDevicesOrders(userId, deviceId);
         List<OrderDto> orderDtos = orderList.stream()
                 .map(order -> orderMapper.convertOrderToOrderDto(order))
                 .collect(Collectors.toList());
-        return new ResponseEntity(orderDtos, HttpStatus.OK);
+        orderDtos.forEach(orderDto -> orderDto.add(WebMvcLinkBuilder.linkTo(LocationController.class).slash(orderDto.getId()).withSelfRel()));
+        Link ordersLink = WebMvcLinkBuilder.linkTo(LocationController.class).withRel("orders");
+        Link devicesLink = WebMvcLinkBuilder.linkTo(DeviceController.class).withRel("devices");
+        CollectionModel<OrderDto> resource = new CollectionModel<>(orderDtos, ordersLink, devicesLink);
+        return new ResponseEntity(resource, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}/locations")
-    @JsonView(View.Public.class)
-    @ApiOperation("Returns device location with a specified id")
-    public ResponseEntity<LocationDto> getDevicesLocations(@PathVariable Long devicesId) {
+    @GetMapping("/{deviceId}/locations")
+    public ResponseEntity<EntityModel<LocationDto>> getDevicesLocations(@PathVariable Long devicesId) {
         Long userId = userService.getCurrentLoggedUserId();
         Location location =  locationService.getDevicesLocation(userId, devicesId);
         LocationDto locationDto = locationMapper.convertLocationToLocationDto(location);
-        return new ResponseEntity(locationDto, HttpStatus.OK);
+        Link link = WebMvcLinkBuilder.linkTo(DeviceController.class).slash(devicesId).withSelfRel();
+        Link locationsLink = WebMvcLinkBuilder.linkTo(LocationController.class).withRel("locations");
+        Link devicesLink = WebMvcLinkBuilder.linkTo(DeviceController.class).withRel("devices");
+        EntityModel<LocationDto> resource = new EntityModel<>(locationDto, link, devicesLink, locationsLink);
+        return new ResponseEntity<>(resource, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}/customers")
-    @JsonView(View.Public.class)
-    @ApiOperation("Returns devices customer")
-    public ResponseEntity<CustomerDto> getDevicesCustomer(@PathVariable Long devicesId) {
+    @GetMapping("/{devicesId}/customers")
+    public ResponseEntity<EntityModel<CustomerDto>> getDevicesCustomer(@PathVariable Long devicesId) {
         Long userId = userService.getCurrentLoggedUserId();
         Customer customer =  customerService.getDevicesCustomer(userId, devicesId);
-        CustomerDto customernDto = customerMapper.convertCustomerToCustomerDto(customer);
-        return new ResponseEntity(customernDto, HttpStatus.OK);
+        CustomerDto customerDto = customerMapper.convertCustomerToCustomerDto(customer);
+        Link link = WebMvcLinkBuilder.linkTo(DeviceController.class).slash(devicesId).withSelfRel();
+        Link customersLink = WebMvcLinkBuilder.linkTo(CustomerController.class).withRel("customers");
+        Link devicesLink = WebMvcLinkBuilder.linkTo(DeviceController.class).withRel("devices");
+        EntityModel<CustomerDto> resource = new EntityModel<>(customerDto, link, devicesLink, customersLink);
+        return new ResponseEntity<>(resource, HttpStatus.OK);
     }
 
 }

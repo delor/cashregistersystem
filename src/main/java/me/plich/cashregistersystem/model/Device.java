@@ -1,6 +1,9 @@
 package me.plich.cashregistersystem.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -258,29 +261,4 @@ public class Device implements IUserChecker {
         return Objects.hash(id, uniqueNumber, serialNumber, producer, model, dateOfFiscalization, dateOfDeRegistration, evidenceNumber, reviewsFrequency, lastReview, plannedReview, dailyReports, active, mobile, reserve, description, location, user, customer, orders);
     }
 
-    @Override
-    public String toString() {
-        return "Device{" +
-                "id=" + id +
-                ", uniqueNumber='" + uniqueNumber + '\'' +
-                ", serialNumber='" + serialNumber + '\'' +
-                ", producer=" + producer +
-                ", model=" + model +
-                ", dateOfFiscalization=" + dateOfFiscalization +
-                ", dateOfDeRegistration=" + dateOfDeRegistration +
-                ", evidenceNumber='" + evidenceNumber + '\'' +
-                ", reviewsFrequency=" + reviewsFrequency +
-                ", lastReview=" + lastReview +
-                ", plannedReview=" + plannedReview +
-                ", dailyReports=" + dailyReports +
-                ", active=" + active +
-                ", mobile=" + mobile +
-                ", reserve=" + reserve +
-                ", description='" + description + '\'' +
-                ", location=" + location +
-                ", user=" + user +
-                ", customer=" + customer +
-                ", orders=" + orders +
-                '}';
-    }
 }

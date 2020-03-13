@@ -1,17 +1,16 @@
 package me.plich.cashregistersystem.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonView;
-import me.plich.cashregistersystem.model.View;
+import org.springframework.hateoas.RepresentationModel;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ServicemanDto {
+public class ServicemanDto extends RepresentationModel<ServicemanDto> {
 
-    @JsonView(View.Public.class)
+
     private Long id;
-    @JsonView(View.Public.class)
+
     private String firstName;
-    @JsonView(View.Public.class)
+
     private String lastName;
 
     public Long getId() {

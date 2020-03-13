@@ -56,12 +56,4 @@ public class Model {
         return Objects.hash(id, name, producer);
     }
 
-    @Override
-    public String toString() {
-        return "Model{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", producer=" + producer +
-                '}';
-    }
 }

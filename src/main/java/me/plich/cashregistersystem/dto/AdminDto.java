@@ -1,19 +1,17 @@
 package me.plich.cashregistersystem.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonView;
-import me.plich.cashregistersystem.model.View;
 
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class AdminDto {
 
-    @JsonView(View.Public.class)
+
     private Long id;
-    @JsonView(View.Public.class)
+
     private String name;
     private String password;
-    @JsonView(View.Public.class)
+
     private String email;
 
     public Long getId() {

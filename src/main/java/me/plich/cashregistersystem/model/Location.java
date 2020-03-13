@@ -1,5 +1,8 @@
 package me.plich.cashregistersystem.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -127,18 +130,4 @@ public class Location implements IUserChecker{
         return Objects.hash(id, name, telephone, email, description, address, user, customer, devices);
     }
 
-    @Override
-    public String toString() {
-        return "Location{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", telephone='" + telephone + '\'' +
-                ", email='" + email + '\'' +
-                ", description='" + description + '\'' +
-                ", address=" + address +
-                ", user=" + user +
-                ", customer=" + customer +
-                ", devices=" + devices +
-                '}';
-    }
 }

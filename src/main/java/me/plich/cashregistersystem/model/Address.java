@@ -96,15 +96,4 @@ public class Address {
         return Objects.hash(id, street, houseNumber, flatNumber, zipCode, city);
     }
 
-    @Override
-    public String toString() {
-        return "Address{" +
-                "id=" + id +
-                ", street='" + street + '\'' +
-                ", houseNumber='" + houseNumber + '\'' +
-                ", flatNumber='" + flatNumber + '\'' +
-                ", zipCode='" + zipCode + '\'' +
-                ", city='" + city + '\'' +
-                '}';
-    }
 }

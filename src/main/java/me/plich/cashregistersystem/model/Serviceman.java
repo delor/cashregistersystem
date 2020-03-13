@@ -1,6 +1,9 @@
 package me.plich.cashregistersystem.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -68,13 +71,4 @@ public class Serviceman implements IUserChecker{
         return Objects.hash(id, firstName, lastName, user);
     }
 
-    @Override
-    public String toString() {
-        return "Serviceman{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", user=" + user +
-                '}';
-    }
 }

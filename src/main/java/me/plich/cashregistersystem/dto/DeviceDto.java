@@ -3,42 +3,44 @@ package me.plich.cashregistersystem.dto;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonView;
 import me.plich.cashregistersystem.model.*;
+import org.springframework.hateoas.RepresentationModel;
+
 import java.time.LocalDate;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class DeviceDto {
+public class DeviceDto extends RepresentationModel<DeviceDto> {
 
-    @JsonView(View.Public.class)
+
     private Long id;
-    @JsonView(View.Public.class)
+
     private String uniqueNumber;
-    @JsonView(View.Public.class)
+
     private String serialNumber;
-    @JsonView(View.Public.class)
+
     private ProducerDto producer;
-    @JsonView(View.Public.class)
+
     private ModelDto model;
-    @JsonView(View.Public.class)
+
     private LocalDate dateOfFiscalization;
-    @JsonView(View.Public.class)
+
     private LocalDate dateOfDeRegistration;
-    @JsonView(View.Public.class)
+
     private String evidenceNumber;
-    @JsonView(View.Public.class)
+
     private int reviewsFrequency;
-    @JsonView(View.Public.class)
+
     private LocalDate lastReview;
-    @JsonView(View.Public.class)
+
     private LocalDate plannedReview;
-    @JsonView(View.Public.class)
+
     private int dailyReports;
-    @JsonView(View.Public.class)
+
     private Boolean active;
-    @JsonView(View.Public.class)
+
     private Boolean mobile;
-    @JsonView(View.Public.class)
+
     private Boolean reserve;
-    @JsonView(View.Public.class)
+
     private String description;
 
     public Long getId() {
@@ -169,25 +171,4 @@ public class DeviceDto {
         this.description = description;
     }
 
-    @Override
-    public String toString() {
-        return "DeviceDto{" +
-                "id=" + id +
-                ", uniqueNumber='" + uniqueNumber + '\'' +
-                ", serialNumber='" + serialNumber + '\'' +
-                ", producer=" + producer +
-                ", model='" + model + '\'' +
-                ", dateOfFiscalization=" + dateOfFiscalization +
-                ", dateOfDeRegistration=" + dateOfDeRegistration +
-                ", evidenceNumber='" + evidenceNumber + '\'' +
-                ", reviewsFrequency=" + reviewsFrequency +
-                ", lastReview=" + lastReview +
-                ", plannedReview=" + plannedReview +
-                ", dailyReports=" + dailyReports +
-                ", active=" + active +
-                ", mobile=" + mobile +
-                ", reserve=" + reserve +
-                ", description='" + description + '\'' +
-                '}';
-    }
 }

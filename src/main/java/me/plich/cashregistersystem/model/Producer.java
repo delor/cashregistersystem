@@ -128,18 +128,4 @@ public class Producer {
         return Objects.hash(id, nip, regon, companyName, telephone, email, address, devices, models);
     }
 
-    @Override
-    public String toString() {
-        return "Producer{" +
-                "id=" + id +
-                ", nip='" + nip + '\'' +
-                ", regon='" + regon + '\'' +
-                ", companyName='" + companyName + '\'' +
-                ", telephone='" + telephone + '\'' +
-                ", email='" + email + '\'' +
-                ", address=" + address +
-                ", devices=" + devices +
-                ", models=" + models +
-                '}';
-    }
 }
