@@ -41,16 +41,16 @@ public class Customer implements IUserChecker {
     @JoinColumn(name = "user")
     private User user;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY,orphanRemoval = true, cascade = CascadeType.ALL)
     private Address address;
 
-    @OneToMany(mappedBy="customer")
+    @OneToMany(mappedBy="customer", fetch = FetchType.LAZY,orphanRemoval = true, cascade = CascadeType.ALL)
     private List<Device> devices = new ArrayList<Device>();
 
-    @OneToMany(mappedBy="customer")
+    @OneToMany(mappedBy="customer", fetch = FetchType.LAZY,orphanRemoval = true, cascade = CascadeType.ALL)
     private List<Location> locations = new ArrayList<Location>();
 
-    @OneToMany(mappedBy="customer")
+    @OneToMany(mappedBy="customer", fetch = FetchType.LAZY,orphanRemoval = true, cascade = CascadeType.ALL)
     private List<Order> orders = new ArrayList<Order>();
 
     public Customer(){}

@@ -67,7 +67,7 @@ public class Device implements IUserChecker {
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    @OneToMany(mappedBy="device")
+    @OneToMany(mappedBy="device", fetch = FetchType.LAZY,orphanRemoval = true, cascade = CascadeType.ALL)
     private List<Order> orders = new ArrayList<Order>();
 
     public Device(){}

@@ -1,8 +1,5 @@
 package me.plich.cashregistersystem.model;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import java.util.*;
@@ -41,23 +38,22 @@ public class User  {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
-    @OneToMany(mappedBy="user")
+    @OneToMany(mappedBy="user", fetch = FetchType.LAZY,orphanRemoval = true, cascade = CascadeType.ALL)
     private List<Customer> customers = new ArrayList<Customer>();
 
-    @OneToMany(mappedBy="user")
+    @OneToMany(mappedBy="user", fetch = FetchType.LAZY,orphanRemoval = true, cascade = CascadeType.ALL)
     private List<Device> devices = new ArrayList<Device>();
 
-    @OneToMany(mappedBy="user")
+    @OneToMany(mappedBy="user", fetch = FetchType.LAZY,orphanRemoval = true, cascade = CascadeType.ALL)
     private List<Location> locations = new ArrayList<Location>();
 
-    @OneToMany(mappedBy="user")
+    @OneToMany(mappedBy="user", fetch = FetchType.LAZY,orphanRemoval = true, cascade = CascadeType.ALL)
     private List<Serviceman> servicemens = new ArrayList<Serviceman>();
 
-    @OneToMany(mappedBy="user")
+    @OneToMany(mappedBy="user", fetch = FetchType.LAZY,orphanRemoval = true, cascade = CascadeType.ALL)
     private List<Order> orders = new ArrayList<Order>();
 
-
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY,orphanRemoval = true, cascade = CascadeType.ALL)
     private Address address;
 
     public User(){}
