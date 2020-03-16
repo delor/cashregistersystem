@@ -34,14 +34,15 @@ public class UserController {
         Long userId = userService.getCurrentLoggedUserId();
         User user = userService.getUser(userId);
         UserDto userDto = userMapper.convertUserToUserDto(user);
+        Link link = WebMvcLinkBuilder.linkTo(UserController.class).withSelfRel();
         Link devicesLink = WebMvcLinkBuilder.linkTo(DeviceController.class).withRel("devices");
-        Link locationsLink = WebMvcLinkBuilder.linkTo(DeviceController.class).withRel("locations");
-        Link customersLink = WebMvcLinkBuilder.linkTo(DeviceController.class).withRel("customers");
-        Link ordersLink = WebMvcLinkBuilder.linkTo(DeviceController.class).withRel("orders");
-        Link servicemensLink = WebMvcLinkBuilder.linkTo(DeviceController.class).withRel("servicemens");
-        Link producersLink = WebMvcLinkBuilder.linkTo(DeviceController.class).withRel("producers");
-        Link modelsLink = WebMvcLinkBuilder.linkTo(DeviceController.class).withRel("models");
-        EntityModel<UserDto> resource = new EntityModel<>(userDto, devicesLink, locationsLink, customersLink, ordersLink, servicemensLink, producersLink, modelsLink);
+        Link locationsLink = WebMvcLinkBuilder.linkTo(LocationController.class).withRel("locations");
+        Link customersLink = WebMvcLinkBuilder.linkTo(CustomerController.class).withRel("customers");
+        Link ordersLink = WebMvcLinkBuilder.linkTo(OrderController.class).withRel("orders");
+        Link servicemensLink = WebMvcLinkBuilder.linkTo(ServicemanController.class).withRel("servicemens");
+        Link producersLink = WebMvcLinkBuilder.linkTo(ProducerController.class).withRel("producers");
+        Link modelsLink = WebMvcLinkBuilder.linkTo(ModelController.class).withRel("models");
+        EntityModel<UserDto> resource = new EntityModel<>(userDto, link, devicesLink, locationsLink, customersLink, ordersLink, servicemensLink, producersLink, modelsLink);
         return new ResponseEntity<>(resource, HttpStatus.OK);
     }
 
@@ -60,14 +61,15 @@ public class UserController {
         User userFromDto = userMapper.convertUserDtoToUser(userDto);
         User updatedUser = userService.updateUser(userId, userFromDto);
         UserDto updatedUserDto = userMapper.convertUserToUserDto(updatedUser);
+        Link link = WebMvcLinkBuilder.linkTo(UserController.class).withSelfRel();
         Link devicesLink = WebMvcLinkBuilder.linkTo(DeviceController.class).withRel("devices");
-        Link locationsLink = WebMvcLinkBuilder.linkTo(DeviceController.class).withRel("locations");
-        Link customersLink = WebMvcLinkBuilder.linkTo(DeviceController.class).withRel("customers");
-        Link ordersLink = WebMvcLinkBuilder.linkTo(DeviceController.class).withRel("orders");
-        Link servicemensLink = WebMvcLinkBuilder.linkTo(DeviceController.class).withRel("servicemens");
-        Link producersLink = WebMvcLinkBuilder.linkTo(DeviceController.class).withRel("producers");
-        Link modelsLink = WebMvcLinkBuilder.linkTo(DeviceController.class).withRel("models");
-        EntityModel<UserDto> resource = new EntityModel<>(updatedUserDto, devicesLink, locationsLink, customersLink, ordersLink, servicemensLink, producersLink, modelsLink);
+        Link locationsLink = WebMvcLinkBuilder.linkTo(LocationController.class).withRel("locations");
+        Link customersLink = WebMvcLinkBuilder.linkTo(CustomerController.class).withRel("customers");
+        Link ordersLink = WebMvcLinkBuilder.linkTo(OrderController.class).withRel("orders");
+        Link servicemensLink = WebMvcLinkBuilder.linkTo(ServicemanController.class).withRel("servicemens");
+        Link producersLink = WebMvcLinkBuilder.linkTo(ProducerController.class).withRel("producers");
+        Link modelsLink = WebMvcLinkBuilder.linkTo(ModelController.class).withRel("models");
+        EntityModel<UserDto> resource = new EntityModel<>(userDto, link, devicesLink, locationsLink, customersLink, ordersLink, servicemensLink, producersLink, modelsLink);
         return new ResponseEntity<>(resource, HttpStatus.OK);
     }
 }

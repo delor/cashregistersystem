@@ -11,5 +11,6 @@ public interface ILocationService {
     List<Location> findAllCustomersLocations(Long userId, Long customerId);
     List<Location> getAllLocations(Long userId);
     Location getDevicesLocation(Long userId, Long deviceId);
+    Location setDevicesLocation(Long userId, Long deviceId, Long locationId);
     Location updateLocation(Long userId, Long locationId, Location location);
 }

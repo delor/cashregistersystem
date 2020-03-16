@@ -106,11 +106,11 @@ public class DeviceController {
 
 
 
-    @PatchMapping("/{deviceId}")
-    public ResponseEntity<EntityModel<DeviceDto>> updateDevice(@PathVariable Long deviceId, @RequestBody DeviceDto deviceDto) {
+    @PatchMapping("/{devicesId}")
+    public ResponseEntity<EntityModel<DeviceDto>> updateDevice(@PathVariable Long devicesId, @RequestBody DeviceDto deviceDto) {
         Long userId = userService.getCurrentLoggedUserId();
         Device deviceFromDto = deviceMapper.convertDeviceDtoToDevice(deviceDto);
-        Device updatedDevice = deviceService.updateDevice(userId, deviceId, deviceFromDto);
+        Device updatedDevice = deviceService.updateDevice(userId, devicesId, deviceFromDto);
         DeviceDto updatedDeviceDto = deviceMapper.convertDevicetoDeviceDto(updatedDevice);
         Link selfLink = WebMvcLinkBuilder.linkTo(DeviceController.class).slash(updatedDeviceDto.getId()).withSelfRel();
         Link devicesLink = WebMvcLinkBuilder.linkTo(DeviceController.class).withRel("devices");
@@ -118,10 +118,10 @@ public class DeviceController {
         return new ResponseEntity(resource, HttpStatus.OK);
     }
 
-    @GetMapping("/{deviceId}/orders")
-    public ResponseEntity<CollectionModel<OrderDto>> getAllDeviceOrders(@PathVariable Long deviceId) {
+    @GetMapping("/{devicesId}/orders")
+    public ResponseEntity<CollectionModel<OrderDto>> getAllDeviceOrders(@PathVariable Long devicesId) {
         Long userId = userService.getCurrentLoggedUserId();
-        List<Order> orderList =  orderService.findAllDevicesOrders(userId, deviceId);
+        List<Order> orderList =  orderService.findAllDevicesOrders(userId, devicesId);
         List<OrderDto> orderDtos = orderList.stream()
                 .map(order -> orderMapper.convertOrderToOrderDto(order))
                 .collect(Collectors.toList());
@@ -132,7 +132,7 @@ public class DeviceController {
         return new ResponseEntity(resource, HttpStatus.OK);
     }
 
-    @GetMapping("/{deviceId}/locations")
+    @GetMapping("/{devicesId}/locations")
     public ResponseEntity<EntityModel<LocationDto>> getDevicesLocations(@PathVariable Long devicesId) {
         Long userId = userService.getCurrentLoggedUserId();
         Location location =  locationService.getDevicesLocation(userId, devicesId);
@@ -141,6 +141,17 @@ public class DeviceController {
         Link locationsLink = WebMvcLinkBuilder.linkTo(LocationController.class).withRel("locations");
         Link devicesLink = WebMvcLinkBuilder.linkTo(DeviceController.class).withRel("devices");
         EntityModel<LocationDto> resource = new EntityModel<>(locationDto, link, devicesLink, locationsLink);
+        return new ResponseEntity<>(resource, HttpStatus.OK);
+    }
+
+    @PostMapping("/{devicesId}/locations")
+    public ResponseEntity<EntityModel<LocationDto>> setDevicesLocation(@PathVariable Long devicesId, @RequestHeader Long locationId) {
+        Long userId = userService.getCurrentLoggedUserId();
+        Location location =  locationService.setDevicesLocation(userId, devicesId, locationId);
+        LocationDto locationDto = locationMapper.convertLocationToLocationDto(location);
+        Link link = WebMvcLinkBuilder.linkTo(DeviceController.class).slash(devicesId).withSelfRel();
+        Link devicesLink = WebMvcLinkBuilder.linkTo(DeviceController.class).withRel("devices");
+        EntityModel<LocationDto> resource = new EntityModel<>(locationDto, link, devicesLink);
         return new ResponseEntity<>(resource, HttpStatus.OK);
     }
 

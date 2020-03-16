@@ -81,7 +81,7 @@ public class DeviceServiceImpl implements IDeviceService {
     }
 
     public List<Device> findAllUserDevices(Long userId) {
-        return customerRepository.getOne(userId).getDevices();
+        return userRepository.getOne(userId).getDevices();
     }
 
     public List<Device> findAllCustomerDevices(Long userId, Long customerId) {

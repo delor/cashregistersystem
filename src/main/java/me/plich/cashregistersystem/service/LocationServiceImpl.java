@@ -1,9 +1,7 @@
 package me.plich.cashregistersystem.service;
 
 
-import me.plich.cashregistersystem.exception.CustomerNotFoundException;
-import me.plich.cashregistersystem.exception.DeviceNotFoundException;
-import me.plich.cashregistersystem.exception.LocationNotFoundException;
+import me.plich.cashregistersystem.exception.*;
 import me.plich.cashregistersystem.model.Customer;
 import me.plich.cashregistersystem.model.Device;
 import me.plich.cashregistersystem.model.Location;
@@ -16,6 +14,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+
+
 import java.util.List;
 
 import static me.plich.cashregistersystem.utils.Utils.getNullPropertyNames;
@@ -62,10 +62,39 @@ public class LocationServiceImpl implements ILocationService {
         Device device = deviceRepository.findById(deviceId)
                 .orElseThrow(() -> new DeviceNotFoundException(deviceId));
         if(Utils.checkUser(userId, device)) {
-            return device.getLocation();
+            Location devicesLocation =  device.getLocation();
+            System.out.println("devices location = "+devicesLocation);
+            if(devicesLocation == null) {
+                throw new LocationNotSetException(deviceId);
+            } else {
+                return devicesLocation;
+            }
         } else {
             throw new DeviceNotFoundException(deviceId);
         }
+    }
+
+    public Location setDevicesLocation(Long userId, Long deviceId, Long locationId) {
+        Device device = deviceRepository.findById(deviceId)
+                .orElseThrow(() -> new DeviceNotFoundException(deviceId));
+        if(locationId == null) {
+            device.setLocation(null);
+            device.setMobile(true);
+            deviceRepository.save(device);
+            //tymczasowo - nie może być null
+            return null;
+        }
+        Location location = locationRepository.findById(locationId)
+                .orElseThrow(() -> new LocationNotFoundException(locationId));
+        if(Utils.checkUser(userId, device) && Utils.checkUser(userId, location)) {
+            if(device.getCustomer().getId() == location.getCustomer().getId()){
+                device.setLocation(location);
+                deviceRepository.save(device);
+            }
+        } else {
+            throw new InvalidRequestParametersException(deviceId, locationId);
+        }
+        return location;
     }
 
     public Location getLocation(Long userId, Long locationId) {
@@ -91,6 +120,7 @@ public class LocationServiceImpl implements ILocationService {
 
     public List<Location> getAllLocations(Long userId) {
         return userRepository.getOne(userId).getLocations();
+
     }
 
 
