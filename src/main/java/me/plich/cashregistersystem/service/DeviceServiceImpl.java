@@ -39,7 +39,6 @@ public class DeviceServiceImpl implements IDeviceService {
     }
 
     public Device addDevice(Long userId, Device device, Long customerId,Long producerId, Long modelId, Long locationId) {
-        System.out.println("locationId service = "+locationId);
         device.setUser(userRepository.findById(userId).get());
         Customer customer = customerRepository.findById(customerId)
                 .orElseThrow(() -> new CustomerNotFoundException(customerId));

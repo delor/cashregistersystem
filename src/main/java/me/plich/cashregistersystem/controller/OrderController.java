@@ -57,10 +57,10 @@ public class OrderController {
     }
 
     @PostMapping
-    public ResponseEntity<EntityModel<OrderDto>> addOrder(@RequestBody OrderDto orderDto, @RequestHeader Long deviceID) {
+    public ResponseEntity<EntityModel<OrderDto>> addOrder(@RequestBody OrderDto orderDto) {
         Long userId = userService.getCurrentLoggedUserId();
         Order orderFromDto = orderMapper.convertOrderDtoToOrder(orderDto);
-        Order createdOrder = orderService.addOrder(userId, orderFromDto, deviceID);
+        Order createdOrder = orderService.addOrder(userId, orderFromDto, orderDto.getDeviceId());
         OrderDto createdOrderDto = orderMapper.convertOrderToOrderDto(createdOrder);
         Link selfLink = WebMvcLinkBuilder.linkTo(OrderController.class).slash(createdOrderDto.getId()).withSelfRel();
         Link ordersLink = WebMvcLinkBuilder.linkTo(OrderController.class).withRel("orders");

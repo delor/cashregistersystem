@@ -60,13 +60,12 @@ public class DeviceController {
 
 
     @PostMapping
-    public ResponseEntity<EntityModel<DeviceDto>> addDevice(@RequestBody DeviceDto deviceDto, @RequestHeader Long customerId,@RequestHeader Long producerId,@RequestHeader Long modelId, @RequestHeader Long locationId) {
+    public ResponseEntity<EntityModel<DeviceDto>> addDevice(@RequestBody DeviceDto deviceDto) {
         Long userId = userService.getCurrentLoggedUserId();
-        System.out.println("locationId = "+locationId);
         Device deviceFromDto = deviceMapper.convertDeviceDtoToDevice(deviceDto);
-        Device createdDevice = deviceService.addDevice(userId, deviceFromDto, customerId, producerId, modelId, locationId);
+        Device createdDevice = deviceService.addDevice(userId, deviceFromDto, deviceDto.getCustomerId(), deviceDto.getProducerId(), deviceDto.getModelId(), deviceDto.getLocationId());
         DeviceDto createdDeviceDto = deviceMapper.convertDevicetoDeviceDto(createdDevice);
-        Link selfLink = WebMvcLinkBuilder.linkTo(CustomerController.class).slash(createdDeviceDto.getId()).withSelfRel();
+        Link selfLink = WebMvcLinkBuilder.linkTo(DeviceController.class).slash(createdDeviceDto.getId()).withSelfRel();
         Link devicesLink = WebMvcLinkBuilder.linkTo(DeviceController.class).withRel("devices");
         EntityModel<DeviceDto> resource = new EntityModel<>(createdDeviceDto, selfLink, devicesLink);
         return new ResponseEntity(resource, HttpStatus.CREATED);
@@ -145,13 +144,13 @@ public class DeviceController {
     }
 
     @PostMapping("/{devicesId}/locations")
-    public ResponseEntity<EntityModel<LocationDto>> setDevicesLocation(@PathVariable Long devicesId, @RequestHeader Long locationId) {
+    public ResponseEntity<EntityModel<LocationDto>> setDevicesLocation(@PathVariable Long devicesId, @RequestBody LocationDto locationDto) {
         Long userId = userService.getCurrentLoggedUserId();
-        Location location =  locationService.setDevicesLocation(userId, devicesId, locationId);
-        LocationDto locationDto = locationMapper.convertLocationToLocationDto(location);
+        Location location =  locationService.setDevicesLocation(userId, devicesId, locationDto.getLocationId());
+        LocationDto locationDtos = locationMapper.convertLocationToLocationDto(location);
         Link link = WebMvcLinkBuilder.linkTo(DeviceController.class).slash(devicesId).withSelfRel();
         Link devicesLink = WebMvcLinkBuilder.linkTo(DeviceController.class).withRel("devices");
-        EntityModel<LocationDto> resource = new EntityModel<>(locationDto, link, devicesLink);
+        EntityModel<LocationDto> resource = new EntityModel<>(locationDtos, link, devicesLink);
         return new ResponseEntity<>(resource, HttpStatus.OK);
     }
 

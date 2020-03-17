@@ -1,8 +1,6 @@
 package me.plich.cashregistersystem.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonView;
-import me.plich.cashregistersystem.model.*;
 import org.springframework.hateoas.RepresentationModel;
 
 import java.time.LocalDate;
@@ -42,6 +40,46 @@ public class DeviceDto extends RepresentationModel<DeviceDto> {
     private Boolean reserve;
 
     private String description;
+
+    private Long customerId;
+
+    private Long producerId;
+
+    private Long modelId;
+
+    private Long locationId;
+
+    public Long getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
+    }
+
+    public Long getProducerId() {
+        return producerId;
+    }
+
+    public void setProducerId(Long producerId) {
+        this.producerId = producerId;
+    }
+
+    public Long getModelId() {
+        return modelId;
+    }
+
+    public void setModelId(Long modelId) {
+        this.modelId = modelId;
+    }
+
+    public Long getLocationId() {
+        return locationId;
+    }
+
+    public void setLocationId(Long locationId) {
+        this.locationId = locationId;
+    }
 
     public Long getId() {
         return id;

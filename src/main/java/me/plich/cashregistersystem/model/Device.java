@@ -46,7 +46,7 @@ public class Device implements IUserChecker {
     private LocalDate plannedReview;
    
     private int dailyReports;
-   
+
     private Boolean active;
 
     private Boolean mobile;
@@ -261,4 +261,29 @@ public class Device implements IUserChecker {
         return Objects.hash(id, uniqueNumber, serialNumber, producer, model, dateOfFiscalization, dateOfDeRegistration, evidenceNumber, reviewsFrequency, lastReview, plannedReview, dailyReports, active, mobile, reserve, description, location, user, customer, orders);
     }
 
+    @Override
+    public String toString() {
+        return "Device{" +
+                "id=" + id +
+                ", uniqueNumber='" + uniqueNumber + '\'' +
+                ", serialNumber='" + serialNumber + '\'' +
+                ", producer=" + producer +
+                ", model=" + model +
+                ", dateOfFiscalization=" + dateOfFiscalization +
+                ", dateOfDeRegistration=" + dateOfDeRegistration +
+                ", evidenceNumber='" + evidenceNumber + '\'' +
+                ", reviewsFrequency=" + reviewsFrequency +
+                ", lastReview=" + lastReview +
+                ", plannedReview=" + plannedReview +
+                ", dailyReports=" + dailyReports +
+                ", active=" + active +
+                ", mobile=" + mobile +
+                ", reserve=" + reserve +
+                ", description='" + description + '\'' +
+                ", location=" + location +
+                ", user=" + user +
+                ", customer=" + customer +
+                ", orders=" + orders +
+                '}';
+    }
 }

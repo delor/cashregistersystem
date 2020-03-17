@@ -200,6 +200,4 @@ public class User  {
     public int hashCode() {
         return Objects.hash(id, nip, regon, companyName, username, telephone, email, password, roles, customers, devices, locations, servicemens, orders, address);
     }
-
-
 }

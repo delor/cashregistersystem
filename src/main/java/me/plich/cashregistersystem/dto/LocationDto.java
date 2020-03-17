@@ -19,6 +19,10 @@ public class LocationDto extends RepresentationModel<LocationDto> {
 
     private String description;
 
+    private Long locationId;
+
+    private Long customerId;
+
     private AddressDto address;
 
     public Long getId() {
@@ -69,15 +73,19 @@ public class LocationDto extends RepresentationModel<LocationDto> {
         this.address = address;
     }
 
-    @Override
-    public String toString() {
-        return "LocationDto{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", telephone='" + telephone + '\'' +
-                ", email='" + email + '\'' +
-                ", description='" + description + '\'' +
-                ", address=" + address +
-                '}';
+    public Long getLocationId() {
+        return locationId;
+    }
+
+    public void setLocationId(Long locationId) {
+        this.locationId = locationId;
+    }
+
+    public Long getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
     }
 }

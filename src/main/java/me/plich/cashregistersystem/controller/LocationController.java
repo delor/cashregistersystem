@@ -56,10 +56,10 @@ public class LocationController {
     }
 
     @PostMapping
-    public ResponseEntity<EntityModel<LocationDto>> addLocation(@RequestBody LocationDto locationDto, @RequestHeader Long customerId) {
+    public ResponseEntity<EntityModel<LocationDto>> addLocation(@RequestBody LocationDto locationDto) {
         Long userId = userService.getCurrentLoggedUserId();
         Location locationFromDto = locationMapper.convertLocationDtoToLocation(locationDto);
-        Location createdLocation = locationService.addLocation(userId, locationFromDto, customerId);
+        Location createdLocation = locationService.addLocation(userId, locationFromDto, locationDto.getCustomerId());
         LocationDto createdLocationDto = locationMapper.convertLocationToLocationDto(createdLocation);
         Link selfLink = WebMvcLinkBuilder.linkTo(CustomerController.class).slash(createdLocationDto.getId()).withSelfRel();
         Link locationsLink = WebMvcLinkBuilder.linkTo(LocationController.class).withRel("locations");

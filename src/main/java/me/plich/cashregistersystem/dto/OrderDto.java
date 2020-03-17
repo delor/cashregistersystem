@@ -35,6 +35,16 @@ public class OrderDto extends RepresentationModel<OrderDto> {
 
     private int receiptTo;
 
+    private Long deviceId;
+
+    public Long getDeviceId() {
+        return deviceId;
+    }
+
+    public void setDeviceId(Long deviceId) {
+        this.deviceId = deviceId;
+    }
+
     public Long getId() {
         return id;
     }
