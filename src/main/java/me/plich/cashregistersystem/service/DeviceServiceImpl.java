@@ -46,13 +46,17 @@ public class DeviceServiceImpl implements IDeviceService {
                 .orElseThrow(() -> new ProducerNotFoundException(producerId));
         Model model = modelRepository.findById(modelId)
                 .orElseThrow(() -> new ModelNotFoundException(modelId));
+        Location location = locationRepository.findById(locationId)
+                .orElseThrow(() -> new LocationNotFoundException(locationId));
         if(producerId != model.getProducer().getId()) {
             throw new ModelNotFoundException(modelId);
         }
-        if(Utils.checkUser(userId, customer)) {
+        boolean locationVal = (location.getCustomer().getId().equals(customer.getId()));
+        if(Utils.checkUser(userId, customer) && locationVal) {
             device.setCustomer(customer);
             device.setProducer(producer);
             device.setModel(model);
+            device.setLocation(location);
             return  deviceRepository.save(device);
         } else {
             throw new CustomerNotFoundException(customerId);
