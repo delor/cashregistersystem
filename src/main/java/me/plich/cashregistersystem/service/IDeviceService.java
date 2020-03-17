@@ -14,4 +14,5 @@ public interface IDeviceService {
     List<Device> findAllCustomerDevices(Long userId, Long customerId);
     List<Device> findAllLocationsDevices(Long userId, Long locationId);
     Device updateDevice(Long userId, Long deviceId, Device device);
+    void setMobile(Long userId, Long devicesId);
 }

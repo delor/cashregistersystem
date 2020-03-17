@@ -167,4 +167,11 @@ public class DeviceController {
         return new ResponseEntity<>(resource, HttpStatus.OK);
     }
 
+    @PutMapping("/{devicesId}/set-mobile-command")
+    public ResponseEntity setMobile(@PathVariable Long devicesId) {
+        Long userId = userService.getCurrentLoggedUserId();
+        deviceService.setMobile(userId, devicesId);
+        return new ResponseEntity(HttpStatus.ACCEPTED);
+    }
+
 }

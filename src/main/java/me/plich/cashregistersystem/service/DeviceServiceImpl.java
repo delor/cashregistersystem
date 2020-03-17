@@ -1,5 +1,7 @@
 package me.plich.cashregistersystem.service;
 
+import me.plich.cashregistersystem.command.devices.DeviceOperationExecutor;
+import me.plich.cashregistersystem.command.devices.SetMobileDeviceCommand;
 import me.plich.cashregistersystem.exception.*;
 import me.plich.cashregistersystem.model.*;
 import me.plich.cashregistersystem.repository.*;
@@ -125,6 +127,19 @@ public class DeviceServiceImpl implements IDeviceService {
             return order.getDevice();
         } else {
             throw new OrderNotFoundException(orderId);
+        }
+    }
+
+    public void setMobile(Long userId, Long deviceId) {
+        Device device = deviceRepository.findById(deviceId)
+                .orElseThrow(() -> new DeviceNotFoundException(deviceId));
+        if(Utils.checkUser(userId, device)) {
+            DeviceOperationExecutor executor = new DeviceOperationExecutor(new SetMobileDeviceCommand(device));
+            executor.executeOperations();
+            deviceRepository.save(device);
+        }
+        else {
+            throw new DeviceNotFoundException(deviceId);
         }
     }
 }

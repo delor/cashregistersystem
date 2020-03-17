@@ -77,18 +77,12 @@ public class LocationServiceImpl implements ILocationService {
     public Location setDevicesLocation(Long userId, Long deviceId, Long locationId) {
         Device device = deviceRepository.findById(deviceId)
                 .orElseThrow(() -> new DeviceNotFoundException(deviceId));
-        if(locationId == null) {
-            device.setLocation(null);
-            device.setMobile(true);
-            deviceRepository.save(device);
-            //tymczasowo - nie może być null
-            return null;
-        }
         Location location = locationRepository.findById(locationId)
                 .orElseThrow(() -> new LocationNotFoundException(locationId));
         if(Utils.checkUser(userId, device) && Utils.checkUser(userId, location)) {
             if(device.getCustomer().getId() == location.getCustomer().getId()){
                 device.setLocation(location);
+                device.setMobile(false);
                 deviceRepository.save(device);
             }
         } else {
