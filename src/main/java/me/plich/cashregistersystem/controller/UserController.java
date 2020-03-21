@@ -69,7 +69,7 @@ public class UserController {
         Link servicemensLink = WebMvcLinkBuilder.linkTo(ServicemanController.class).withRel("servicemens");
         Link producersLink = WebMvcLinkBuilder.linkTo(ProducerController.class).withRel("producers");
         Link modelsLink = WebMvcLinkBuilder.linkTo(ModelController.class).withRel("models");
-        EntityModel<UserDto> resource = new EntityModel<>(userDto, link, devicesLink, locationsLink, customersLink, ordersLink, servicemensLink, producersLink, modelsLink);
+        EntityModel<UserDto> resource = new EntityModel<>(updatedUserDto, link, devicesLink, locationsLink, customersLink, ordersLink, servicemensLink, producersLink, modelsLink);
         return new ResponseEntity<>(resource, HttpStatus.OK);
     }
 }

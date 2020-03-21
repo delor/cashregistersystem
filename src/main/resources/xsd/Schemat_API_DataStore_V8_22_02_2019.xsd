@@ -1,0 +1,512 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="WynikWyszukiwania">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="InformacjaOWpisie" type="InformacjaOWpisieTyp" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:documentation>Dane publiczne wpisu</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="InformacjaOWpisieTyp">
+    <xs:sequence>
+      <xs:element name="IdentyfikatorWpisu" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Unikalny identyfikator wpisu</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DanePodstawowe" type="DanePodstawoweTyp">
+        <xs:annotation>
+          <xs:documentation>Dane podstawowe</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DaneKontaktowe" type="DaneKontaktoweTyp">
+        <xs:annotation>
+          <xs:documentation>Dane kontaktowe</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DodatkowaInformacjaoNIP" minOccurs="0" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Dodatkowa informacja o  NIP: Unieważniony lub Uchylony</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DaneAdresowe" type="DaneAdresoweTyp">
+        <xs:annotation>
+          <xs:documentation>Dane adresowe</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DaneDodatkowe" type="DaneDodatkoweTyp">
+        <xs:annotation>
+          <xs:documentation>Dane dodatkowe</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SpolkiCywilneKtorychWspolnikiemJestPrzedsiebiorca" type="SpolkiCywilneKtorychWspolnikiemJestPrzedsiebiorcaTyp">
+        <xs:annotation>
+          <xs:documentation>Spółki cywilne, których wspólnikiem jest przedsiębiorca</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Zakazy" type="ZakazyTyp">
+        <xs:annotation>
+          <xs:documentation>Zakazy</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="InformacjeDotyczaceUpadlosciPostepowaniaNaprawczego" type="InformacjeDotyczaceUpadlosciPostepowaniaNaprawczegoTyp">
+        <xs:annotation>
+          <xs:documentation>Informacje dotyczące upadłości / postępowania naprawczego</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Uprawnienia" type="UprawnieniaTyp" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Uprawnienia dotyczące koncesji, zezwoleń, licencji oraz wpisów do rejestrów działalności regulowanej</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Ograniczenia" type="OgraniczeniaTyp" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Ograniczenia dotyczące koncesji, zezwoleń, licencji oraz wpisów do rejestrów działalności regulowanej</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DataZgonu" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Data zgonu</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Sukcesja" type="SukcesjaTyp">
+        <xs:annotation>
+          <xs:documentation>Sukcesja</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SukcesjaTyp">
+    <xs:sequence>
+      <xs:element name="DataUstanowieniaZarzadu" type="xs:string"  minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Data ustanowienia zarządu</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DataWygansnieciaZarzadu" type="xs:string"  minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Data wygaśnięcia zarządu</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Zarzadca" type="ZarzadcaTyp" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Zarzadca</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ZarzadcaTyp">
+    <xs:sequence>
+      <xs:element name="DataUstanowieniaZarzadcy" type="xs:string"  minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Data ustanowienia zarządcy</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ImieZarzadcy" type="xs:string"  minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Imię zarządcy</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="NazwiskoZarzadcy" type="xs:string"  minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Nazwisko zarządcy</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="NIP" type="xs:string"  minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Numer NIP zarządcy</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ObywatelstwaZarzadcy" type="xs:string"  minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Obywatelstwa zarządcy</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AdresDoDoreczenZarzadcy" type="AdresTyp"  minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Adres do doręczeń zarządcy</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="EmailZarzadcy" type="xs:string"  minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Adres e-mail zarządcy</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AdresWWWZarzadcy" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Adres www zarządcy</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="NrTelZarzadcy" type="xs:string"  minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Numer telefonu zarządcy</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DanePodstawoweTyp">
+    <xs:sequence>
+      <xs:element name="Imie" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Imie przedsiębiorcy</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Nazwisko" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Nazwisko przedsiębiorcy</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="NIP" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Numer NIP przedsiębiorcy</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="REGON" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Numer REGON przedsiębiorcy</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Firma" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Firma przedsiębiorcy</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DaneKontaktoweTyp">
+    <xs:sequence>
+      <xs:element name="AdresPocztyElektronicznej" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Adres poczty elektronicznej</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AdresStronyInternetowej" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Adres strony internetowej</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Telefon" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Telefon</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Faks" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Faks</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DaneAdresoweTyp">
+    <xs:sequence>
+      <xs:element name="AdresGlownegoMiejscaWykonywaniaDzialalnosci" type="AdresTyp">
+        <xs:annotation>
+          <xs:documentation>Adres głównego miejsca wykonywania działalności</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AdresyDodatkowychMiejscWykonywaniaDzialalnosci" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:annotation>
+            <xs:documentation>Adresy dodatkowych miejsc wykonywania działalności</xs:documentation>
+          </xs:annotation>
+          <xs:sequence>
+            <xs:element name="Adres" type="AdresTyp" minOccurs="1" maxOccurs="unbounded">
+              <xs:annotation>
+                <xs:documentation>Adres dodatkowego miejsca wykonywania działalności</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="AdresDoDoreczen" type="AdresTyp">
+        <xs:annotation>
+          <xs:documentation>Adres do doręczeń</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PrzedsiebiorcaPosiadaObywatelstwaPanstw" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Przedsiębiorca posiada obywatelstwa państw</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DaneDodatkoweTyp">
+    <xs:sequence>
+      <xs:element name="DataRozpoczeciaWykonywaniaDzialalnosciGospodarczej" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Data rozpoczęcia wykonywania działalności gospodarczej</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DataZawieszeniaWykonywaniaDzialalnosciGospodarczej" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Data zawieszenia wykonywania indywidualnej działalności</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DataWznowieniaWykonywaniaDzialalnosciGospodarczej" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Data wznowienia wykonywania indywidualnej działalności</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DataZaprzestaniaWykonywaniaDzialalnosciGospodarczej" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Data zaprzestania wykonywania działalności gospodarczej</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DataWykresleniaWpisuZRejestru" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Data wykreślenia wpisu z rejestru</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="MalzenskaWspolnoscMajatkowa" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Małżeńska wspólność majątkowa</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Status" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Status indywidualnej działalności gospodarczej</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PodstawaPrawnaWykreslenia" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:annotation>
+            <xs:documentation>Podstawa prawna wykreślenia</xs:documentation>
+          </xs:annotation>
+          <xs:sequence>
+            <xs:element name="Informacja" type="xs:string" minOccurs="1" maxOccurs="unbounded">
+              <xs:annotation>
+                <xs:documentation>Informacja dotycząca podstawy prawnej wykreślenia</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="KodyPKD" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Wykonywana działalność gospodarcza (kody PKD)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SpolkiCywilneKtorychWspolnikiemJestPrzedsiebiorcaTyp">
+    <xs:sequence>
+      <xs:element name="InformacjeOSpolce" minOccurs="0" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:annotation>
+            <xs:documentation>Informacje o spółce cywilnej, której wspólnikiem jest przedsiębiorca</xs:documentation>
+          </xs:annotation>
+          <xs:sequence>
+            <xs:element name="NIP" type="xs:string">
+              <xs:annotation>
+                <xs:documentation>Dane spółki: NIP</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="REGON" type="xs:string">
+              <xs:annotation>
+                <xs:documentation>Dane spółki: REGON</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="DataZawieszeniaWynonywaniaDzialalnosciGospodarczejWSpolce" type="xs:string" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>Data zawieszenia wykonywania działalności gospodarczej w spółce</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ZakazyTyp">
+    <xs:sequence>
+      <xs:element name="InformacjaOZakazie" minOccurs="0" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:annotation>
+            <xs:documentation>Informacja o zakazie</xs:documentation>
+          </xs:annotation>
+          <xs:sequence>
+            <xs:element name="Typ" type="xs:string">
+              <xs:annotation>
+                <xs:documentation>Typ zakazu</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="Opis" type="xs:string">
+              <xs:annotation>
+                <xs:documentation>Opis zakazu</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="OkresNaJakiZostalOrzeczonyZakaz" type="xs:string">
+              <xs:annotation>
+                <xs:documentation>Okres, na jaki został orzeczony zakaz</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="ZakazWydal" type="xs:string">
+              <xs:annotation>
+                <xs:documentation>Zakaz wydał</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="Nazwa" minOccurs="0" type="xs:string">
+              <xs:annotation>
+                <xs:documentation>Nazwa sądu/organu</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="SygnaturaAktSprawy" type="xs:string">
+              <xs:annotation>
+                <xs:documentation>Sygnatura akt sprawy</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="DataWydaniaOrzeczenia" type="xs:string">
+              <xs:annotation>
+                <xs:documentation>Data wydania orzeczenia</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="DataUprawomocnieniaOrzeczenia" type="xs:string">
+              <xs:annotation>
+                <xs:documentation>Data uprawomocnienia się orzeczenia</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="InformacjeDotyczaceUpadlosciPostepowaniaNaprawczegoTyp">
+    <xs:sequence>
+      <xs:element name="Informacja" minOccurs="0" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:annotation>
+            <xs:documentation>Informacja dotycząca upadłości / postępowania naprawczego</xs:documentation>
+          </xs:annotation>
+          <xs:sequence>
+            <xs:element name="DataOrzeczeniaWszczeciaPostepowaniaNaprawczego" type="xs:string">
+              <xs:annotation>
+                <xs:documentation>Data orzeczenia / wszczęcia postępowania naprawczego</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="RodzajInformacji" type="xs:string">
+              <xs:annotation>
+                <xs:documentation>Rodzaj informacji</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="SygnaturaSprawy" type="xs:string">
+              <xs:annotation>
+                <xs:documentation>Sygnatura sprawy</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="OrganWprowadzajacy" type="xs:string">
+              <xs:annotation>
+                <xs:documentation>Organ wprowadzający</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="UprawnieniaTyp">
+    <xs:sequence>
+      <xs:element name="Uprawnienie" type="xs:string" minOccurs="1" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Uprawnienie dotyczące informacji o koncesjach, zezwoleniach, licencjach oraz wpisach do rejestrów działalności regulowanej</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OgraniczeniaTyp">
+    <xs:sequence>
+      <xs:element name="Ograniczenie" type="xs:string" minOccurs="1" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Ograniczenie dotyczące informacji o koncesjach, zezwoleniach, licencjach oraz wpisach do rejestrów działalności regulowanej</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AdresTyp">
+    <xs:sequence>
+      <xs:element name="Adresat" minOccurs="0" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Adresat</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TERC" minOccurs="0" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>TERC</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SIMC" minOccurs="0" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>SIMC</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ULIC" minOccurs="0" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>ULIC</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Miejscowosc" minOccurs="0" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Miejscowość</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Ulica" minOccurs="0" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Ulica</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Budynek" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Budynek</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Lokal" minOccurs="0" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Lokal</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="KodPocztowy" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Kod pocztowy</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Poczta" minOccurs="0" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Poczta</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SkrytkaPocztowa" minOccurs="0" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Skrytka pocztowa</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Kraj" minOccurs="0" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Kraj</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Gmina" minOccurs="0" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Gmina</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Powiat" minOccurs="0" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Powiat</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Wojewodztwo" minOccurs="0" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Województwo</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="OpisNietypowegoMiejscaLokalizacji" minOccurs="0" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Opis nietypowego miejsca lokalizacji</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
