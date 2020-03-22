@@ -8,6 +8,9 @@ import java.util.Set;
 
 public class Utils {
 
+    private byte NIP[] = new byte[10];
+    private boolean valid = false;
+
     public static String[] getNullPropertyNames (Object source) {
         final BeanWrapper src = new BeanWrapperImpl(source);
         java.beans.PropertyDescriptor[] pds = src.getPropertyDescriptors();
@@ -21,53 +24,29 @@ public class Utils {
         return emptyNames.toArray(result);
     }
 
-//    public static boolean checkOwner(Object object, Long userId) {
-//        String classType = object.getClass().getSimpleName();
-//        switch(classType) {
-//            case "Customer":
-//                Customer customerObject = (Customer) object;
-//                if(customerObject.getUser().getId() != userId) {
-//                    return false;
-//                } else {
-//                    return true;
-//                }
-//            case "Device":
-//                Device deviceObject = (Device) object;
-//                if(deviceObject.getUser().getId() != userId) {
-//                    return false;
-//                } else {
-//                    return true;
-//                }
-//            case "Location":
-//                Location locationObject = (Location) object;
-//                if(locationObject.getUser().getId() != userId) {
-//                    return false;
-//                } else {
-//                    return true;
-//                }
-//            case "Order":
-//                Order orderObject = (Order) object;
-//                if(orderObject.getUser().getId() != userId) {
-//                    return false;
-//                } else {
-//                    return true;
-//                }
-//            case "Serviceman":
-//                Serviceman servicemanObject = (Serviceman) object;
-//                if(servicemanObject.getUser().getId() != userId) {
-//                    return false;
-//                } else {
-//                    return true;
-//                }
-//            default:
-//                return false;
-//        }
-//    }
-
     public static boolean checkUser(Long userId, IUserChecker object) {
         if(object.getUser().getId() == userId) {
             return true;
         } else {
+            return false;
+        }
+    }
+
+    public static boolean isNipValid(String nip) {
+        if (nip.length() == 13) {
+            nip = nip.replaceAll("-", "");
+        }
+        if (nip.length() != 10) {
+            return false;
+        }
+        int[] weights = {6, 5, 7, 2, 3, 4, 5, 6, 7};
+        try {
+            int sum = 0;
+            for (int i = 0; i < weights.length; ++i) {
+                sum += Integer.parseInt(nip.substring(i, i + 1)) * weights[i];
+            }
+            return (sum % 11) == Integer.parseInt(nip.substring(9, 10));
+        } catch (NumberFormatException e) {
             return false;
         }
     }

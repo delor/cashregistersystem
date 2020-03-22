@@ -1,7 +1,7 @@
 package me.plich.cashregistersystem.service;
 
-import me.plich.cashregistersystem.dto.EntrepreneurOutputDto;
 import me.plich.cashregistersystem.exception.EntrepreneurNotFoundException;
+import me.plich.cashregistersystem.exception.InvalidNipNumberException;
 import me.plich.cashregistersystem.generated.datastore.ArrayOfstring;
 import me.plich.cashregistersystem.generated.datastore.GetMigrationData201901;
 import me.plich.cashregistersystem.generated.datastore.GetMigrationData201901Response;
@@ -9,10 +9,10 @@ import me.plich.cashregistersystem.generated.datastore.ObjectFactory;
 import me.plich.cashregistersystem.generated.datastore.POJOfromXSD.InformacjaOWpisieTyp;
 import me.plich.cashregistersystem.generated.datastore.POJOfromXSD.WynikWyszukiwania;
 import me.plich.cashregistersystem.model.EntrepreneurOutput;
+import me.plich.cashregistersystem.utils.Utils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 import org.springframework.ws.soap.client.core.SoapActionCallback;
-
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
@@ -22,11 +22,15 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class DataStoreProviderService extends WebServiceGatewaySupport {
-
+//do refaktoru - złamanie SRP
     @Value("${spring.application.DataStoreApiKey}")
     String apiKey;
 
     public EntrepreneurOutput getCompanyData(String nip){
+        boolean validNip = Utils.isNipValid(nip);
+        if(!validNip) {
+            throw new InvalidNipNumberException(nip);
+        }
         GetMigrationData201901 request = new GetMigrationData201901();
         ObjectFactory factory = new ObjectFactory();
         JAXBElement<String> key = factory.createGetMigrationData201901AuthToken(apiKey);
@@ -50,16 +54,14 @@ public class DataStoreProviderService extends WebServiceGatewaySupport {
         } catch (JAXBException e) {
             e.printStackTrace();
         }
-        List<InformacjaOWpisieTyp> list = searchResult.getInformacjaOWpisie();
-        list.stream()
+        List<InformacjaOWpisieTyp> listOfActive = searchResult.getInformacjaOWpisie().stream()
                 .filter(informacjaOWpisieTyp -> informacjaOWpisieTyp.getDaneDodatkowe().getStatus().equalsIgnoreCase("Aktywny"))
                 .collect(Collectors.toList());
         EntrepreneurOutput entrepreneurOutput = null;
-        if(list.size() == 0) {
+        if(listOfActive.size() == 0) {
             throw new EntrepreneurNotFoundException(nip);
         } else {
-            InformacjaOWpisieTyp item = list.get(0);
-
+            InformacjaOWpisieTyp item = listOfActive.get(0);
             entrepreneurOutput =  EntrepreneurOutput.newEntrepreneurOutput()
                     .adresPocztyElektronicznej(item.getDaneKontaktowe().getAdresPocztyElektronicznej())
                     .imie(item.getDanePodstawowe().getImie())
@@ -75,8 +77,6 @@ public class DataStoreProviderService extends WebServiceGatewaySupport {
                     .miejscowosc(item.getDaneAdresowe().getAdresGlownegoMiejscaWykonywaniaDzialalnosci().getMiejscowosc())
                     .build();
         }
-
-        System.out.println(entrepreneurOutput);
         return entrepreneurOutput;
     }
 }
