@@ -58,6 +58,9 @@ public class OrderController {
 
     @PostMapping
     public ResponseEntity<EntityModel<OrderDto>> addOrder(@RequestBody OrderDto orderDto) {
+        if(orderDto.getOrderType() == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         Long userId = userService.getCurrentLoggedUserId();
         Order orderFromDto = orderMapper.convertOrderDtoToOrder(orderDto);
         Order createdOrder = orderService.addOrder(userId, orderFromDto, orderDto.getDeviceId());

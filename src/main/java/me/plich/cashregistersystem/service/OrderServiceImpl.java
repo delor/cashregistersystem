@@ -4,6 +4,7 @@ package me.plich.cashregistersystem.service;
 import me.plich.cashregistersystem.exception.CustomerNotFoundException;
 import me.plich.cashregistersystem.exception.DeviceNotFoundException;
 import me.plich.cashregistersystem.exception.OrderNotFoundException;
+import me.plich.cashregistersystem.exception.OrderTypeNotFoundException;
 import me.plich.cashregistersystem.model.*;
 import me.plich.cashregistersystem.repository.CustomerRepository;
 import me.plich.cashregistersystem.repository.DeviceRepository;
@@ -14,13 +15,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import java.io.IOException;
-import java.time.LocalDate;
 import java.util.List;
-
-import static me.plich.cashregistersystem.model.OrderType.*;
 import static me.plich.cashregistersystem.utils.Utils.getNullPropertyNames;
 
 @Service("orderService")
@@ -47,13 +42,81 @@ public class OrderServiceImpl implements IOrderService{
         Device device = deviceRepository.findById(deviceId)
                 .orElseThrow(() -> new DeviceNotFoundException(deviceId));
         if(Utils.checkUser(userId, device)) {
-            order.setUser(user);
-            order.setDevice(device);
-            order.setCustomer(device.getCustomer());
-            return orderRepository.save(order);
+            switch (order.getOrderType()) {
+                case fiscalization:
+                    device.setDateOfFiscalization(order.getOrderDate());
+                    device.setActive(true);
+                    device.setPlannedReview(order.getOrderDate().plusMonths(device.getReviewsFrequency()));
+                    device.setDailyReports(order.getDailyReportTo());
+                    Order orderFiscalization = new Order();
+                    order.setOrderType(order.getOrderType());
+                    orderFiscalization.setOrderDate(order.getOrderDate());
+                    orderFiscalization.setSeals(StateOfSeals.whole);
+                    orderFiscalization.setGeneralCounterFrom(0);
+                    orderFiscalization.setGeneralCounterTo(order.getGeneralCounterTo());
+                    orderFiscalization.setDailyReportFrom(0);
+                    orderFiscalization.setDailyReportTo(order.getDailyReportTo());
+                    orderFiscalization.setResettingFramesFrom(0);
+                    orderFiscalization.setResettingFramesTo(order.getResettingFramesTo());
+                    orderFiscalization.setDevice(device);
+                    orderRepository.save(orderFiscalization);
+                    deviceRepository.save(device);
+                    return orderFiscalization;
+                case overview:
+                    Order orderOverview = new Order();
+                    orderOverview.setOrderType(order.getOrderType());
+                    orderOverview.setOrderDate(order.getOrderDate());
+                    orderOverview.setSeals(order.getSeals());
+                    orderOverview.setGeneralCounterFrom(order.getGeneralCounterFrom());
+                    orderOverview.setGeneralCounterTo(order.getGeneralCounterTo());
+                    orderOverview.setDailyReportFrom(order.getDailyReportFrom());
+                    orderOverview.setDailyReportTo(order.getDailyReportTo());
+                    orderOverview.setResettingFramesFrom(order.getResettingFramesFrom());
+                    orderOverview.setResettingFramesTo(order.getResettingFramesTo());
+                    orderOverview.setDevice(device);
+                    orderOverview.setUser(user);
+                    orderOverview.setCustomer(device.getCustomer());
+                    orderRepository.save(orderOverview);
+                    device.setDailyReports(order.getDailyReportTo());
+                    device.setPlannedReview(order.getOrderDate().plusMonths(device.getReviewsFrequency()));
+                    device.setLastReview(order.getOrderDate());
+                    deviceRepository.save(device);
+                    return orderOverview;
+                case repair:
+                    Order orderRepair = new Order();
+                    orderRepair.setOrderType(order.getOrderType());
+                    orderRepair.setOrderDate(order.getOrderDate());
+                    orderRepair.setSeals(order.getSeals());
+                    orderRepair.setGeneralCounterFrom(order.getGeneralCounterFrom());
+                    orderRepair.setGeneralCounterTo(order.getGeneralCounterTo());
+                    orderRepair.setDailyReportFrom(order.getDailyReportFrom());
+                    orderRepair.setDailyReportTo(order.getDailyReportTo());
+                    orderRepair.setResettingFramesFrom(order.getResettingFramesFrom());
+                    orderRepair.setResettingFramesTo(order.getResettingFramesTo());
+                    orderRepair.setDevice(device);
+                    orderRepair.setUser(user);
+                    orderRepair.setCustomer(device.getCustomer());
+                    orderRepository.save(orderRepair);
+                    device.setDailyReports(order.getDailyReportTo());
+                    deviceRepository.save(device);
+                    return orderRepair;
+                case deregistration:
+                    Order orderDeregistration = new Order();
+                    orderDeregistration.setOrderType(order.getOrderType());
+                    orderDeregistration.setOrderDate(order.getOrderDate());
+                    orderDeregistration.setSeals(order.getSeals());
+                    orderDeregistration.setDevice(device);
+                    orderDeregistration.setUser(user);
+                    orderDeregistration.setCustomer(device.getCustomer());
+                    orderRepository.save(orderDeregistration);
+                    device.setActive(false);
+                    device.setDateOfDeRegistration(order.getOrderDate());
+                    return orderDeregistration;
+            }
         } else {
             throw new DeviceNotFoundException(deviceId);
         }
+        throw new OrderTypeNotFoundException(order.getOrderType().toString());
     }
 
 
